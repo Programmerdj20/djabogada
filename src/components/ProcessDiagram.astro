@@ -1,0 +1,17 @@
+---
+import { PROCESS_STAGES } from "@/lib/site";
+---
+
+<ol
+  class="grid gap-px overflow-hidden rounded-sm border border-manila-300 bg-manila-300 sm:grid-cols-2 lg:grid-cols-4"
+>
+  {
+    PROCESS_STAGES.map((stage) => (
+      <li class="flex flex-col gap-3 bg-manila-100 p-6">
+        <span class="folio-kicker text-sello-600">Etapa {stage.number}</span>
+        <h3 class="font-display text-xl font-semibold text-ink-900">{stage.title}</h3>
+        <p class="text-sm leading-relaxed text-manila-700">{stage.description}</p>
+      </li>
+    ))
+  }
+</ol>

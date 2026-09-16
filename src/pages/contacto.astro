@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
+---
+
+<Layout
+  title="Contacto"
+  description="Agenda una consulta con Daniela Jaramillo Herrera, abogada penalista en Medellín. WhatsApp, correo o formulario de contacto."
+  path="/contacto"
+>
+  <PageHero
+    folio="05"
+    kicker="Contacto"
+    title="Agenda tu consulta"
+    lead="Cuéntale a Daniela tu situación con la mayor claridad posible. Toda comunicación está protegida por el secreto profesional del abogado."
+  />
+
+  <section class="bg-manila-50 py-16 sm:py-24">
+    <div class="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div>
+        <div class="rounded-sm border border-manila-300 bg-manila-100 p-6 sm:p-8">
+          <p class="folio-kicker text-sello-600">Canales directos</p>
+          <ul class="mt-4 space-y-4 text-sm">
+            <li>
+              <a
+                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-ink-900 no-underline hover:text-sello-700"
+              >
+                WhatsApp — {SITE.phoneDisplay}
+              </a>
+              <p class="mt-0.5 text-manila-700">La vía más rápida para casos urgentes.</p>
+            </li>
+            <li>
+              <a
+                href={`mailto:${SITE.email}`}
+                class="font-semibold text-ink-900 no-underline hover:text-sello-700"
+              >
+                {SITE.email}
+              </a>
+              <p class="mt-0.5 text-manila-700">Para enviar documentos o consultas detalladas.</p>
+            </li>
+          </ul>
+
+          <div class="mt-6 border-t border-manila-300 pt-6">
+            <p class="folio-kicker text-manila-400">Ubicación</p>
+            <p class="mt-2 text-sm text-manila-700">
+              Atención en {SITE.city}, {SITE.region}. La atención se coordina por WhatsApp o
+              correo antes de cualquier reunión presencial.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-sm border border-manila-300 bg-manila-100 p-6 sm:p-8">
+          <p class="folio-kicker text-sello-600">Antes de escribir</p>
+          <ul class="mt-3 space-y-2 text-sm text-manila-700">
+            <li>— Indica en qué etapa se encuentra tu situación, si lo sabes.</li>
+            <li>— Evita enviar documentos sensibles por canales no verificados.</li>
+            <li>— Si es urgente (captura, citación próxima), dilo explícitamente.</li>
+          </ul>
+        </div>
+      </div>
+
+      <ContactForm />
+    </div>
+  </section>
+</Layout>

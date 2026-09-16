@@ -1,0 +1,48 @@
+---
+import type { Area } from "@/lib/site";
+
+interface Props {
+  area: Area;
+  compact?: boolean;
+}
+const { area, compact = false } = Astro.props;
+---
+
+<article
+  class="group relative flex flex-col justify-between rounded-sm border border-manila-300 bg-manila-100 p-6 shadow-panel transition-transform hover:-translate-y-1 sm:p-7"
+>
+  <div
+    class="pointer-events-none absolute -top-3 left-6 rounded-sm border border-manila-300 bg-manila-50 px-2 py-0.5"
+    aria-hidden="true"
+  >
+    <span class="folio-kicker text-sello-600">Exp. {area.number}</span>
+  </div>
+
+  <div class="mt-3">
+    <h3 class="font-display text-2xl font-semibold text-ink-900">{area.title}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-manila-700">{area.short}</p>
+
+    {
+      !compact && (
+        <ul class="mt-5 space-y-2 border-t border-manila-300 pt-4 text-sm text-manila-700">
+          {area.bullets.map((b) => (
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-sello-600" aria-hidden="true">
+                —
+              </span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
+  <a
+    href={`/areas/${area.slug}`}
+    class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sello-700 no-underline group-hover:text-sello-600"
+  >
+    Ver el área completa
+    <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+  </a>
+</article>

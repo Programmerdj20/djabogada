@@ -1,0 +1,118 @@
+---
+import { NAV_ITEMS, SITE } from "@/lib/site";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-ink-800 bg-ink-950/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+    <a
+      href="/"
+      class="folio-kicker flex items-center gap-2 py-4 text-ink-100 no-underline hover:text-manila-100"
+      aria-label={`${SITE.name} — inicio`}
+    >
+      <span
+        class="flex h-7 w-7 items-center justify-center rounded-[3px] border border-brass-600/60 bg-ink-900 text-[10px] text-manila-200"
+        aria-hidden="true">DJ</span
+      >
+      <span class="hidden sm:inline">Daniela Jaramillo Herrera</span>
+      <span class="sm:hidden">D. Jaramillo</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-stretch gap-1">
+        {
+          NAV_ITEMS.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class={`group relative flex flex-col items-center gap-0.5 rounded-t-md px-4 pb-3 pt-4 text-sm no-underline transition-colors ${
+                  isActive(item.href)
+                    ? "bg-manila-100 text-ink-900"
+                    : "text-ink-200 hover:bg-ink-900 hover:text-manila-100"
+                }`}
+              >
+                <span class="folio-kicker text-[10px] opacity-60 group-hover:opacity-100">
+                  {item.folio}
+                </span>
+                <span class="font-medium">{item.label}</span>
+                {isActive(item.href) && (
+                  <span class="absolute inset-x-3 -bottom-px h-[3px] rounded-full bg-sello-600" />
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a
+      href="/contacto"
+      class="hidden shrink-0 rounded-sm bg-sello-600 px-4 py-2 text-sm font-semibold text-manila-50 no-underline shadow-panel transition-colors hover:bg-sello-500 md:inline-block"
+    >
+      Agenda tu consulta
+    </a>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="flex items-center gap-2 rounded-sm border border-ink-700 px-3 py-2 text-ink-100 md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="folio-kicker">Índice</span>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+        <path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.4" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="hidden border-t border-ink-800 bg-manila-100 md:hidden"
+  >
+    <nav aria-label="Principal móvil" class="mx-auto max-w-6xl px-5 py-2">
+      <ul class="divide-y divide-manila-300">
+        {
+          NAV_ITEMS.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class="flex items-center gap-3 py-3 text-ink-900 no-underline"
+              >
+                <span class="folio-kicker text-sello-600">{item.folio}</span>
+                <span class="font-medium">{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href="/contacto"
+            class="flex items-center gap-3 py-3 font-semibold text-sello-700 no-underline"
+          >
+            <span class="folio-kicker">→</span>
+            <span>Agenda tu consulta</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("mobile-nav");
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    nav?.classList.toggle("hidden");
+  });
+</script>

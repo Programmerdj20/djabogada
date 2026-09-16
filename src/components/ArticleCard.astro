@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"articulos">;
+}
+const { entry } = Astro.props;
+const { title, description, date, readingMinutes } = entry.data;
+
+const areaLabel: Record<string, string> = {
+  "defensa-penal": "Defensa penal",
+  "representacion-de-victimas": "Víctimas",
+  "criminalidad-organizada": "Criminalidad organizada",
+  "proceso-penal": "Proceso penal",
+};
+
+// timeZone: "UTC" — frontmatter dates are date-only values (stored as UTC
+// midnight); without pinning UTC here, a build machine west of UTC (e.g.
+// Bogotá, UTC-5) rolls the displayed date back by one day.
+const formattedDate = date.toLocaleDateString("es-CO", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<article class="group border-b border-ink-800 py-8 first:pt-0 last:border-b-0">
+  <a href={`/articulos/${entry.id}`} class="block no-underline">
+    <div class="folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-500">
+      <span class="text-sello-500">{areaLabel[entry.data.area]}</span>
+      <span aria-hidden="true">·</span>
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readingMinutes} min de lectura</span>
+    </div>
+    <h3 class="mt-2 font-display text-2xl font-semibold text-manila-50 group-hover:text-sello-400 sm:text-[1.75rem]">
+      {title}
+    </h3>
+    <p class="mt-2 max-w-2xl text-ink-300">{description}</p>
+    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-sello-500">
+      Leer artículo
+      <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
+    </span>
+  </a>
+</article>

@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AreaDetail from "@/components/AreaDetail.astro";
+import { AREAS } from "@/lib/site";
+
+const area = AREAS.find((a) => a.slug === "defensa-penal")!;
+---
+
+<Layout
+  title="Defensa penal en Medellín"
+  description="Defensa técnica en todas las etapas del proceso penal: captura, imputación, preacuerdos y juicio oral. Daniela Jaramillo Herrera, abogada penalista en Medellín."
+  path="/areas/defensa-penal"
+>
+  <AreaDetail
+    area={area}
+    lead="Desde la primera citación o captura hasta el juicio oral, la defensa técnica define qué tan reales son tus opciones. Cuanto antes empiece, más se puede hacer."
+    narrative={[
+      "Ser investigado o procesado penalmente es, para la mayoría de personas, la situación más incierta que van a enfrentar. Las decisiones que se toman en los primeros días — qué se dice, ante quién, y con qué estrategia — suelen pesar más que cualquier otra etapa posterior del proceso.",
+      "La defensa penal empieza desde el momento de la captura o la primera citación, no cuando ya hay una acusación formal. Incluye el control de garantías, la audiencia de imputación, la discusión sobre medida de aseguramiento, el análisis riguroso de la evidencia y, cuando conviene al caso, la negociación de un preacuerdo con la Fiscalía.",
+      "Haber trabajado ocho años dentro de la Fiscalía, en la unidad que investiga crimen organizado, da una lectura distinta de cada expediente: qué evidencia realmente sostiene una acusación, qué margen real existe para negociar, y qué puede debilitarse en juicio. Esa lectura es la base de cada estrategia de defensa.",
+    ]}
+    faqs={[
+      {
+        question: "¿Desde qué momento debo buscar un abogado penalista?",
+        answer:
+          "Desde la primera citación, indicio o rumor de investigación en tu contra — no esperes a una imputación formal. Lo ideal es tener defensa antes de rendir cualquier versión ante la Fiscalía.",
+      },
+      {
+        question: "Ya fui capturado, ¿todavía puedo contratar defensa?",
+        answer:
+          "Sí, y es urgente hacerlo. Dentro de las 36 horas siguientes a la captura se define la legalización de la captura y si procede una medida de aseguramiento.",
+      },
+      {
+        question: "¿Qué es un preacuerdo y siempre conviene aceptarlo?",
+        answer:
+          "Un preacuerdo es una negociación con la Fiscalía sobre los cargos o la pena a cambio de aceptación de responsabilidad. No siempre conviene: depende de la fortaleza real de la evidencia, algo que se evalúa caso por caso.",
+      },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#14120d"/>
+  <path d="M10 20c0-2.2 1.8-4 4-4h11l4 4h21c2.2 0 4 1.8 4 4v24c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V20z" fill="#e3d6b6"/>
+  <path d="M10 24h44v20c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V24z" fill="#f3ecd9"/>
+  <circle cx="47" cy="41" r="9" fill="none" stroke="#9c3419" stroke-width="1.6" stroke-dasharray="1.6 2.2"/>
+  <text x="47" y="44.5" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#9c3419">TP</text>
+</svg>

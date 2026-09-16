@@ -1,0 +1,29 @@
+---
+// An authored stamp graphic — every word on it is a real, verifiable fact
+// (Registro Nacional de Abogados, T.P. number, seccional). Nothing invented.
+import { SITE } from "@/lib/site";
+
+interface Props {
+  class?: string;
+};
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`relative inline-flex ${className}`} role="img" aria-label={`Tarjeta profesional verificada número ${SITE.tarjetaProfesional}, ${SITE.tarjetaProfesionalConsejo}`}>
+  <svg viewBox="0 0 140 140" class="h-full w-full -rotate-6 text-sello-500" aria-hidden="true">
+    <defs>
+      <path id="seal-top-arc" d="M 18,70 A 52,52 0 0 1 122,70" fill="none" />
+      <path id="seal-bottom-arc" d="M 26,96 A 52,52 0 0 0 114,96" fill="none" />
+    </defs>
+    <circle cx="70" cy="70" r="64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 3.5" />
+    <circle cx="70" cy="70" r="52" fill="none" stroke="currentColor" stroke-width="1" />
+    <text font-family="var(--font-mono)" font-size="8.6" letter-spacing="2" fill="currentColor">
+      <textPath href="#seal-top-arc" startOffset="50%" text-anchor="middle">REGISTRO NAL. DE ABOGADOS</textPath>
+    </text>
+    <text font-family="var(--font-mono)" font-size="8.6" letter-spacing="2" fill="currentColor">
+      <textPath href="#seal-bottom-arc" startOffset="50%" text-anchor="middle">SECC. ANTIOQUIA</textPath>
+    </text>
+    <text x="70" y="66" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="currentColor" letter-spacing="0.5">T.P. N.°</text>
+    <text x="70" y="84" text-anchor="middle" font-family="var(--font-mono)" font-weight="600" font-size="15" fill="currentColor">{SITE.tarjetaProfesional}</text>
+  </svg>
+</div>

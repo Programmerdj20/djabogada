@@ -1,0 +1,347 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import AreaCard from "@/components/AreaCard.astro";
+import ProcessDiagram from "@/components/ProcessDiagram.astro";
+import FAQ from "@/components/FAQ.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import SealBadge from "@/components/SealBadge.astro";
+import daniela from "@/assets/images/daniela-jaramillo.png";
+import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
+
+const articles = (await getCollection("articulos", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const faqs = [
+  {
+    question: "Me citaron a versión libre o indagatoria en la Fiscalía, ¿qué debo hacer?",
+    answer:
+      "Antes de asistir a cualquier diligencia, busca asesoría. Lo que digas desde el primer momento puede definir el rumbo del proceso. Escríbeme antes de la citación, no después.",
+  },
+  {
+    question: "¿Puedo contratar defensa si ya fui capturado?",
+    answer:
+      "Sí. Es precisamente el momento donde la defensa técnica es más urgente: dentro de las 36 horas siguientes a la captura se define la legalización y la posible medida de aseguramiento.",
+  },
+  {
+    question: "¿Atienden casos de víctimas o solo de defensa?",
+    answer:
+      "Ambos. Represento tanto a personas investigadas o procesadas como a víctimas y sus familias que buscan constituirse dentro de un proceso penal en curso.",
+  },
+  {
+    question: "¿Por qué su experiencia en la Fiscalía hace diferencia en mi defensa?",
+    answer:
+      "Porque durante ocho años estuvo del otro lado: redactando escritos de acusación, evaluando preacuerdos y coordinando con policía judicial. Conoce el criterio con el que se construye un caso, no solo el que se usa para defenderlo.",
+  },
+];
+---
+
+<Layout
+  title="Abogada Penalista en Medellín — Defensa, Víctimas y Criminalidad Organizada"
+  description="Daniela Jaramillo Herrera, abogada penalista en Medellín. Ocho años en la Fiscalía General de la Nación, unidad contra el crimen organizado. Defensa penal, representación de víctimas y delitos complejos."
+  path="/"
+>
+  <!-- HERO — el expediente se abre -->
+  <section class="relative overflow-hidden border-b border-ink-800 bg-ink-950">
+    <div
+      class="pointer-events-none absolute inset-y-0 left-6 hidden w-px bg-ink-800 sm:left-10 sm:block lg:left-16"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pt-24"
+    >
+      <div>
+        <p class="folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-sello-500">
+          <span>Expediente N.° 001</span>
+          <span class="text-ink-600" aria-hidden="true">·</span>
+          <span class="text-ink-400">Medellín, Colombia</span>
+        </p>
+
+        <h1
+          class="mt-5 font-display text-[2.6rem] font-semibold leading-[1.05] text-manila-50 sm:text-6xl lg:text-[4.2rem]"
+        >
+          Daniela Jaramillo<br />Herrera
+        </h1>
+
+        <p class="mt-4 text-lg font-medium text-manila-200 sm:text-xl">
+          Abogada penalista · Magíster y Especialista en Derecho Procesal Penal
+        </p>
+
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-ink-300 sm:text-lg">
+          Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
+          contra el crimen organizado de Medellín. Hoy pone ese mismo conocimiento al servicio de
+          tu defensa.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href="/contacto"
+            class="inline-flex items-center justify-center gap-2 rounded-sm bg-sello-600 px-6 py-3.5 text-base font-semibold text-manila-50 no-underline shadow-panel transition-colors hover:bg-sello-500"
+          >
+            Agenda tu consulta
+          </a>
+          <a
+            href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-sm border border-ink-600 px-6 py-3.5 text-base font-medium text-manila-100 no-underline transition-colors hover:border-manila-300 hover:bg-ink-900"
+          >
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+        <p class="folio-kicker mt-8 text-ink-500">
+          T.P. {SITE.tarjetaProfesional} · {SITE.tarjetaProfesionalConsejo}
+        </p>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+        <div class="absolute -inset-3 -z-10 rounded-sm border border-ink-800 sm:-inset-4" aria-hidden="true"></div>
+        <div class="relative rounded-sm border border-manila-300 bg-manila-100 p-3 shadow-panel sm:p-4">
+          <div
+            class="pointer-events-none absolute -top-3 left-6 h-6 w-10 -rotate-3 border border-ink-300/40 bg-manila-50/90 shadow-sm"
+            aria-hidden="true"
+          >
+          </div>
+          <Image
+            src={daniela}
+            alt="Retrato de Daniela Jaramillo Herrera, abogada penalista en Medellín"
+            width={520}
+            height={693}
+            class="w-full rounded-[2px] object-cover grayscale-[8%]"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="absolute -bottom-6 -right-4 h-24 w-24 sm:-bottom-7 sm:-right-6 sm:h-28 sm:w-28">
+            <SealBadge class="h-full w-full drop-shadow-[0_6px_14px_rgba(20,18,13,0.55)]" />
+          </div>
+        </div>
+        <p class="folio-kicker mt-8 text-center text-ink-500 sm:mt-9">
+          Registro fotográfico · anexo al expediente
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL OTRO LADO DEL EXPEDIENTE -->
+  <section class="bg-manila-50 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div>
+          <p class="folio-kicker text-sello-600">La ventaja que no se puede improvisar</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+            El otro lado del expediente
+          </h2>
+        </div>
+        <div class="prose-expediente">
+          <p>
+            Antes de defender un caso, Daniela ayudó a construirlos. Durante ocho años trabajó
+            como asistente de fiscal en la <strong>Dirección Especializada Contra las
+            Organizaciones Criminales (DECOC)</strong> de la Fiscalía General de la Nación en
+            Medellín: proyectó escritos de acusación, evaluó preacuerdos, acompañó audiencias e
+            interrogatorios, y gestionó el sistema misional que hoy sigue usando la Fiscalía en
+            cada investigación.
+          </p>
+          <p>
+            Eso significa algo muy concreto para quien hoy enfrenta un proceso penal: conoce el
+            criterio real con el que se evalúa la evidencia, se negocia un preacuerdo o se decide
+            imputar. No es una lectura de manual — es la experiencia de haber estado, literalmente,
+            del otro lado del expediente.
+          </p>
+        </div>
+      </div>
+
+      <dl class="mt-14 grid gap-px overflow-hidden rounded-sm border border-manila-300 bg-manila-300 sm:grid-cols-3">
+        <div class="bg-manila-100 p-6">
+          <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
+          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
+            Ocho años en la Fiscalía General de la Nación
+          </dd>
+        </div>
+        <div class="bg-manila-100 p-6">
+          <dt class="folio-kicker text-sello-600">DECOC</dt>
+          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
+            Unidad especializada contra organizaciones criminales
+          </dd>
+        </div>
+        <div class="bg-manila-100 p-6">
+          <dt class="folio-kicker text-sello-600">UNAULA</dt>
+          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
+            Magíster y Especialista en Derecho Procesal Penal
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ÁREAS DE PRÁCTICA -->
+  <section class="bg-ink-950 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="folio-kicker text-sello-500">Índice del expediente</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+            Áreas de práctica
+          </h2>
+        </div>
+        <a href="/areas" class="text-sm font-semibold text-sello-500 no-underline hover:text-sello-400">
+          Ver todas las áreas →
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {AREAS.map((area) => <AreaCard area={area} compact />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO PENAL -->
+  <section class="bg-manila-50 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="max-w-2xl">
+        <p class="folio-kicker text-sello-600">Para quien no sabe por dónde empezar</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+          ¿Cómo funciona un proceso penal en Colombia?
+        </h2>
+        <p class="prose-expediente mt-4">
+          Si te citaron, te capturaron o estás acompañando a alguien que lo vive, lo primero es
+          entender en qué punto del proceso te encuentras.
+        </p>
+      </div>
+
+      <div class="mt-10">
+        <ProcessDiagram />
+      </div>
+
+      <a
+        href="/proceso-penal"
+        class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-sello-700 no-underline hover:text-sello-600"
+      >
+        Ver la guía completa del proceso penal →
+      </a>
+    </div>
+  </section>
+
+  <!-- ARTÍCULOS -->
+  {
+    articles.length > 0 && (
+      <section class="bg-ink-950 py-16 sm:py-24">
+        <div class="mx-auto max-w-6xl px-5 sm:px-8">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="folio-kicker text-sello-500">Análisis jurídico</p>
+              <h2 class="mt-3 font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+                Últimos artículos
+              </h2>
+            </div>
+            <a href="/articulos" class="text-sm font-semibold text-sello-500 no-underline hover:text-sello-400">
+              Ver todos →
+            </a>
+          </div>
+          <div class="mt-8 max-w-3xl">
+            {articles.map((entry) => <ArticleCard entry={entry} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- FAQ -->
+  <section class="bg-ink-900 py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <p class="folio-kicker text-sello-500">Preguntas frecuentes</p>
+      <h2 class="mt-3 font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+        Antes de escribir
+      </h2>
+      <div class="mt-8">
+        <FAQ items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="bg-sello-700 py-16 sm:py-20">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+    >
+      <div>
+        <h2 class="font-display text-2xl font-semibold text-manila-50 sm:text-3xl">
+          ¿Necesitas orientación ahora mismo?
+        </h2>
+        <p class="mt-2 max-w-lg text-sello-100">
+          Cuanto antes hables con tu defensa, más opciones reales tienes. Escribe y cuéntale a
+          Daniela tu situación.
+        </p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a
+          href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-ink-950 px-6 py-3.5 font-semibold text-manila-50 no-underline transition-colors hover:bg-ink-900"
+        >
+          WhatsApp directo
+        </a>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm border border-manila-50/40 px-6 py-3.5 font-semibold text-manila-50 no-underline transition-colors hover:bg-sello-600"
+        >
+          Formulario de contacto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <JsonLd
+    schema={{
+      "@context": "https://schema.org",
+      "@type": "Attorney",
+      name: SITE.name,
+      url: SITE.url,
+      image: `${SITE.url}/og/default.png`,
+      telephone: SITE.phoneE164,
+      email: SITE.email,
+      areaServed: {
+        "@type": "City",
+        name: SITE.city,
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: SITE.city,
+        addressRegion: SITE.region,
+        addressCountry: "CO",
+      },
+      knowsAbout: AREAS.map((a) => a.title),
+      hasCredential: [
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "degree",
+          name: "Abogada — Universidad EAFIT",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "postgraduate degree",
+          name: "Especialista en Derecho Procesal Penal — UNAULA",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "postgraduate degree",
+          name: "Magíster en Derecho Procesal Penal y Teoría del Delito — UNAULA",
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "license",
+          name: `Tarjeta Profesional de Abogada N.° ${SITE.tarjetaProfesional}`,
+          recognizedBy: {
+            "@type": "Organization",
+            name: SITE.tarjetaProfesionalConsejo,
+          },
+        },
+      ],
+    }}
+  />
+</Layout>

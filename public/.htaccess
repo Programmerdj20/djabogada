@@ -1,0 +1,70 @@
+# Daniela Jaramillo Herrera — danielajaramilloabogada.com
+# Reglas de Apache para Hostinger (hosting compartido).
+
+# --- HTTPS y dominio canónico -------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Forzar el dominio sin "www"
+  RewriteCond %{HTTP_HOST} ^www\.danielajaramilloabogada\.com$ [NC]
+  RewriteRule ^(.*)$ https://danielajaramilloabogada.com/$1 [L,R=301]
+
+  # Servir index.html de cada carpeta de forma limpia (salida estática de Astro)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# --- Página de error 404 personalizada ----------------------------------
+ErrorDocument 404 /404.html
+
+# --- Compresión ----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/xml text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Cache ----------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Los assets con hash de Astro (/_astro/*) son inmutables.
+  <FilesMatch "\.(css|js|woff2|avif|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Cabeceras de seguridad
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# --- Bloquear acceso directo a archivos sensibles -------------------------
+# config.php guarda las credenciales SMTP reales: nunca debe ser accesible
+# por URL, solo incluido internamente por contacto.php.
+<Files "config.php">
+  Require all denied
+</Files>
