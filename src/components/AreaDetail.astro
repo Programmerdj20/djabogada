@@ -14,7 +14,7 @@ interface Props {
 const { area, lead, narrative, faqs } = Astro.props;
 ---
 
-<PageHero folio={`02.${area.number}`} kicker="Áreas de práctica" title={area.title} lead={lead} />
+<PageHero title={area.title} lead={lead} />
 
 <section class="bg-manila-50 py-16 sm:py-24">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
@@ -23,7 +23,7 @@ const { area, lead, narrative, faqs } = Astro.props;
         {narrative.map((p) => <p>{p}</p>)}
       </div>
       <aside class="h-fit rounded-sm border border-manila-300 bg-manila-100 p-6 sm:p-8">
-        <p class="folio-kicker text-sello-600">Cómo se trabaja esta área</p>
+        <p class="block-label text-sello-600">Cómo se trabaja esta área</p>
         <ul class="mt-4 space-y-3">
           {
             area.bullets.map((b) => (
@@ -57,9 +57,8 @@ const { area, lead, narrative, faqs } = Astro.props;
 
 <section class="bg-ink-900 py-16 sm:py-24">
   <div class="mx-auto max-w-3xl px-5 sm:px-8">
-    <p class="folio-kicker text-sello-500">Preguntas frecuentes</p>
-    <h2 class="mt-2 font-display text-3xl font-semibold text-manila-50">
-      Sobre {area.title.toLowerCase()}
+    <h2 class="font-display text-3xl font-semibold text-manila-50">
+      Preguntas frecuentes sobre {area.title.toLowerCase()}
     </h2>
     <div class="mt-8">
       <FAQ items={faqs} />

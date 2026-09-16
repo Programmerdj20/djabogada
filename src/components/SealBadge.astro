@@ -10,20 +10,23 @@ const { class: className = "" } = Astro.props;
 ---
 
 <div class={`relative inline-flex ${className}`} role="img" aria-label={`Tarjeta profesional verificada número ${SITE.tarjetaProfesional}, ${SITE.tarjetaProfesionalConsejo}`}>
-  <svg viewBox="0 0 140 140" class="h-full w-full -rotate-6 text-sello-500" aria-hidden="true">
+  <svg viewBox="0 0 140 140" class="h-full w-full -rotate-6" aria-hidden="true">
     <defs>
-      <path id="seal-top-arc" d="M 18,70 A 52,52 0 0 1 122,70" fill="none" />
-      <path id="seal-bottom-arc" d="M 26,96 A 52,52 0 0 0 114,96" fill="none" />
+      <path id="seal-top-arc" d="M 15,70 A 55,55 0 0 1 125,70" fill="none" />
+      <path id="seal-bottom-arc" d="M 24,98 A 55,55 0 0 0 116,98" fill="none" />
     </defs>
-    <circle cx="70" cy="70" r="64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 3.5" />
-    <circle cx="70" cy="70" r="52" fill="none" stroke="currentColor" stroke-width="1" />
-    <text font-family="var(--font-mono)" font-size="8.6" letter-spacing="2" fill="currentColor">
+    {/* Opaque backing disc: a stamp reads against any photo behind it,
+        never relying on the underlying image for contrast. */}
+    <circle cx="70" cy="70" r="66" style="fill: var(--color-manila-50); stroke: var(--color-manila-300);" stroke-width="1" />
+    <circle cx="70" cy="70" r="64" fill="none" style="stroke: var(--color-sello-700);" stroke-width="1.8" stroke-dasharray="2.5 3.5" />
+    <circle cx="70" cy="70" r="52" fill="none" style="stroke: var(--color-sello-700);" stroke-width="1.2" />
+    <text font-family="var(--font-mono)" font-size="9.2" font-weight="600" letter-spacing="2" style="fill: var(--color-sello-700);">
       <textPath href="#seal-top-arc" startOffset="50%" text-anchor="middle">REGISTRO NAL. DE ABOGADOS</textPath>
     </text>
-    <text font-family="var(--font-mono)" font-size="8.6" letter-spacing="2" fill="currentColor">
+    <text font-family="var(--font-mono)" font-size="9.2" font-weight="600" letter-spacing="2" style="fill: var(--color-sello-700);">
       <textPath href="#seal-bottom-arc" startOffset="50%" text-anchor="middle">SECC. ANTIOQUIA</textPath>
     </text>
-    <text x="70" y="66" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="currentColor" letter-spacing="0.5">T.P. N.°</text>
-    <text x="70" y="84" text-anchor="middle" font-family="var(--font-mono)" font-weight="600" font-size="15" fill="currentColor">{SITE.tarjetaProfesional}</text>
+    <text x="70" y="65" text-anchor="middle" font-family="var(--font-mono)" font-size="9.5" style="fill: var(--color-sello-700);" letter-spacing="0.5">T.P. N.°</text>
+    <text x="70" y="86" text-anchor="middle" font-family="var(--font-mono)" font-weight="700" font-size="18" style="fill: var(--color-sello-800);">{SITE.tarjetaProfesional}</text>
   </svg>
 </div>
