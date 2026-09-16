@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import escritorio from "@/assets/images/daniela-escritorio.webp";
 import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
@@ -13,6 +14,10 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
   <PageHero
     title="Agenda tu consulta"
     lead="Cuéntale a Daniela tu situación con la mayor claridad posible. Toda comunicación está protegida por el secreto profesional del abogado."
+    image={escritorio}
+    imageAlt="Daniela Jaramillo en su escritorio, disponible para una consulta"
+    imageAspect="3 / 2"
+    imagePosition="68% center"
   />
 
   <section class="bg-manila-50 py-16 sm:py-24">

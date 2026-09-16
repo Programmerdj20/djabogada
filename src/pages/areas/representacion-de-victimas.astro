@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import AreaDetail from "@/components/AreaDetail.astro";
+import escritorio from "@/assets/images/daniela-escritorio.webp";
 import { AREAS } from "@/lib/site";
 
 const area = AREAS.find((a) => a.slug === "representacion-de-victimas")!;
@@ -13,6 +14,10 @@ const area = AREAS.find((a) => a.slug === "representacion-de-victimas")!;
 >
   <AreaDetail
     area={area}
+    image={escritorio}
+    imageAlt="Daniela Jaramillo en su escritorio, con libros jurídicos de fondo"
+    imageAspect="3 / 2"
+    imagePosition="68% center"
     lead="Ser víctima de un delito da derechos concretos dentro del proceso penal: a participar, a ser escuchada, y a buscar reparación. Ejercerlos bien requiere representación técnica."
     narrative={[
       "Dentro del sistema penal acusatorio colombiano, la víctima no es solo testigo: tiene derecho a constituirse como interviniente, acceder al expediente, participar en audiencias clave y perseguir la reparación del daño sufrido.",

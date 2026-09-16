@@ -13,7 +13,7 @@ function isActive(href: string) {
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
     <a
       href="/"
-      class="flex items-center gap-3 py-4 no-underline"
+      class="flex shrink-0 items-center gap-3 py-4 no-underline"
       aria-label={`${SITE.name} — inicio`}
     >
       <svg width="22" height="22" viewBox="0 0 64 64" fill="none" aria-hidden="true" class="shrink-0 text-sello-600">
@@ -26,10 +26,10 @@ function isActive(href: string) {
           <path d="M24 50h16" />
         </g>
       </svg>
-      <span class="font-display text-lg tracking-wide text-ink-900 sm:text-xl">{SITE.name}</span>
+      <span class="whitespace-nowrap font-display text-lg tracking-wide text-ink-900 sm:text-xl">{SITE.name}</span>
     </a>
 
-    <nav aria-label="Principal" class="hidden md:block">
+    <nav aria-label="Principal" class="hidden lg:block">
       <ul class="flex items-center gap-1">
         {
           NAV_ITEMS.map((item) => {
@@ -39,7 +39,7 @@ function isActive(href: string) {
                 <a
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  class={`relative block px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] no-underline transition-colors after:absolute after:bottom-0 after:left-4 after:right-4 after:h-px after:origin-left after:scale-x-0 after:bg-sello-500 after:transition-transform after:duration-300 hover:text-ink-950 hover:after:scale-x-100 ${
+                  class={`relative block whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] no-underline transition-colors after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-sello-500 after:transition-transform after:duration-300 hover:text-ink-950 hover:after:scale-x-100 xl:px-4 xl:after:left-4 xl:after:right-4 ${
                     active ? "text-ink-950 after:scale-x-100" : "text-ink-600"
                   }`}
                 >
@@ -52,14 +52,14 @@ function isActive(href: string) {
       </ul>
     </nav>
 
-    <a href="/contacto" class="btn-gold hidden shrink-0 !px-5 !py-2.5 !text-[0.7rem] md:inline-flex">
+    <a href="/contacto" class="btn-gold hidden shrink-0 whitespace-nowrap !px-5 !py-2.5 !text-[0.7rem] lg:inline-flex">
       Agenda tu consulta
     </a>
 
     <button
       type="button"
       id="menu-toggle"
-      class="flex items-center gap-2 border border-sello-500 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-900 md:hidden"
+      class="flex items-center gap-2 border border-sello-500 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-900 lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -70,7 +70,7 @@ function isActive(href: string) {
     </button>
   </div>
 
-  <div id="mobile-nav" class="hidden border-b border-manila-300 bg-manila-100 md:hidden">
+  <div id="mobile-nav" class="hidden border-b border-manila-300 bg-manila-100 lg:hidden">
     <nav aria-label="Principal móvil" class="mx-auto max-w-6xl px-5 py-2">
       <ul class="divide-y divide-manila-300">
         {

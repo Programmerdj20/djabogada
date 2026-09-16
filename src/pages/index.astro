@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import AreaCard from "@/components/AreaCard.astro";
@@ -8,7 +8,8 @@ import FAQ from "@/components/FAQ.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import SealBadge from "@/components/SealBadge.astro";
-import daniela from "@/assets/images/daniela-jaramillo.png";
+import escritorio from "@/assets/images/daniela-escritorio.webp";
+import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
 const articles = (await getCollection("articulos", ({ data }) => !data.draft))
@@ -45,66 +46,84 @@ const faqs = [
   path="/"
 >
   <!-- HERO -->
-  <section class="relative overflow-hidden border-b border-manila-300 bg-manila-50">
-    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sello-400 to-transparent" aria-hidden="true"></div>
-    <div
-      class="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-20"
-    >
-      <div>
-        <span class="rule-gold hero-rise block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
-
-        <h1
-          class="hero-rise mt-7 font-display text-[2.75rem] font-semibold leading-[1.04] text-ink-900 sm:text-6xl lg:text-[4.4rem]"
-          style="--rise-delay: 60ms"
-        >
-          {SITE.name}
-        </h1>
-
-        <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 140ms">
-          Abogada penalista en Medellín
-        </p>
-
-        <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 220ms">
-          Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
-          contra el crimen organizado de Medellín. Hoy pone ese mismo criterio, al más alto nivel,
-          al servicio de tu defensa.
-        </p>
-
-        <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 300ms">
-          <a href="/contacto" class="btn-gold">
-            Agenda tu consulta
-          </a>
-          <a
-            href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-whatsapp-primary
-            class="btn-outline-gold"
-          >
-            Escribir por WhatsApp
-          </a>
-        </div>
-
-        <p class="hero-rise folio-kicker mt-9 text-manila-700" style="--rise-delay: 360ms">
-          T.P. {SITE.tarjetaProfesional} · {SITE.tarjetaProfesionalConsejo}
-        </p>
+  <section class="relative isolate overflow-hidden border-b border-manila-300 bg-manila-50">
+    <div class="relative">
+      {/* La fotografía entra completa, a su proporción natural: el alto del
+          contenedor es el alto real de la imagen, así que nunca se recorta.
+          `hero-drift` da una deriva apenas perceptible; `hero-settle` la
+          asienta al cargar. Ambas se desactivan con prefers-reduced-motion. */}
+      <div class="hero-drift lg:min-h-[34rem]">
+        <Picture
+          src={escritorio}
+          alt={`${SITE.name}, abogada penalista en Medellín, en su escritorio con libros jurídicos`}
+          formats={["avif", "webp"]}
+          fallbackFormat="webp"
+          widths={[640, 960, 1280, 1600, 1920]}
+          sizes="100vw"
+          class="hero-settle block h-auto w-full"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
 
-      <div class="hero-rise relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none" style="--rise-delay: 180ms">
-        <div class="relative border border-sello-400 bg-manila-100 p-3 shadow-gold sm:p-4">
-          <div class="border border-sello-300 p-1">
-            <Image
-              src={daniela}
-              alt={`Retrato de ${SITE.name}, abogada penalista en Medellín`}
-              width={520}
-              height={693}
-              class="w-full object-cover"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="absolute -bottom-7 -right-7 h-24 w-24 sm:-bottom-8 sm:-right-8 sm:h-28 sm:w-28">
-            <SealBadge class="h-full w-full drop-shadow-[0_10px_22px_rgba(15,15,16,0.18)]" />
+      {/* Velo marfil solo donde va el texto (escritorio). En móvil el texto
+          vive debajo de la imagen, sobre el marfil del sitio. */}
+      <div
+        class="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-manila-50 via-manila-50/92 to-manila-50/0 lg:block"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sello-400 to-transparent"
+        aria-hidden="true"
+      ></div>
+
+      {/* Texto: bajo la imagen hasta lg; superpuesto y centrado desde lg. */}
+      <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-center">
+        <div class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-14 lg:py-0">
+          <div class="max-w-xl">
+            <span class="rule-gold hero-rise block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
+
+            <h1
+              class="hero-rise mt-7 font-display text-[2.75rem] font-semibold leading-[1.04] text-ink-900 sm:text-6xl lg:text-6xl xl:text-[4.25rem]"
+              style="--rise-delay: 60ms"
+            >
+              {SITE.name}
+            </h1>
+
+            <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 140ms">
+              Abogada penalista en Medellín
+            </p>
+
+            <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 220ms">
+              Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
+              contra el crimen organizado de Medellín. Hoy pone ese mismo criterio, al más alto
+              nivel, al servicio de tu defensa.
+            </p>
+
+            <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 300ms">
+              <a href="/contacto" class="btn-gold">
+                Agenda tu consulta
+              </a>
+              <a
+                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-whatsapp-primary
+                class="btn-outline-gold"
+              >
+                Escribir por WhatsApp
+              </a>
+            </div>
+
+            <div class="hero-rise mt-9 flex items-center gap-4" style="--rise-delay: 360ms">
+              <div class="h-14 w-14 shrink-0">
+                <SealBadge class="h-full w-full" />
+              </div>
+              <p class="folio-kicker text-manila-700">
+                T.P. {SITE.tarjetaProfesional} · {SITE.tarjetaProfesionalConsejo}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -134,6 +153,27 @@ const faqs = [
             imputar. No es una lectura de manual — es la experiencia de haber estado, literalmente,
             del otro lado del proceso.
           </p>
+        </div>
+      </div>
+
+      <div
+        class="mt-14 border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4"
+        data-reveal
+        style="--reveal-delay: 120ms"
+      >
+        <div class="border border-sello-300 p-1">
+          <Picture
+            src={expediente}
+            alt="Daniela Jaramillo estudiando un expediente penal en su escritorio"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            widths={[640, 960, 1280, 1600]}
+            sizes="(min-width: 1152px) 1088px, 92vw"
+            class="w-full object-cover object-[center_42%]"
+            style="aspect-ratio: 2.4 / 1;"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero.astro";
 import Timeline from "@/components/Timeline.astro";
 import CredentialList from "@/components/CredentialList.astro";
 import JsonLd from "@/components/JsonLd.astro";
+import juntas from "@/assets/images/daniela-juntas.webp";
 import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
@@ -15,6 +16,9 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
   <PageHero
     title="Ocho años construyendo casos en la Fiscalía"
     lead="Antes de ejercer la defensa privada, Daniela pasó casi una década construyendo casos penales dentro de la Fiscalía General de la Nación. Esa experiencia es la base de cómo hoy defiende."
+    image={juntas}
+    imageAlt="Daniela Jaramillo dirigiendo una reunión de trabajo sobre un proceso penal"
+    imageAspect="4 / 5"
   />
 
   <section class="bg-manila-50 py-16 sm:py-24">

@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
+import expediente from "@/assets/images/daniela-expediente.webp";
 import { getCollection } from "astro:content";
 
 const articles = (await getCollection("articulos", ({ data }) => !data.draft)).sort(
@@ -17,6 +18,10 @@ const articles = (await getCollection("articulos", ({ data }) => !data.draft)).s
   <PageHero
     title="Artículos"
     lead="Explicaciones claras sobre el proceso penal colombiano, escritas desde la experiencia directa, sin tecnicismos innecesarios."
+    image={expediente}
+    imageAlt="Daniela Jaramillo estudiando un expediente penal"
+    imageAspect="2.4 / 1"
+    imagePosition="center 42%"
   />
 
   <section class="bg-manila-50 py-16 sm:py-24">

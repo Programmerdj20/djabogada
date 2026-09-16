@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/PageHero.astro";
 import AreaCard from "@/components/AreaCard.astro";
+import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS } from "@/lib/site";
 ---
 
@@ -13,6 +14,10 @@ import { AREAS } from "@/lib/site";
   <PageHero
     title="Tres frentes, un mismo criterio"
     lead="Cada área se aborda con el mismo estándar: entender a fondo cómo construye la Fiscalía sus casos, para actuar con precisión desde el primer momento."
+    image={expediente}
+    imageAlt="Daniela Jaramillo analizando un expediente penal"
+    imageAspect="2.4 / 1"
+    imagePosition="center 42%"
   />
 
   <section class="bg-manila-50 py-16 sm:py-24">

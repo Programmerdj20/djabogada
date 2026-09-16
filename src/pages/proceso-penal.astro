@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero.astro";
 import ProcessDiagram from "@/components/ProcessDiagram.astro";
 import FAQ from "@/components/FAQ.astro";
 import JsonLd from "@/components/JsonLd.astro";
+import juicio from "@/assets/images/daniela-juicio.webp";
 import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
 const faqs = [
@@ -43,6 +44,9 @@ const faqs = [
   <PageHero
     title="Cómo funciona un proceso penal en Colombia"
     lead="Si te citaron, te capturaron, o estás acompañando a alguien que lo vive, esto explica en qué punto del proceso te encuentras y qué significa realmente cada etapa."
+    image={juicio}
+    imageAlt="Daniela Jaramillo de pie en una sala de audiencias, durante un juicio oral"
+    imageAspect="1.44 / 1"
   />
 
   <section class="bg-manila-50 py-16 sm:py-20">
