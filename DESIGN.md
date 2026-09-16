@@ -87,6 +87,16 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 - **Tarjetas de área** (`AreaCard.astro`): panel `manila-100` con esquinas de marca (corner
   brackets en oro que aparecen al hover) sobre secciones `manila-50` — una referencia a las
   esquineras de empaque de lujo, no una card genérica de ícono+título+texto.
+- **Placas fotográficas** (`PageHero.astro` con `image`, hero de `index.astro`): en páginas
+  internas la fotografía entra enmarcada — borde `sello-400` sobre panel marfil, filete interior
+  `sello-300` y `shadow-gold`, el mismo marco del hero original. El hero de home es la única
+  excepción de composición: la fotografía se muestra **completa, a su proporción natural** (sin
+  `object-cover`, sin recorte), y el alto del hero es el alto real de la imagen. Desde `lg` el
+  texto se superpone sobre un velo marfil que se aclara hacia la derecha; por debajo de `lg` el
+  texto cae debajo de la imagen, sobre el marfil del sitio. Nunca un overlay negro ni texto sobre
+  la imagen desnuda. Los encuadres (`object-position` y
+  `aspect-ratio`) de las placas internas se eligen para excluir rótulos ajenos: el nombre de caso impreso en
+  `daniela-expediente` y el escudo del Congreso en `daniela-juicio` quedan fuera de cuadro.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
@@ -108,9 +118,11 @@ no se usa en ninguna página actual del sitio.
 ## Movimiento
 
 `hero-rise` para el primer viewport, `[data-reveal]` para contenido bajo el pliegue, disparado al
-cargar vía `requestAnimationFrame` — nunca atado a scroll. Hover: tarjetas de área revelan
-esquineras doradas y se elevan; botones dorados se elevan y aclaran; enlaces cambian a oro. Todo
-respeta `prefers-reduced-motion`.
+cargar vía `requestAnimationFrame` — nunca atado a scroll. La fotografía del hero suma dos
+movimientos propios, ambos muy sobrios: `hero-settle` (entra apenas ampliada y se posa en su
+tamaño exacto, sin recorte al terminar) y `hero-drift` (una deriva continua de escala ≤1% durante
+26 s). Hover: tarjetas de área revelan esquineras doradas y se elevan; botones dorados se elevan y
+aclaran; enlaces cambian a oro. Todo respeta `prefers-reduced-motion`.
 
 ## Accesibilidad
 

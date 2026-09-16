@@ -1,24 +1,80 @@
 ---
+import { Picture } from "astro:assets";
+
 interface Props {
   title: string;
   lead?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePosition?: string;
+  imageAspect?: string;
 }
-const { title, lead } = Astro.props;
+const {
+  title,
+  lead,
+  image,
+  imageAlt = "",
+  imagePosition = "center",
+  imageAspect = "4 / 5",
+} = Astro.props;
+
+// Una imagen apaisada pide una columna más ancha; un retrato, una más
+// estrecha, para que el marco no quede desproporcionado frente al texto.
+const isWide = image ? parseFloat(imageAspect) >= 1.3 : false;
+const gridClass = image
+  ? `grid gap-12 lg:items-center lg:gap-16 ${isWide ? "lg:grid-cols-2" : "lg:grid-cols-[1.15fr_0.85fr]"}`
+  : "";
 ---
 
 <section class="border-b border-manila-300 bg-manila-100 py-16 sm:py-24">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <span class="rule-gold hero-rise block w-24" aria-hidden="true"></span>
-    <h1
-      class="hero-rise mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl lg:text-6xl"
-      style="--rise-delay: 60ms"
-    >
-      {title}
-    </h1>
-    {lead && (
-      <p class="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 140ms">
-        {lead}
-      </p>
-    )}
+    <div class={gridClass}>
+      <div>
+        <span class="rule-gold hero-rise block w-24" aria-hidden="true"></span>
+        <h1
+          class="hero-rise mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl lg:text-6xl"
+          style="--rise-delay: 60ms"
+        >
+          {title}
+        </h1>
+        {
+          lead && (
+            <p class="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 140ms">
+              {lead}
+            </p>
+          )
+        }
+      </div>
+
+      {
+        image && (
+          <div
+            class="hero-rise relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none"
+            style="--rise-delay: 180ms"
+          >
+            <div class="relative border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4">
+              <div class="border border-sello-300 p-1">
+                <Picture
+                  src={image}
+                  alt={imageAlt}
+                  formats={["avif", "webp"]}
+                  fallbackFormat="webp"
+                  widths={[400, 560, 720, 960]}
+                  sizes={
+                    isWide
+                      ? "(min-width: 1024px) 46vw, (min-width: 640px) 62vw, 88vw"
+                      : "(min-width: 1024px) 32vw, (min-width: 640px) 60vw, 88vw"
+                  }
+                  class="w-full object-cover"
+                  style={`aspect-ratio: ${imageAspect}; object-position: ${imagePosition};`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
   </div>
 </section>

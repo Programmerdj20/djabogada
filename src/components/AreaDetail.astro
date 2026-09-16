@@ -10,11 +10,22 @@ interface Props {
   lead: string;
   narrative: string[];
   faqs: FaqItem[];
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePosition?: string;
+  imageAspect?: string;
 }
-const { area, lead, narrative, faqs } = Astro.props;
+const { area, lead, narrative, faqs, image, imageAlt, imagePosition, imageAspect } = Astro.props;
 ---
 
-<PageHero title={area.title} lead={lead} />
+<PageHero
+  title={area.title}
+  lead={lead}
+  image={image}
+  imageAlt={imageAlt}
+  imagePosition={imagePosition}
+  imageAspect={imageAspect}
+/>
 
 <section class="bg-manila-50 py-16 sm:py-24">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
