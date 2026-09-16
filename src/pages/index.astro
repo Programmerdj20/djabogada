@@ -82,26 +82,26 @@ const faqs = [
       <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-center">
         <div class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-14 lg:py-0">
           <div class="max-w-xl">
-            <span class="rule-gold hero-rise block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
+            <span class="rule-gold rule-draw block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
 
             <h1
               class="hero-rise mt-7 font-display text-[2.75rem] font-semibold leading-[1.04] text-ink-900 sm:text-6xl lg:text-6xl xl:text-[4.25rem]"
-              style="--rise-delay: 60ms"
+              style="--rise-delay: 90ms"
             >
               {SITE.name}
             </h1>
 
-            <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 140ms">
+            <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 170ms">
               Abogada penalista en Medellín
             </p>
 
-            <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 220ms">
+            <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 250ms">
               Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
               contra el crimen organizado de Medellín. Hoy pone ese mismo criterio, al más alto
               nivel, al servicio de tu defensa.
             </p>
 
-            <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 300ms">
+            <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 330ms">
               <a href="/contacto" class="btn-gold">
                 Agenda tu consulta
               </a>
@@ -116,7 +116,7 @@ const faqs = [
               </a>
             </div>
 
-            <div class="hero-rise mt-9 flex items-center gap-4" style="--rise-delay: 360ms">
+            <div class="seal-press mt-9 flex items-center gap-4" style="--rise-delay: 430ms">
               <div class="h-14 w-14 shrink-0">
                 <SealBadge class="h-full w-full" />
               </div>
@@ -269,7 +269,7 @@ const faqs = [
               Ver todos →
             </a>
           </div>
-          <div class="mt-8 max-w-3xl" data-reveal style="--reveal-delay: 100ms">
+          <div class="mt-8 max-w-3xl" data-reveal data-stagger style="--reveal-delay: 100ms">
             {articles.map((entry) => <ArticleCard entry={entry} />)}
           </div>
         </div>

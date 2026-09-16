@@ -75,9 +75,9 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   sobre header marfil. El monograma "DJ" con balanza del board fue explícitamente descartado a
   pedido del cliente. El mismo ícono de balanza, simplificado, es el favicon (`public/favicon.svg`).
 - **Filete de oro** (`.rule-gold`, `.rule-gold-solid`): el motivo de marca — una línea fina de 1px,
-  nunca un bloque. Aparece sobre el hero y como separador antes del footer. Reemplaza cualquier
-  posible metáfora de carpeta o expediente: es puramente material, como el canto dorado de una
-  tarjeta grabada.
+  nunca un bloque. Aparece sobre el hero y como separador antes del footer; en el primer viewport
+  se traza con `rule-draw`. Reemplaza cualquier posible metáfora de carpeta o expediente: es
+  puramente material, como el canto dorado de una tarjeta grabada.
 - **Botón dorado** (`.btn-gold` / `.btn-outline-gold`, en `global.css`): usado en cada CTA del
   sitio (hero, CTAs finales, formulario, 404, WhatsApp flotante).
 - **Medallón de verificación** (`SealBadge.astro`): disco marfil con doble anillo en oro y texto
@@ -117,12 +117,38 @@ no se usa en ninguna página actual del sitio.
 
 ## Movimiento
 
-`hero-rise` para el primer viewport, `[data-reveal]` para contenido bajo el pliegue, disparado al
-cargar vía `requestAnimationFrame` — nunca atado a scroll. La fotografía del hero suma dos
-movimientos propios, ambos muy sobrios: `hero-settle` (entra apenas ampliada y se posa en su
-tamaño exacto, sin recorte al terminar) y `hero-drift` (una deriva continua de escala ≤1% durante
-26 s). Hover: tarjetas de área revelan esquineras doradas y se elevan; botones dorados se elevan y
-aclaran; enlaces cambian a oro. Todo respeta `prefers-reduced-motion`.
+**Tesis: grabar y prensar.** El movimiento imita el material del mundo — el filete se traza, el
+sello se prensa — y nada rebota. Es deliberadamente sobrio: confirma estado y dirección, nunca
+hace espectáculo.
+
+**Primer viewport.** `hero-rise` es la única secuencia coreografiada: `rule-draw` traza el filete
+de oro de izquierda a derecha (`--rule-origin` lo centra donde la composición lo pida) mientras el
+nombre, el lead y los CTA suben en cascada por `--rise-delay` (0 → 90 → 170 → 250 → 330 ms), y
+`seal-press` cierra la secuencia prensando el medallón de verificación en su tamaño exacto a los
+430 ms. Es el mismo `rule-draw` en el `PageHero` de las páginas internas.
+
+**Contenido bajo el pliegue.** `[data-reveal]` revela cada bloque cuando entra en pantalla
+(IntersectionObserver con margen inferior −10%), y `[data-stagger]` hace entrar en cascada los
+hijos de una lista —FAQ, cronología, listas de artículos— a 70 ms por hijo con tope de 350 ms.
+**El contenido nunca depende del scroll para volverse visible:** parte visible por defecto y sólo
+se oculta si el JS de revelado está disponible (`js-reveal-ready`); sin JS, sin
+IntersectionObserver o con `prefers-reduced-motion`, todo se ve igual.
+
+**Fotografía del hero.** Dos movimientos propios: `hero-settle` (entra apenas ampliada y se posa
+en su tamaño exacto, sin recorte al terminar) y `hero-drift` (una deriva continua de escala ≤1%
+durante 26 s). `hero-drift` es el único loop del sitio: `is-idle` lo pausa y suelta `will-change`
+cuando el hero sale de pantalla.
+
+**Continuidad y estado.** El índice móvil colapsa y se desliza con `grid-template-rows: 0fr → 1fr`
+en vez de aparecer de golpe, y el ícono de índice se convierte en X (`[aria-expanded="true"]`);
+mientras está cerrado lleva `inert`. Las respuestas de FAQ se despliegan con `::details-content` +
+`transition-behavior: allow-discrete` (progresivo: sin soporte, el `<details>` nativo funciona sin
+animación). Los estados de éxito/error del formulario entran con `state-enter` al quitarse
+`hidden`. Hover: tarjetas de área revelan esquineras doradas y se elevan; botones dorados se
+elevan y aclaran; enlaces cambian a oro.
+
+Todo respeta `prefers-reduced-motion`: se elimina el movimiento espacial y se conserva la
+retroalimentación que lleva significado (el índice sigue abriendo, el ícono sigue cambiando a X).
 
 ## Accesibilidad
 
@@ -144,7 +170,13 @@ y decoración, nunca para texto — se usa `manila-700` como piso de texto secun
 - No reintroducir el monograma "DJ" ni ningún ícono de iniciales — el wordmark completo "Dra.
   Daniela Jaramillo" es la marca.
 - No reintroducir la metáfora de expediente/carpeta ni el rojo como acento.
-- El movimiento de entrada nunca debe depender de scroll para que el contenido se vuelva visible.
+- **El contenido nunca depende del scroll para ser visible.** Parte visible por defecto; sólo se
+  oculta cuando el JS de revelado está disponible, y un bloque sin JS, sin IntersectionObserver o
+  con `prefers-reduced-motion` se ve completo. `[data-reveal]` entra al llegar a pantalla y
+  `[data-stagger]` escalona los hijos de una lista.
+- El movimiento imita el material — filete que se traza, sello que se prensa. No introducir
+  rebotes, curvas elásticas ni loops no esenciales; el único loop admitido (`hero-drift`) se pausa
+  fuera de pantalla.
 - Ningún dato, cifra o testimonio inventado. Ver `PRODUCT.md` → Evidence on Hand y Product
   Principles.
 - El medallón de verificación (`SealBadge.astro`) sólo muestra datos reales y verificables (T.P.,
