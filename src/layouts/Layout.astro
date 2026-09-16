@@ -92,15 +92,41 @@ const { title, description, path, image, type } = Astro.props;
     <Footer />
     <WhatsAppCTA />
     <script>
-      // Entrada única al cargar, nunca condicionada al scroll: el contenido
-      // no puede depender de que el usuario llegue a hacer scroll para
-      // volverse visible (robots, lectores, o un fallo de JS no deben dejar
-      // secciones enteras invisibles).
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
-        });
-      });
+      // Revelado al entrar en pantalla. El contenido NO depende del scroll
+      // para ser visible: parte visible por defecto (el CSS sólo lo oculta si
+      // `js-reveal-ready` está presente, y esa clase la añade un script inline
+      // en <head>), así que sin JS, con JS roto o con prefers-reduced-motion
+      // todo se ve igual. El JS únicamente oculta y vuelve a revelar.
+      const revealables = document.querySelectorAll("[data-reveal], [data-stagger]");
+      const revealAll = () => revealables.forEach((el) => el.classList.add("is-visible"));
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          },
+          // Se revela cuando el bloque ha entrado ~10% del viewport, no justo
+          // al asomar por el borde inferior.
+          { rootMargin: "0px 0px -10% 0px" },
+        );
+        revealables.forEach((el) => observer.observe(el));
+      } else {
+        revealAll();
+      }
+
+      // La deriva del hero es un loop no esencial: se pausa cuando el hero
+      // sale de pantalla para no gastar cuadros invisibles.
+      const drift = document.querySelector(".hero-drift");
+      if (drift && "IntersectionObserver" in window) {
+        new IntersectionObserver(
+          ([entry]) => drift.classList.toggle("is-idle", !entry.isIntersecting),
+          { rootMargin: "120px" },
+        ).observe(drift);
+      }
     </script>
   </body>
 </html>

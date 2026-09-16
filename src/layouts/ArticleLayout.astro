@@ -31,15 +31,15 @@ const formattedDate = date.toLocaleDateString("es-CO", {
   <article>
     <header class="border-b border-manila-300 bg-manila-100 py-14 sm:py-20">
       <div class="mx-auto max-w-3xl px-5 sm:px-8">
-        <p class="folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-sello-600">
+        <p class="hero-rise folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-sello-600">
           <a href="/articulos" class="text-sello-600 no-underline hover:text-sello-700">Artículos</a>
           <span class="text-manila-700" aria-hidden="true">·</span>
           <span class="text-manila-700">{areaLabel[area]}</span>
         </p>
-        <h1 class="mt-4 font-display text-3xl font-semibold leading-tight text-ink-900 sm:text-4xl">
+        <h1 class="hero-rise mt-4 font-display text-3xl font-semibold leading-tight text-ink-900 sm:text-4xl" style="--rise-delay: 90ms">
           {title}
         </h1>
-        <p class="folio-kicker mt-5 text-manila-700">
+        <p class="hero-rise folio-kicker mt-5 text-manila-700" style="--rise-delay: 170ms">
           <time datetime={date.toISOString()}>{formattedDate}</time>
           <span aria-hidden="true"> · </span>
           {readingMinutes} min de lectura

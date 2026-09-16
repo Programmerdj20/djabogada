@@ -30,16 +30,16 @@ const gridClass = image
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
     <div class={gridClass}>
       <div>
-        <span class="rule-gold hero-rise block w-24" aria-hidden="true"></span>
+        <span class="rule-gold rule-draw block w-24" aria-hidden="true"></span>
         <h1
           class="hero-rise mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl lg:text-6xl"
-          style="--rise-delay: 60ms"
+          style="--rise-delay: 90ms"
         >
           {title}
         </h1>
         {
           lead && (
-            <p class="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 140ms">
+            <p class="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 170ms">
               {lead}
             </p>
           )
@@ -50,7 +50,7 @@ const gridClass = image
         image && (
           <div
             class="hero-rise relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none"
-            style="--rise-delay: 180ms"
+            style="--rise-delay: 260ms"
           >
             <div class="relative border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4">
               <div class="border border-sello-300 p-1">

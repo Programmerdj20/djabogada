@@ -9,10 +9,10 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="divide-y divide-manila-300 border-y border-sello-400">
+<div class="divide-y divide-manila-300 border-y border-sello-400" data-stagger>
   {
     items.map((item, i) => (
-      <details class="group py-5">
+      <details class="faq-item group py-5">
         <summary
           class="flex cursor-pointer list-none items-start justify-between gap-4 text-ink-900 marker:content-none"
         >

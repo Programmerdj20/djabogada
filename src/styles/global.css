@@ -121,10 +121,12 @@
 }
 
 /* ==========================================================================
-   Movimiento — un único grammar de entrada, autorizado y consistente en todo
-   el sitio: fundido + leve ascenso. Los elementos parten visibles (nunca
-   opacity:0 fijo) y sólo se ocultan vía JS cuando el script de revelado está
-   disponible; sin JS o con prefers-reduced-motion, todo permanece visible.
+   Movimiento — una única gramática, autorizada y consistente en todo el sitio.
+   El mundo es una maison: marfil luminoso, filete de oro y sello grabado. El
+   movimiento imita ese material — el filete se traza, el sello se prensa,
+   nada rebota. Los elementos parten visibles (nunca opacity:0 fijo) y sólo se
+   ocultan vía JS cuando el script de revelado está disponible; sin JS o con
+   prefers-reduced-motion, todo permanece visible.
    ========================================================================== */
 @layer components {
   [data-reveal] {
@@ -144,6 +146,40 @@
     transform: none;
   }
 
+  /* Lista que aparece como lista: los hijos entran en cascada cuando el
+     contenedor llega a pantalla. El retardo por hijo se calcula con
+     `nth-child` (máximo 400 ms acumulados) y se puede sobrescribir con
+     `--reveal-delay` inline. Sirve para listas sin fondo propio detrás
+     (FAQ, cronología, artículos); no para rejillas con fondo en los huecos. */
+  .js-reveal-ready [data-stagger] > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js-reveal-ready [data-stagger].is-visible > * {
+    opacity: 1;
+    transform: none;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(1) {
+    --reveal-delay: 0ms;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(2) {
+    --reveal-delay: 70ms;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(3) {
+    --reveal-delay: 140ms;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(4) {
+    --reveal-delay: 210ms;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(5) {
+    --reveal-delay: 280ms;
+  }
+  .js-reveal-ready [data-stagger] > *:nth-child(n + 6) {
+    --reveal-delay: 350ms;
+  }
+
   @keyframes rise-in {
     from {
       opacity: 0;
@@ -160,9 +196,64 @@
     animation-delay: var(--rise-delay, 0ms);
   }
 
+  /* El filete de oro se traza de izquierda a derecha —el gesto de marca
+     hecho movimiento— mientras asciende junto con el resto del primer
+     viewport. `--rule-origin` permite centrarlo donde la composición lo pida.
+     El filete es 1px: `scaleX` lo dibuja sin tocar el layout. */
+  @keyframes rule-draw {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scaleX(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scaleX(1);
+    }
+  }
+  .rule-draw {
+    transform-origin: var(--rule-origin, left) center;
+    animation: rule-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  /* El medallón de verificación entra como un sello que se prensa: llega
+     apenas ampliado y se asienta en su tamaño exacto. Una sola vez, nunca
+     un loop. */
+  @keyframes seal-press {
+    from {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .seal-press {
+    animation: seal-press 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  /* Aparición de un estado de formulario (éxito o error): nace al quitarse
+     `hidden`, así que la animación corre en ese cambio de display. */
+  @keyframes state-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .state-enter {
+    animation: state-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
   /* Deriva de la fotografía del hero: un zoom apenas perceptible, continuo y
      lentísimo. El recorte máximo (~1%) es invisible a ojo; el contenedor del
-     hero la recorta suavemente en los bordes. */
+     hero la recorta suavemente en los bordes. `is-idle` la pausa cuando el
+     hero sale de pantalla, para no gastar cuadros invisibles. */
   @keyframes hero-drift {
     0%,
     100% {
@@ -175,6 +266,10 @@
   .hero-drift {
     animation: hero-drift 26s ease-in-out infinite;
     will-change: transform;
+  }
+  .hero-drift.is-idle {
+    animation-play-state: paused;
+    will-change: auto;
   }
 
   /* Asentamiento de entrada: la imagen llega muy ligeramente ampliada y se
@@ -191,20 +286,77 @@
     animation: hero-settle 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  /* Índice móvil: la fila colapsa y se desliza en vez de aparecer de golpe.
+     0fr→1fr anima la altura sin medir píxeles; el hijo recorta su contenido.
+     `inert` (en el markup y en el script) la retira del foco y del árbol de
+     accesibilidad mientras está cerrada. */
+  .mobile-nav {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.42s;
+  }
+  .mobile-nav.is-open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  }
+  .mobile-nav > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* El ícono del índice se convierte en una X al abrir: confirmación de
+     estado, no adorno. Cada línea gira sobre su propio centro. */
+  .hamburger line {
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  }
+  [aria-expanded="true"] .hamburger line:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+  [aria-expanded="true"] .hamburger line:nth-child(2) {
+    opacity: 0;
+  }
+  [aria-expanded="true"] .hamburger line:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .js-reveal-ready [data-reveal] {
+    .js-reveal-ready [data-reveal],
+    .js-reveal-ready [data-stagger] > * {
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
     }
     .hero-rise,
     .hero-drift,
-    .hero-settle {
+    .hero-settle,
+    .rule-draw,
+    .seal-press,
+    .state-enter {
       animation: none !important;
     }
     .hero-drift,
-    .hero-settle {
+    .hero-settle,
+    .rule-draw,
+    .seal-press {
       transform: none !important;
+    }
+    .mobile-nav,
+    .mobile-nav.is-open,
+    .hamburger line {
+      transition: none !important;
+    }
+    .mobile-nav {
+      visibility: hidden;
+    }
+    .mobile-nav.is-open {
+      visibility: visible;
     }
   }
 }
@@ -418,5 +570,28 @@
   .prose-editorial.on-dark a {
     color: var(--color-sello-400);
     text-decoration-color: var(--color-sello-700);
+  }
+}
+
+@layer components {
+  /* Apertura de las preguntas frecuentes: la respuesta se despliega en vez de
+     aparecer cortada. Es CSS progresivo — donde `::details-content` no existe
+     el <details> nativo sigue funcionando igual, sin animación. */
+  @supports selector(::details-content) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    .faq-item::details-content {
+      block-size: 0;
+      overflow: clip;
+      opacity: 0;
+      transition: block-size 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease,
+        content-visibility 0.4s;
+      transition-behavior: allow-discrete;
+    }
+    .faq-item[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
   }
 }
