@@ -1,0 +1,65 @@
+---
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import WhatsAppCTA from "@/components/WhatsAppCTA.astro";
+import Seo from "@/components/Seo.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  type?: "website" | "article";
+  noHeaderCta?: boolean;
+}
+
+const { title, description, path, image, type } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14120d" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Seo title={title} description={description} path={path} image={image} type={type} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh antialiased">
+    <!--
+      THESIS: A visitor's ordeal becomes a case file the instant it starts.
+      Refuses the navy/gold/scales-and-gavel cliché entirely.
+      OWN-WORLD: Dark ink ground; manila-folder panels; one sello-red accent
+      for verification and action. Newsreader display serif, IBM Plex Sans
+      body, IBM Plex Mono for folio/radicado codes. Folder-tab navigation,
+      foliated margins, numbered exhibits.
+      STORY: A frightened visitor understands within seconds who defends
+      them and why eight years inside the Fiscalía make her uniquely
+      equipped; trusts her credentials are real and verifiable; books a
+      consultation.
+      FIRST VIEWPORT: Folder-tab nav over ink ground. Folio kicker, name in
+      display serif, one-line thesis, sello CTA button left; manila-framed
+      photo with T.P. verification seal right.
+      FORM: El expediente — case-file register, rank 1 of the derived list
+      (dice assigned index 3, cadena de custodia; user-pinned this top pick
+      instead, which stands). Seed key 4f44e464.
+      FINISH: unreviewed and undocumented is unfinished; this build ends
+      with the finish review, the verdict, and DESIGN.md.
+    -->
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-sello-600 focus:px-4 focus:py-2 focus:text-manila-50"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppCTA />
+  </body>
+</html>

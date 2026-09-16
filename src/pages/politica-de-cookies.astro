@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<Layout
+  title="Política de cookies"
+  description="Qué cookies utiliza el sitio web de Daniela Jaramillo Herrera y para qué se usan."
+  path="/politica-de-cookies"
+>
+  <PageHero folio="L3" kicker="Información legal" title="Política de cookies" />
+
+  <section class="bg-manila-50 py-16 sm:py-20">
+    <div class="prose-expediente mx-auto max-w-3xl px-5 sm:px-8">
+      <p>Última actualización: 15 de septiembre de 2026.</p>
+
+      <h2>1. Qué son las cookies</h2>
+      <p>
+        Las cookies son pequeños archivos de texto que un sitio web almacena en tu navegador para
+        recordar información sobre tu visita.
+      </p>
+
+      <h2>2. Uso de cookies en este sitio</h2>
+      <p>
+        Este sitio ha sido construido para funcionar con el mínimo de tecnología posible: es un
+        sitio estático que, por sí mismo, no instala cookies de seguimiento, publicidad ni
+        analítica de terceros.
+      </p>
+      <p>
+        Si en el futuro se incorpora una herramienta de analítica propia o de terceros, esta
+        política se actualizará para describir con precisión qué cookies se usan, con qué
+        finalidad y cómo puedes gestionarlas, antes de que dicha herramienta entre en
+        funcionamiento.
+      </p>
+
+      <h2>3. Control desde tu navegador</h2>
+      <p>
+        Independientemente de lo anterior, puedes configurar tu navegador para bloquear o eliminar
+        cualquier cookie en cualquier momento, desde su panel de configuración de privacidad.
+      </p>
+
+      <h2>4. Contacto</h2>
+      <p>
+        Ante cualquier duda sobre esta política, escribe a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

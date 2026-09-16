@@ -1,0 +1,100 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<Layout
+  title="Política de privacidad"
+  description="Cómo se recolectan, usan y protegen los datos personales en el sitio web de Daniela Jaramillo Herrera, conforme a la Ley 1581 de 2012."
+  path="/politica-de-privacidad"
+>
+  <PageHero folio="L2" kicker="Información legal" title="Política de privacidad" />
+
+  <section class="bg-manila-50 py-16 sm:py-20">
+    <div class="prose-expediente mx-auto max-w-3xl px-5 sm:px-8">
+      <p>Última actualización: 15 de septiembre de 2026.</p>
+      <p>
+        Esta política describe cómo {SITE.name} recolecta, usa y protege los datos personales de
+        quienes visitan este sitio o utilizan el formulario de contacto, en cumplimiento de la
+        Ley 1581 de 2012 y el Decreto 1377 de 2013, que regulan la protección de datos personales
+        en Colombia.
+      </p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <p>
+        {SITE.name}, con domicilio profesional en {SITE.city}, {SITE.region}, Colombia, correo de
+        contacto <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, es la responsable del
+        tratamiento de los datos personales recolectados a través de este sitio.
+      </p>
+
+      <h2>2. Datos que se recolectan</h2>
+      <p>A través del formulario de contacto se recolectan los siguientes datos, siempre suministrados voluntariamente:</p>
+      <ul>
+        <li>Nombre completo</li>
+        <li>Número de teléfono o WhatsApp</li>
+        <li>Correo electrónico</li>
+        <li>Área jurídica de interés (opcional)</li>
+        <li>El contenido del mensaje que decidas compartir sobre tu situación</li>
+      </ul>
+      <p>
+        Este sitio no utiliza cookies de rastreo publicitario ni comparte datos con redes de
+        publicidad de terceros. Ver la <a href="/politica-de-cookies">política de cookies</a>
+        para más detalle sobre el uso técnico de cookies.
+      </p>
+
+      <h2>3. Finalidad del tratamiento</h2>
+      <p>Los datos recolectados se usan exclusivamente para:</p>
+      <ul>
+        <li>Responder a tu solicitud de contacto o consulta.</li>
+        <li>Evaluar preliminarmente tu caso para determinar si es posible asumir tu representación.</li>
+        <li>Comunicarnos contigo por el medio que prefieras (WhatsApp, correo o teléfono).</li>
+      </ul>
+      <p>
+        Los datos nunca se usan con fines comerciales distintos a los aquí descritos, ni se
+        venden ni se ceden a terceros, salvo obligación legal.
+      </p>
+
+      <h2>4. Confidencialidad de la información del caso</h2>
+      <p>
+        La información relacionada con tu situación jurídica que compartas a través de este sitio
+        se maneja con la reserva propia del ejercicio profesional de la abogacía, con
+        independencia de que se formalice o no una relación de representación.
+      </p>
+
+      <h2>5. Derechos del titular de los datos</h2>
+      <p>Conforme a la Ley 1581 de 2012, tienes derecho a:</p>
+      <ul>
+        <li>Conocer, actualizar y rectificar tus datos personales.</li>
+        <li>Solicitar prueba de la autorización otorgada para el tratamiento de tus datos.</li>
+        <li>Ser informado sobre el uso que se ha dado a tus datos.</li>
+        <li>Presentar quejas ante la Superintendencia de Industria y Comercio por infracciones a la ley.</li>
+        <li>Revocar la autorización y/o solicitar la supresión de tus datos, cuando no exista un deber legal de conservarlos.</li>
+      </ul>
+      <p>
+        Para ejercer cualquiera de estos derechos, escribe a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        indicando tu solicitud de forma clara.
+      </p>
+
+      <h2>6. Tiempo de conservación</h2>
+      <p>
+        Los datos se conservan mientras exista una finalidad legítima para su tratamiento —
+        incluyendo obligaciones legales relacionadas con el ejercicio profesional de la abogacía
+        — y se suprimen o anonimizan una vez dicha finalidad haya concluido, salvo que la ley
+        exija un período de conservación mayor.
+      </p>
+
+      <h2>7. Seguridad de la información</h2>
+      <p>
+        Se adoptan medidas razonables, técnicas y organizativas, para proteger los datos
+        personales contra pérdida, uso indebido, acceso no autorizado o alteración.
+      </p>
+
+      <h2>8. Cambios a esta política</h2>
+      <p>
+        Esta política puede actualizarse para reflejar cambios normativos o en las prácticas del
+        sitio. La fecha de la última actualización se indica al inicio de este documento.
+      </p>
+    </div>
+  </section>
+</Layout>

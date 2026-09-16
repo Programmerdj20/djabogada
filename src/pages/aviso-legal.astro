@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<Layout
+  title="Aviso legal"
+  description="Términos de uso y aviso legal del sitio web de Daniela Jaramillo Herrera, abogada penalista en Medellín."
+  path="/aviso-legal"
+>
+  <PageHero folio="L1" kicker="Información legal" title="Aviso legal" />
+
+  <section class="bg-manila-50 py-16 sm:py-20">
+    <div class="prose-expediente mx-auto max-w-3xl px-5 sm:px-8">
+      <p>Última actualización: 15 de septiembre de 2026.</p>
+
+      <h2>1. Titular del sitio</h2>
+      <p>
+        Este sitio web es operado por {SITE.name}, abogada, identificada con Tarjeta Profesional
+        N.° {SITE.tarjetaProfesional} expedida por el {SITE.tarjetaProfesionalConsejo}, con
+        domicilio profesional en {SITE.city}, {SITE.region}, Colombia. Para cualquier consulta
+        relacionada con este aviso, puede escribir a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+
+      <h2>2. Naturaleza del contenido</h2>
+      <p>
+        El contenido publicado en este sitio, incluidos los artículos jurídicos y la guía del
+        proceso penal, tiene una finalidad exclusivamente informativa y divulgativa. No
+        constituye asesoría jurídica ni sustituye una consulta profesional sobre un caso
+        particular. La aplicación de la ley depende de los hechos concretos de cada situación, y
+        únicamente una consulta directa permite evaluar un caso con la debida rigurosidad.
+      </p>
+
+      <h2>3. Relación abogado-cliente</h2>
+      <p>
+        El uso de este sitio, el envío de un mensaje por el formulario de contacto o por WhatsApp
+        no crea, por sí solo, una relación abogado-cliente. Dicha relación solo se constituye
+        mediante un acuerdo expreso entre las partes.
+      </p>
+
+      <h2>4. Confidencialidad</h2>
+      <p>
+        Cualquier información compartida a través de los canales de contacto de este sitio es
+        tratada con la reserva propia del ejercicio profesional de la abogacía. No obstante, se
+        recomienda evitar el envío de documentos altamente sensibles por canales no verificados
+        antes de establecer un canal de comunicación seguro.
+      </p>
+
+      <h2>5. Propiedad intelectual</h2>
+      <p>
+        Los textos, artículos y elementos gráficos de este sitio son propiedad de {SITE.name} o
+        se usan con la debida autorización. Su reproducción total o parcial sin autorización
+        expresa no está permitida, salvo cita académica con la debida atribución.
+      </p>
+
+      <h2>6. Enlaces externos</h2>
+      <p>
+        Este sitio puede incluir enlaces a plataformas de terceros, como WhatsApp. {SITE.name} no
+        es responsable por el contenido o las políticas de privacidad de sitios externos.
+      </p>
+
+      <h2>7. Legislación aplicable</h2>
+      <p>
+        Este aviso legal se rige por la legislación de la República de Colombia. Cualquier
+        controversia relacionada con el uso de este sitio se someterá a la jurisdicción
+        colombiana competente.
+      </p>
+    </div>
+  </section>
+</Layout>

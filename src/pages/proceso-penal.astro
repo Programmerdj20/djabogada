@@ -1,0 +1,164 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import ProcessDiagram from "@/components/ProcessDiagram.astro";
+import FAQ from "@/components/FAQ.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
+
+const faqs = [
+  {
+    question: "Me citaron a la Fiscalía, ¿qué debo hacer primero?",
+    answer:
+      "No asistas sin asesoría, incluso si la citación parece informal. Contacta a un abogado penalista antes de la fecha citada: lo que declares desde el inicio puede ser usado durante todo el proceso.",
+  },
+  {
+    question: "¿Qué pasa en las primeras horas después de una captura?",
+    answer:
+      "La Fiscalía tiene un plazo para poner al capturado ante un juez de control de garantías, quien decide si la captura fue legal y si procede formular imputación. Es la ventana donde la defensa técnica tiene mayor impacto inmediato.",
+  },
+  {
+    question: "¿Imputación es lo mismo que condena?",
+    answer:
+      "No. La imputación es la comunicación formal de los cargos que investiga la Fiscalía; el proceso apenas comienza. La responsabilidad penal solo se define al final, con sentencia.",
+  },
+  {
+    question: "¿Qué es la medida de aseguramiento?",
+    answer:
+      "Es una decisión del juez, solicitada por la Fiscalía tras la imputación, que puede implicar privación de la libertad durante el proceso u otras restricciones, mientras se resuelve el caso. No es una condena.",
+  },
+  {
+    question: "¿Cuánto puede durar un proceso penal en Colombia?",
+    answer:
+      "Varía mucho según la complejidad del caso, la cantidad de procesados y la etapa en la que se resuelva (preacuerdo, principio de oportunidad o juicio oral completo). No hay una duración única.",
+  },
+];
+---
+
+<Layout
+  title="Guía del proceso penal en Colombia"
+  description="Cómo funciona el proceso penal acusatorio en Colombia: indagación, imputación, acusación y juicio oral, explicado en lenguaje claro por una abogada penalista en Medellín."
+  path="/proceso-penal"
+>
+  <PageHero
+    folio="03"
+    kicker="Guía práctica"
+    title="Cómo funciona un proceso penal en Colombia"
+    lead="Si te citaron, te capturaron, o estás acompañando a alguien que lo vive, esto explica en qué punto del proceso te encuentras y qué significa realmente cada etapa."
+  />
+
+  <section class="bg-manila-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <ProcessDiagram />
+    </div>
+  </section>
+
+  <section class="bg-ink-950 py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <div class="prose-expediente on-dark">
+        <h2>Indagación: el punto de partida</h2>
+        <p>
+          Todo empieza cuando la Fiscalía tiene noticia de un posible delito, ya sea por denuncia,
+          querella o de oficio. En esta etapa se recopila información preliminar y puede incluir
+          capturas en flagrancia. Es, con frecuencia, el momento donde la persona investigada
+          tiene menos claridad sobre lo que está pasando — y donde más urgente es contar con
+          orientación.
+        </p>
+        <blockquote>
+          Si te citan a versión libre o entrevista en esta etapa, acude siempre con defensa. No
+          existe obligación legal de declarar sin asesoría.
+        </blockquote>
+
+        <h2>Imputación y medida de aseguramiento</h2>
+        <p>
+          La Fiscalía comunica formalmente los cargos ante un juez de control de garantías. En la
+          misma audiencia, o en una posterior, se discute si procede una medida de aseguramiento
+          — que puede significar privación de la libertad mientras avanza el proceso, u otras
+          restricciones. Esta etapa exige una defensa técnica activa e inmediata: los argumentos
+          que se presenten aquí pesan sobre todo lo que sigue.
+        </p>
+
+        <h2>Investigación y acusación</h2>
+        <p>
+          La Fiscalía continúa recopilando y organizando la evidencia. Si decide seguir adelante,
+          presenta el escrito de acusación formal. En este punto, con frecuencia, surge la
+          posibilidad de un preacuerdo: una negociación sobre los cargos o la pena a cambio de
+          aceptación de responsabilidad. No siempre conviene — depende de qué tan sólida sea
+          realmente la evidencia en contra, algo que solo un análisis técnico caso por caso puede
+          determinar.
+        </p>
+
+        <h2>Juicio oral</h2>
+        <p>
+          Si el caso no se resuelve antes, llega al juicio oral: se practican las pruebas ante un
+          juez de conocimiento, se controvierte la evidencia de la Fiscalía y se debate la
+          responsabilidad penal. El proceso termina con una sentencia absolutoria o condenatoria.
+        </p>
+
+        <h2>Si eres víctima</h2>
+        <p>
+          El proceso también contempla derechos concretos para la víctima: constituirse como
+          interviniente, acceder al expediente, participar en audiencias clave y perseguir la
+          reparación del daño mediante el incidente de reparación integral.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink-900 py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <p class="folio-kicker text-sello-500">Preguntas frecuentes</p>
+      <h2 class="mt-2 font-display text-3xl font-semibold text-manila-50">
+        Dudas comunes sobre el proceso
+      </h2>
+      <div class="mt-8">
+        <FAQ items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sello-700 py-14 sm:py-16">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+    >
+      <div>
+        <h2 class="font-display text-2xl font-semibold text-manila-50 sm:text-3xl">
+          ¿En qué etapa está tu situación?
+        </h2>
+        <p class="mt-2 max-w-lg text-sello-100">
+          Cuéntale a Daniela dónde te encuentras y qué necesitas resolver.
+        </p>
+      </div>
+      <a
+        href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-ink-950 px-6 py-3.5 font-semibold text-manila-50 no-underline hover:bg-ink-900"
+      >
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <JsonLd
+    schema={[
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Inicio", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: "Proceso penal", item: `${SITE.url}/proceso-penal` },
+        ],
+      },
+    ]}
+  />
+</Layout>

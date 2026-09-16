@@ -1,0 +1,22 @@
+# build
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+public/config.php
+
+# editor / os
+.DS_Store
+*.log
+
+# impeccable workflow-local overrides (never commit)
+.impeccable/config.local.json
+
+# review artifacts (screenshots), kept out of version control
+.impeccable/review/

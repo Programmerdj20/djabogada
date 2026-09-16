@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AreaDetail from "@/components/AreaDetail.astro";
+import { AREAS } from "@/lib/site";
+
+const area = AREAS.find((a) => a.slug === "representacion-de-victimas")!;
+---
+
+<Layout
+  title="Representación de víctimas en procesos penales"
+  description="Constitución como víctima, participación en audiencias, medidas de protección e incidente de reparación integral. Representación en Medellín."
+  path="/areas/representacion-de-victimas"
+>
+  <AreaDetail
+    area={area}
+    lead="Ser víctima de un delito da derechos concretos dentro del proceso penal: a participar, a ser escuchada, y a buscar reparación. Ejercerlos bien requiere representación técnica."
+    narrative={[
+      "Dentro del sistema penal acusatorio colombiano, la víctima no es solo testigo: tiene derecho a constituirse como interviniente, acceder al expediente, participar en audiencias clave y perseguir la reparación del daño sufrido.",
+      "En la práctica, muchas víctimas no ejercen estos derechos simplemente porque nadie se los explica a tiempo. La representación técnica asegura que la víctima esté presente donde el proceso lo permite y que su voz tenga peso real, no solo simbólico.",
+      "Haber trabajado dentro de la Fiscalía da una ventaja concreta también aquí: conocer con precisión los momentos procesales donde la participación de la víctima realmente incide en el resultado del caso — y no dejar pasar esos momentos.",
+    ]}
+    faqs={[
+      {
+        question: "¿Qué significa constituirse como víctima dentro de un proceso?",
+        answer:
+          "Es el reconocimiento formal, dentro del proceso penal, de tu derecho a intervenir: acceder a la información del caso, participar en audiencias y perseguir la reparación del daño causado.",
+      },
+      {
+        question: "¿Puedo pedir medidas de protección si me siento en riesgo?",
+        answer:
+          "Sí. El sistema penal contempla mecanismos de protección para víctimas y testigos cuando existe un riesgo real y así se sustenta ante la autoridad competente.",
+      },
+      {
+        question: "¿La reparación es solo económica?",
+        answer:
+          "No necesariamente. El incidente de reparación integral puede incluir medidas económicas, pero también simbólicas o de otro tipo, dependiendo del daño causado y lo que se acredite dentro del proceso.",
+      },
+    ]}
+  />
+</Layout>

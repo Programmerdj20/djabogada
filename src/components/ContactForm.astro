@@ -1,0 +1,140 @@
+---
+import { AREAS } from "@/lib/site";
+---
+
+<div id="form-success" class="hidden rounded-sm border border-sello-600 bg-sello-800/20 p-6 text-manila-50">
+  <p class="folio-kicker text-sello-400">Solicitud recibida</p>
+  <p class="mt-2 text-lg font-medium">
+    Gracias. Tu solicitud quedó registrada y Daniela la revisará a la brevedad.
+  </p>
+  <p class="mt-2 text-sm text-ink-300">
+    Si tu situación es urgente, escribe directamente por WhatsApp para una respuesta más
+    inmediata.
+  </p>
+</div>
+
+<div id="form-error" class="mb-5 hidden rounded-sm border border-sello-500 bg-sello-100 p-4 text-sm text-sello-800">
+  <p id="form-error-message">
+    No pudimos enviar tu solicitud. Intenta de nuevo o escribe directamente por WhatsApp.
+  </p>
+</div>
+
+<form
+  id="contact-form"
+  action="/contacto.php"
+  method="POST"
+  class="grid gap-5 rounded-sm border border-manila-300 bg-manila-100 p-6 sm:p-8"
+  novalidate
+>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="nombre" class="folio-kicker text-manila-700">Nombre completo *</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        required
+        autocomplete="name"
+        class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+      />
+    </div>
+    <div>
+      <label for="telefono" class="folio-kicker text-manila-700">Teléfono / WhatsApp *</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="telefono"
+        required
+        autocomplete="tel"
+        class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="email" class="folio-kicker text-manila-700">Correo electrónico *</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+    />
+  </div>
+
+  <div>
+    <label for="area" class="folio-kicker text-manila-700">Área relacionada con tu caso</label>
+    <select
+      id="area"
+      name="area"
+      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+    >
+      <option value="">Prefiero explicarlo directamente</option>
+      {AREAS.map((a) => <option value={a.slug}>{a.title}</option>)}
+    </select>
+  </div>
+
+  <div>
+    <label for="mensaje" class="folio-kicker text-manila-700">Cuéntale brevemente tu situación *</label>
+    <textarea
+      id="mensaje"
+      name="mensaje"
+      required
+      rows={5}
+      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+    ></textarea>
+  </div>
+
+  <!-- Honeypot: hidden from real visitors, invisible trap for bots -->
+  <div class="hidden" aria-hidden="true">
+    <label for="sitio-web">No completar este campo</label>
+    <input type="text" id="sitio-web" name="sitio_web" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <label class="flex items-start gap-3 text-sm text-manila-700">
+    <input
+      type="checkbox"
+      name="autorizacion_datos"
+      required
+      class="mt-1 h-4 w-4 shrink-0 rounded-sm border-manila-400 text-sello-600 focus:ring-sello-500"
+    />
+    <span>
+      Autorizo el tratamiento de mis datos personales conforme a la
+      <a href="/politica-de-privacidad" class="text-sello-700 underline">política de privacidad</a>,
+      de acuerdo con la Ley 1581 de 2012. *
+    </span>
+  </label>
+
+  <button
+    type="submit"
+    class="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-sello-600 px-6 py-3 font-semibold text-manila-50 transition-colors hover:bg-sello-500"
+  >
+    Enviar solicitud
+  </button>
+  <p class="text-xs text-manila-400">* Campos obligatorios.</p>
+</form>
+
+<script>
+  const params = new URLSearchParams(location.search);
+
+  if (params.get("enviado") === "1") {
+    document.getElementById("form-success")?.classList.remove("hidden");
+    document.getElementById("contact-form")?.classList.add("hidden");
+  }
+
+  const error = params.get("error");
+  if (error) {
+    const messages: Record<string, string> = {
+      campos_incompletos: "Falta completar algún campo obligatorio o aceptar la autorización de datos.",
+      correo_invalido: "El correo electrónico no parece válido. Revísalo e intenta de nuevo.",
+      demasiadas_solicitudes: "Ya recibimos una solicitud tuya hace unos segundos. Espera un momento e intenta de nuevo.",
+      origen_no_valido: "No pudimos validar el origen de la solicitud. Intenta de nuevo desde el sitio.",
+      error_envio: "Ocurrió un error técnico al enviar tu solicitud. Intenta de nuevo o escribe por WhatsApp.",
+    };
+    const box = document.getElementById("form-error");
+    const msg = document.getElementById("form-error-message");
+    if (msg) msg.textContent = messages[error] ?? messages.error_envio;
+    box?.classList.remove("hidden");
+  }
+</script>

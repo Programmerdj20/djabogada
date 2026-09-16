@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  path,
+  image = "/og/default.png",
+  noindex = false,
+  type = "website",
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://danielajaramilloabogada.com");
+const canonical = new URL(path, site).toString();
+const ogImage = new URL(image, site).toString();
+const fullTitle = title.includes("Daniela Jaramillo")
+  ? title
+  : `${title} · Daniela Jaramillo Herrera, Abogada Penalista`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:site_name" content="Daniela Jaramillo Herrera, Abogada Penalista" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

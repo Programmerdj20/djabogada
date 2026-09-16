@@ -1,0 +1,35 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/PageHero.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articulos", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout
+  title="Artículos jurídicos"
+  description="Análisis en lenguaje claro sobre proceso penal, defensa, víctimas y criminalidad organizada, escrito por Daniela Jaramillo Herrera, abogada penalista en Medellín."
+  path="/articulos"
+>
+  <PageHero
+    folio="04"
+    kicker="Análisis jurídico"
+    title="Artículos"
+    lead="Explicaciones claras sobre el proceso penal colombiano, escritas desde la experiencia directa, sin tecnicismos innecesarios."
+  />
+
+  <section class="bg-ink-950 py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      {
+        articles.length > 0 ? (
+          articles.map((entry) => <ArticleCard entry={entry} />)
+        ) : (
+          <p class="text-ink-300">Muy pronto, los primeros artículos.</p>
+        )
+      }
+    </div>
+  </section>
+</Layout>
