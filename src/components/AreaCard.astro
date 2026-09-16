@@ -9,22 +9,18 @@ const { area, compact = false } = Astro.props;
 ---
 
 <article
-  class="group relative flex flex-col justify-between rounded-sm border border-manila-300 bg-manila-100 p-6 shadow-panel transition-transform hover:-translate-y-1 sm:p-7"
+  class="group relative flex flex-col justify-between border border-manila-300 bg-manila-100 p-6 transition-all hover:-translate-y-1 hover:border-sello-500 hover:shadow-gold sm:p-8"
 >
-  <div
-    class="pointer-events-none absolute -top-3 left-6 rounded-sm border border-manila-300 bg-manila-50 px-2 py-0.5"
-    aria-hidden="true"
-  >
-    <span class="folio-kicker text-sello-600">Exp. {area.number}</span>
-  </div>
+  <span class="pointer-events-none absolute left-0 top-0 h-5 w-5 border-l border-t border-sello-500 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true"></span>
+  <span class="pointer-events-none absolute bottom-0 right-0 h-5 w-5 border-b border-r border-sello-500 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true"></span>
 
-  <div class="mt-3">
+  <div>
     <h3 class="font-display text-2xl font-semibold text-ink-900">{area.title}</h3>
     <p class="mt-2 text-sm leading-relaxed text-manila-700">{area.short}</p>
 
     {
       !compact && (
-        <ul class="mt-5 space-y-2 border-t border-manila-300 pt-4 text-sm text-manila-700">
+        <ul class="mt-5 space-y-2 border-t border-manila-300 pt-5 text-sm text-manila-700">
           {area.bullets.map((b) => (
             <li class="flex gap-2">
               <span class="mt-0.5 text-sello-600" aria-hidden="true">
@@ -40,7 +36,7 @@ const { area, compact = false } = Astro.props;
 
   <a
     href={`/areas/${area.slug}`}
-    class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sello-700 no-underline group-hover:text-sello-600"
+    class="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline group-hover:text-sello-600"
   >
     Ver el área completa
     <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>

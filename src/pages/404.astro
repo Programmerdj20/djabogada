@@ -4,25 +4,22 @@ import { whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
 <Layout
-  title="Expediente no encontrado"
+  title="Página no encontrada"
   description="La página que buscas no existe o fue movida."
   path="/404"
   noindex
 >
-  <section class="flex min-h-[70vh] items-center bg-ink-950 py-20">
+  <section class="flex min-h-[70vh] items-center bg-manila-50 py-20">
     <div class="mx-auto max-w-2xl px-5 text-center sm:px-8">
-      <h1 class="font-display text-4xl font-semibold text-manila-50 sm:text-5xl">
-        Expediente no encontrado <span class="text-ink-500">(404)</span>
+      <h1 class="font-display text-4xl font-semibold text-ink-900 sm:text-5xl">
+        Página no encontrada <span class="text-manila-700">(404)</span>
       </h1>
-      <p class="mt-4 text-lg text-ink-300">
+      <p class="mt-4 text-lg text-manila-700">
         La página que buscas no existe o fue movida. Puedes volver al inicio o escribir
         directamente si necesitas orientación.
       </p>
       <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-        <a
-          href="/"
-          class="inline-flex items-center justify-center gap-2 rounded-sm bg-sello-600 px-6 py-3.5 font-semibold text-manila-50 no-underline hover:bg-sello-500"
-        >
+        <a href="/" class="btn-gold">
           Volver al inicio
         </a>
         <a
@@ -30,7 +27,7 @@ import { whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
           target="_blank"
           rel="noopener noreferrer"
           data-whatsapp-primary
-          class="inline-flex items-center justify-center gap-2 rounded-sm border border-ink-600 px-6 py-3.5 font-medium text-manila-100 no-underline hover:border-manila-300"
+          class="btn-outline-gold"
         >
           Escribir por WhatsApp
         </a>

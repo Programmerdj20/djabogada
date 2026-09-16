@@ -25,20 +25,20 @@ const formattedDate = date.toLocaleDateString("es-CO", {
 });
 ---
 
-<article class="group border-b border-ink-800 py-8 first:pt-0 last:border-b-0">
+<article class="group border-b border-manila-300 py-8 first:pt-0 last:border-b-0">
   <a href={`/articulos/${entry.id}`} class="block no-underline">
-    <div class="folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-ink-500">
-      <span class="text-sello-500">{areaLabel[entry.data.area]}</span>
+    <div class="folio-kicker flex flex-wrap items-center gap-x-3 gap-y-1 text-manila-700">
+      <span class="text-sello-600">{areaLabel[entry.data.area]}</span>
       <span aria-hidden="true">·</span>
       <time datetime={date.toISOString()}>{formattedDate}</time>
       <span aria-hidden="true">·</span>
       <span>{readingMinutes} min de lectura</span>
     </div>
-    <h3 class="mt-2 font-display text-2xl font-semibold text-manila-50 group-hover:text-sello-400 sm:text-[1.75rem]">
+    <h3 class="mt-2 font-display text-2xl font-semibold text-ink-900 group-hover:text-sello-600 sm:text-[1.75rem]">
       {title}
     </h3>
-    <p class="mt-2 max-w-2xl text-ink-300">{description}</p>
-    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-sello-500">
+    <p class="mt-2 max-w-2xl text-manila-700">{description}</p>
+    <span class="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-sello-600">
       Leer artículo
       <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
     </span>

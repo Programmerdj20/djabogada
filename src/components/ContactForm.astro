@@ -2,17 +2,17 @@
 import { AREAS } from "@/lib/site";
 ---
 
-<div id="form-success" class="hidden rounded-sm border border-sello-600 bg-sello-800/20 p-6 text-manila-50">
+<div id="form-success" class="hidden border border-success-500 bg-success-100 p-6 text-success-700">
   <p class="text-lg font-medium">
     Solicitud recibida. Daniela la revisará a la brevedad.
   </p>
-  <p class="mt-2 text-sm text-ink-300">
+  <p class="mt-2 text-sm text-manila-700">
     Si tu situación es urgente, escribe directamente por WhatsApp para una respuesta más
     inmediata.
   </p>
 </div>
 
-<div id="form-error" class="mb-5 hidden rounded-sm border border-sello-500 bg-sello-100 p-4 text-sm text-sello-800">
+<div id="form-error" class="mb-5 hidden border border-danger-500 bg-danger-100 p-4 text-sm text-danger-700">
   <p id="form-error-message">
     No pudimos enviar tu solicitud. Intenta de nuevo o escribe directamente por WhatsApp.
   </p>
@@ -22,7 +22,7 @@ import { AREAS } from "@/lib/site";
   id="contact-form"
   action="/contacto.php"
   method="POST"
-  class="grid gap-5 rounded-sm border border-manila-300 bg-manila-100 p-6 sm:p-8"
+  class="grid gap-5 border border-manila-300 bg-manila-100 p-6 sm:p-8 [color-scheme:light]"
   novalidate
 >
   <div class="grid gap-5 sm:grid-cols-2">
@@ -34,7 +34,7 @@ import { AREAS } from "@/lib/site";
         name="nombre"
         required
         autocomplete="name"
-        class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+        class="mt-1.5 w-full border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
       />
     </div>
     <div>
@@ -45,7 +45,7 @@ import { AREAS } from "@/lib/site";
         name="telefono"
         required
         autocomplete="tel"
-        class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+        class="mt-1.5 w-full border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
       />
     </div>
   </div>
@@ -58,7 +58,7 @@ import { AREAS } from "@/lib/site";
       name="email"
       required
       autocomplete="email"
-      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+      class="mt-1.5 w-full border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
     />
   </div>
 
@@ -67,7 +67,7 @@ import { AREAS } from "@/lib/site";
     <select
       id="area"
       name="area"
-      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+      class="mt-1.5 w-full border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
     >
       <option value="">Prefiero explicarlo directamente</option>
       {AREAS.map((a) => <option value={a.slug}>{a.title}</option>)}
@@ -81,7 +81,7 @@ import { AREAS } from "@/lib/site";
       name="mensaje"
       required
       rows={5}
-      class="mt-1.5 w-full rounded-sm border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
+      class="mt-1.5 w-full border border-manila-300 bg-manila-50 px-3.5 py-2.5 text-ink-900 outline-none focus:border-sello-500"
     ></textarea>
   </div>
 
@@ -96,7 +96,7 @@ import { AREAS } from "@/lib/site";
       type="checkbox"
       name="autorizacion_datos"
       required
-      class="mt-1 h-4 w-4 shrink-0 rounded-sm border-manila-400 text-sello-600 focus:ring-sello-500"
+      class="mt-1 h-4 w-4 shrink-0 rounded-sm border-manila-400 accent-sello-600 focus:ring-sello-500"
     />
     <span>
       Autorizo el tratamiento de mis datos personales conforme a la
@@ -105,13 +105,10 @@ import { AREAS } from "@/lib/site";
     </span>
   </label>
 
-  <button
-    type="submit"
-    class="mt-2 inline-flex items-center justify-center gap-2 rounded-sm bg-sello-600 px-6 py-3 font-semibold text-manila-50 transition-colors hover:bg-sello-500"
-  >
+  <button type="submit" class="btn-gold mt-2">
     Enviar solicitud
   </button>
-  <p class="text-xs text-manila-400">* Campos obligatorios.</p>
+  <p class="text-xs text-manila-700">* Campos obligatorios.</p>
 </form>
 
 <script>

@@ -6,11 +6,19 @@ interface Props {
 const { title, lead } = Astro.props;
 ---
 
-<section class="border-b border-ink-800 bg-ink-950 py-14 sm:py-20">
+<section class="border-b border-manila-300 bg-manila-100 py-16 sm:py-24">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <h1 class="max-w-3xl font-display text-4xl font-semibold leading-tight text-manila-50 sm:text-5xl">
+    <span class="rule-gold hero-rise block w-24" aria-hidden="true"></span>
+    <h1
+      class="hero-rise mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl lg:text-6xl"
+      style="--rise-delay: 60ms"
+    >
       {title}
     </h1>
-    {lead && <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-300">{lead}</p>}
+    {lead && (
+      <p class="hero-rise mt-5 max-w-2xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 140ms">
+        {lead}
+      </p>
+    )}
   </div>
 </section>

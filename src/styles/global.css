@@ -1,71 +1,81 @@
 @import "tailwindcss";
 
-@import "@fontsource-variable/newsreader";
-@import "@fontsource-variable/newsreader/wght-italic.css";
-@import "@fontsource-variable/ibm-plex-sans";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "@fontsource-variable/montserrat";
 
 /*
-  EL EXPEDIENTE — design tokens
-  A dark, ink-toned case-file register: manila-folder panels hold content,
-  one sello (wax-seal/wet-stamp) red carries verification and action.
+  Sistema visual — maison: marfil, oro y negro.
+  Marfil (manila) como fondo dominante — claro, luminoso, femenino — con
+  negro (ink) reservado a texto y detalles finos (nunca fondo de sección),
+  y oro (sello) como material de marca: filete, borde, relleno de botón
+  primario. Esta es la lectura literal del board de marca del cliente:
+  "negro profundo → principal/texto", "beige claro → fondos/soportes".
   Named roles only; no incidental hex values outside this block.
 */
 @theme {
-  --font-display: "Newsreader Variable", "Newsreader", ui-serif, Georgia, serif;
-  --font-sans: "IBM Plex Sans Variable", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Montserrat Variable", "Montserrat", ui-sans-serif, system-ui, sans-serif;
 
-  /* Ink — the dominant dark ground and its ink-on-ink structure */
-  --color-ink-950: #14120d;
-  --color-ink-900: #1c1811;
-  --color-ink-850: #241f17;
-  --color-ink-800: #2c261c;
-  --color-ink-700: #3f3728;
-  --color-ink-600: #5a4f3a;
-  --color-ink-500: #766a4e;
-  --color-ink-400: #948870;
-  --color-ink-300: #b3a891;
-  --color-ink-200: #d3caB4;
-  --color-ink-100: #e8e1d0;
-  --color-ink-50: #f6f2e8;
+  /* Ink — negro profundo: fondo dominante y texto de autoridad sobre marfil */
+  --color-ink-950: #0f0f10;
+  --color-ink-900: #17171a;
+  --color-ink-850: #1e1d20;
+  --color-ink-800: #29282c;
+  --color-ink-700: #3a3a3a;
+  --color-ink-600: #55535a;
+  --color-ink-500: #726f76;
+  --color-ink-400: #938f94;
+  --color-ink-300: #b5b1b5;
+  --color-ink-200: #d6d3d5;
+  --color-ink-100: #ededec;
+  --color-ink-50: #faf9f8;
 
-  /* Manila — the folder / paper surface used for panels and light sections */
-  --color-manila-50: #faf7ee;
-  --color-manila-100: #f3ecd9;
-  --color-manila-150: #ece2c6;
-  --color-manila-200: #e3d6b6;
-  --color-manila-300: #d2c09a;
-  --color-manila-400: #b8a077;
-  --color-manila-700: #5c5136;
-  --color-manila-800: #40381f;
-  --color-manila-900: #2a2413;
+  /* Manila — marfil/crema: superficie clara de lectura y paneles */
+  --color-manila-50: #fbfaf6;
+  --color-manila-100: #ede8e1;
+  --color-manila-150: #e3dccf;
+  --color-manila-200: #d3c9b5;
+  --color-manila-300: #b8ac90;
+  --color-manila-400: #a7a093;
+  --color-manila-700: #5b5548;
+  --color-manila-800: #3a362c;
+  --color-manila-900: #211f19;
 
-  /* Sello — the single verification/action accent, a wet ink-stamp red */
-  --color-sello-100: #f7e2d8;
-  --color-sello-300: #e2a488;
-  --color-sello-500: #b8451f;
-  --color-sello-600: #9c3419;
-  --color-sello-700: #7c2813;
-  --color-sello-800: #5c1e10;
+  /* Sello — oro: material de marca, no accesorio. Filetes, bordes,
+     relleno de botón primario, verificación. El par negro/oro es el de
+     mayor contraste de la paleta y se usa deliberadamente para eso. */
+  --color-sello-100: #f6ecd4;
+  --color-sello-200: #ecdab0;
+  --color-sello-300: #ddc088;
+  --color-sello-400: #c9a96a;
+  --color-sello-500: #b8924c;
+  --color-sello-600: #96762f;
+  --color-sello-700: #745a21;
+  --color-sello-800: #4f3d16;
 
-  /* Brass — sparing hardware accent for tab clips and dividers only */
-  --color-brass-400: #a6905c;
-  --color-brass-600: #7c6a41;
+  /* Estados semánticos de formulario — verde profundo (board: uso
+     opcional) reutilizado como éxito; nunca como acento de marca fuera
+     de retroalimentación de formulario. */
+  --color-success-100: #e2eae5;
+  --color-success-500: #33513f;
+  --color-success-700: #1b2e2a;
+  --color-danger-100: #f6e4dd;
+  --color-danger-500: #a8462f;
+  --color-danger-700: #732f1f;
 
-  --shadow-panel: 0 1px 0 0 rgb(20 18 13 / 0.04), 0 8px 24px -12px rgb(20 18 13 / 0.35);
+  --shadow-panel: 0 1px 0 0 rgb(15 15 16 / 0.05), 0 14px 34px -16px rgb(15 15 16 / 0.55);
+  --shadow-gold: 0 1px 0 0 rgb(201 169 106 / 0.15), 0 18px 40px -18px rgb(15 15 16 / 0.6);
 }
 
 @layer base {
   ::selection {
-    background: var(--color-sello-600);
-    color: var(--color-manila-50);
+    background: var(--color-sello-400);
+    color: var(--color-ink-950);
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
   }
 
@@ -84,10 +94,10 @@
   }
 
   body {
-    background-color: var(--color-ink-950);
-    color: var(--color-ink-100);
+    background-color: var(--color-manila-50);
+    color: var(--color-ink-900);
     font-family: var(--font-sans);
-    font-feature-settings: "liga" 1, "kern" 1;
+    font-feature-settings: "liga" 1, "kern" 1, "tnum" 1;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -95,155 +105,281 @@
     width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-ink-950);
+    background: var(--color-manila-50);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-ink-700);
-    border: 3px solid var(--color-ink-950);
+    background: var(--color-sello-400);
+    border: 3px solid var(--color-manila-50);
     border-radius: 999px;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-sello-500);
+    outline: 2px solid var(--color-sello-400);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 1px;
+  }
+}
+
+/* ==========================================================================
+   Movimiento — un único grammar de entrada, autorizado y consistente en todo
+   el sitio: fundido + leve ascenso. Los elementos parten visibles (nunca
+   opacity:0 fijo) y sólo se ocultan vía JS cuando el script de revelado está
+   disponible; sin JS o con prefers-reduced-motion, todo permanece visible.
+   ========================================================================== */
+@layer components {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js-reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js-reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-rise {
+    animation: rise-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal-ready [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .hero-rise {
+      animation: none !important;
+    }
   }
 }
 
 @layer components {
-  /* Reserved for genuine folio/case-file data: dates, the T.P. number,
-     exhibit and stage numbering where the sequence itself is information
-     (chronology, process order). Never for a standalone section label —
-     that is a kicker/eyebrow, and the craft floor bans the pattern
-     outright regardless of how the label is styled. */
+  /* Filete de oro — el motivo de marca: una línea fina, nunca un bloque.
+     Reemplaza cualquier metáfora de carpeta/expediente; es puramente
+     material, como el canto dorado de una tarjeta grabada. */
+  .rule-gold {
+    display: block;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-sello-500) 15%,
+      var(--color-sello-400) 50%,
+      var(--color-sello-500) 85%,
+      transparent
+    );
+  }
+  .rule-gold-solid {
+    display: block;
+    height: 1px;
+    background: var(--color-sello-500);
+  }
+
+  /* Reservado para datos reales: fechas, número de T.P., numeración de
+     etapas/preguntas donde el orden es información. Nunca un eyebrow
+     decorativo sobre un título — ese patrón sigue prohibido. */
   .folio-kicker {
-    font-family: var(--font-mono);
-    letter-spacing: 0.14em;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     font-size: 0.6875rem;
   }
 
-  /* A standalone small-caps title for a block that has no separate heading
-     beneath it (a footer column, a sidebar box). Sans, not mono — mono is
-     reserved for data, not for organizing labels. */
+  /* Título de bloque independiente sin encabezado propio debajo (columna
+     de footer, aside). */
   .block-label {
     font-family: var(--font-sans);
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-size: 0.75rem;
   }
 
-  .prose-expediente {
-    max-width: 68ch;
-    color: var(--color-manila-800);
-    font-size: 1.0625rem;
-    line-height: 1.75;
+  /* Botón dorado — la convención de marca: relleno oro, texto negro,
+     tracking amplio en mayúsculas. Máximo contraste de la paleta,
+     deliberado. Nunca se combina con texto claro. */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1px;
+    background: linear-gradient(180deg, var(--color-sello-400), var(--color-sello-500));
+    color: var(--color-ink-950);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-gold);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.35s ease;
   }
-  .prose-expediente h2 {
+  .btn-gold:hover {
+    background: linear-gradient(180deg, var(--color-sello-300), var(--color-sello-400));
+    transform: translateY(-2px);
+  }
+
+  /* Botón contorno oro — secundario, sobre fondo oscuro o claro. */
+  .btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1px;
+    border: 1px solid var(--color-sello-500);
+    color: var(--color-sello-400);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+  }
+  .btn-outline-gold:hover {
+    background: var(--color-sello-400);
+    border-color: var(--color-sello-400);
+    color: var(--color-ink-950);
+  }
+
+  .prose-editorial {
+    max-width: 68ch;
+    color: var(--color-manila-700);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+  .prose-editorial h2 {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: var(--color-manila-900);
-    margin-top: 2.5em;
+    margin-top: 2.6em;
     margin-bottom: 0.6em;
   }
-  .prose-expediente h3 {
+  .prose-editorial h3 {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--color-manila-900);
-    margin-top: 1.8em;
+    margin-top: 1.9em;
     margin-bottom: 0.5em;
   }
-  .prose-expediente p {
-    margin-top: 1.1em;
+  .prose-editorial p {
+    margin-top: 1.15em;
   }
-  .prose-expediente ul,
-  .prose-expediente ol {
-    margin-top: 1.1em;
+  .prose-editorial ul,
+  .prose-editorial ol {
+    margin-top: 1.15em;
     padding-left: 1.4em;
   }
-  .prose-expediente li {
+  .prose-editorial li {
     margin-top: 0.4em;
   }
-  .prose-expediente ul li {
+  .prose-editorial ul li {
     list-style: none;
     position: relative;
   }
-  .prose-expediente ul li::before {
+  .prose-editorial ul li::before {
     content: "—";
     position: absolute;
     left: -1.3em;
-    color: var(--color-sello-600);
+    color: var(--color-sello-500);
   }
-  .prose-expediente ol {
+  .prose-editorial ol {
     list-style: none;
-    counter-reset: exp-item;
+    counter-reset: ed-item;
   }
-  .prose-expediente ol li {
-    counter-increment: exp-item;
+  .prose-editorial ol li {
+    counter-increment: ed-item;
     position: relative;
   }
-  .prose-expediente ol li::before {
-    content: counter(exp-item, decimal-leading-zero);
+  .prose-editorial ol li::before {
+    content: counter(ed-item, decimal-leading-zero);
     position: absolute;
-    left: -2.1em;
-    font-family: var(--font-mono);
-    font-size: 0.75em;
-    color: var(--color-sello-600);
-    top: 0.15em;
+    left: -2.2em;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.72em;
+    letter-spacing: 0.04em;
+    color: var(--color-sello-500);
+    top: 0.2em;
   }
-  .prose-expediente a {
+  .prose-editorial a {
     color: var(--color-sello-600);
     text-decoration: underline;
     text-decoration-color: var(--color-sello-300);
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
   }
-  .prose-expediente strong {
+  .prose-editorial strong {
     color: var(--color-manila-900);
+    font-weight: 600;
   }
-  /* A margin annotation, not a magazine pull-quote: a labeled note boxed
-     on all sides, the way a reviewer's remark sits in a case file — never
-     a colored accent bar down one edge. */
-  .prose-expediente blockquote {
-    margin: 1.8em 0;
-    padding: 1.1em 1.3em;
-    border: 1px solid var(--color-manila-300);
-    border-radius: 2px;
-    background: var(--color-manila-150);
-    font-style: normal;
+  /* Nota al margen: una caja fina bordeada en oro con etiqueta grabada,
+     como una anotación en una tarjeta de invitación — nunca una barra de
+     acento lateral gruesa. */
+  .prose-editorial blockquote {
+    margin: 2em 0;
+    padding: 1.3em 1.5em;
+    border: 1px solid var(--color-sello-300);
+    border-radius: 1px;
+    background: var(--color-manila-100);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 1.05em;
     color: var(--color-manila-800);
   }
-  .prose-expediente blockquote::before {
+  .prose-editorial blockquote::before {
     content: "Nota";
     display: block;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-style: normal;
     font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-sello-600);
-    margin-bottom: 0.6em;
+    margin-bottom: 0.7em;
   }
 
-  /* Dark-ground variant: same rhythm, recolored for an ink-950/900 section
-     instead of the manila surface the base class assumes. */
-  .prose-expediente.on-dark {
-    color: var(--color-ink-200);
-  }
-  .prose-expediente.on-dark h2,
-  .prose-expediente.on-dark h3,
-  .prose-expediente.on-dark strong {
-    color: var(--color-manila-50);
-  }
-  .prose-expediente.on-dark blockquote {
-    border-color: var(--color-ink-700);
-    background: var(--color-ink-900);
+  /* Variante sobre fondo oscuro: mismo ritmo, recoloreado para negro
+     en vez de marfil. */
+  .prose-editorial.on-dark {
     color: var(--color-ink-300);
   }
-  .prose-expediente.on-dark a {
+  .prose-editorial.on-dark h2,
+  .prose-editorial.on-dark h3,
+  .prose-editorial.on-dark strong {
+    color: var(--color-manila-50);
+  }
+  .prose-editorial.on-dark blockquote {
+    border-color: var(--color-sello-700);
+    background: var(--color-ink-900);
+    color: var(--color-manila-100);
+  }
+  .prose-editorial.on-dark a {
     color: var(--color-sello-400);
-    text-decoration-color: var(--color-sello-600);
+    text-decoration-color: var(--color-sello-700);
   }
 }
