@@ -7,7 +7,7 @@ import { AREAS } from "@/lib/site";
 
 <Layout
   title="Áreas de práctica"
-  description="Defensa penal, representación de víctimas y criminalidad organizada: las tres áreas en las que Daniela Jaramillo Herrera ejerce en Medellín."
+  description="Defensa penal, representación de víctimas y criminalidad organizada: las tres áreas en las que Dra. Daniela Jaramillo ejerce en Medellín."
   path="/areas"
 >
   <PageHero
@@ -15,9 +15,13 @@ import { AREAS } from "@/lib/site";
     lead="Cada área se aborda con el mismo estándar: entender a fondo cómo construye la Fiscalía sus casos, para actuar con precisión desde el primer momento."
   />
 
-  <section class="bg-ink-950 py-16 sm:py-24">
+  <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto grid max-w-6xl gap-6 px-5 sm:px-8 md:grid-cols-3">
-      {AREAS.map((area) => <AreaCard area={area} />)}
+      {AREAS.map((area, i) => (
+        <div data-reveal style={`--reveal-delay: ${i * 90}ms`}>
+          <AreaCard area={area} />
+        </div>
+      ))}
     </div>
   </section>
 </Layout>

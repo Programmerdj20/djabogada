@@ -9,27 +9,28 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 bg-ink-950/95 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 border-b border-ink-800 px-5 sm:px-8">
+<header class="sticky top-0 z-50 border-b border-manila-300 bg-manila-50/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
     <a
       href="/"
-      class="flex items-center gap-2 py-4 text-sm font-medium text-ink-100 no-underline hover:text-manila-100"
+      class="flex items-center gap-3 py-4 no-underline"
       aria-label={`${SITE.name} — inicio`}
     >
-      <span
-        class="flex h-7 w-7 items-center justify-center rounded-[3px] border border-brass-600/60 bg-ink-900 font-mono text-[10px] text-manila-200"
-        aria-hidden="true">DJ</span
-      >
-      <span class="hidden sm:inline">Daniela Jaramillo Herrera</span>
-      <span class="sm:hidden">D. Jaramillo</span>
+      <svg width="22" height="22" viewBox="0 0 64 64" fill="none" aria-hidden="true" class="shrink-0 text-sello-600">
+        <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 12v38" />
+          <path d="M19 20h26" />
+          <path d="M32 12l-10 8M32 12l10 8" />
+          <path d="M12 20l-4.5 10a6 6 0 0 0 13 0L16 20" />
+          <path d="M52 20l-4.5 10a6 6 0 0 0 13 0L56 20" />
+          <path d="M24 50h16" />
+        </g>
+      </svg>
+      <span class="font-display text-lg tracking-wide text-ink-900 sm:text-xl">{SITE.name}</span>
     </a>
 
-    <!-- Folder tabs: each item is cut like a hanging-file tab (angled
-         shoulders), sitting flush with the others; the active tab alone
-         lifts, lightens to manila, and overlaps the header's bottom edge
-         so it reads as pulled forward out of the folder body below. -->
-    <nav aria-label="Principal" class="hidden self-end md:block">
-      <ul class="flex items-end gap-[3px]">
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-1">
         {
           NAV_ITEMS.map((item) => {
             const active = isActive(item.href);
@@ -38,12 +39,9 @@ function isActive(href: string) {
                 <a
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  class={`block px-5 pb-3 pt-3.5 text-sm font-medium no-underline transition-all ${
-                    active
-                      ? "-mb-px translate-y-0 bg-manila-100 text-ink-900 shadow-[0_-2px_6px_rgba(20,18,13,0.25)]"
-                      : "translate-y-[3px] bg-ink-800 text-ink-300 hover:translate-y-0 hover:bg-ink-700 hover:text-manila-100"
+                  class={`relative block px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] no-underline transition-colors after:absolute after:bottom-0 after:left-4 after:right-4 after:h-px after:origin-left after:scale-x-0 after:bg-sello-500 after:transition-transform after:duration-300 hover:text-ink-950 hover:after:scale-x-100 ${
+                    active ? "text-ink-950 after:scale-x-100" : "text-ink-600"
                   }`}
-                  style="clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);"
                 >
                   {item.label}
                 </a>
@@ -54,17 +52,14 @@ function isActive(href: string) {
       </ul>
     </nav>
 
-    <a
-      href="/contacto"
-      class="hidden shrink-0 rounded-sm bg-sello-600 px-4 py-2 text-sm font-semibold text-manila-50 no-underline shadow-panel transition-colors hover:bg-sello-500 md:inline-block"
-    >
+    <a href="/contacto" class="btn-gold hidden shrink-0 !px-5 !py-2.5 !text-[0.7rem] md:inline-flex">
       Agenda tu consulta
     </a>
 
     <button
       type="button"
       id="menu-toggle"
-      class="flex items-center gap-2 rounded-sm border border-ink-700 px-3 py-2 text-sm text-ink-100 md:hidden"
+      class="flex items-center gap-2 border border-sello-500 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-900 md:hidden"
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -75,7 +70,7 @@ function isActive(href: string) {
     </button>
   </div>
 
-  <div id="mobile-nav" class="hidden border-b border-ink-800 bg-manila-100 md:hidden">
+  <div id="mobile-nav" class="hidden border-b border-manila-300 bg-manila-100 md:hidden">
     <nav aria-label="Principal móvil" class="mx-auto max-w-6xl px-5 py-2">
       <ul class="divide-y divide-manila-300">
         {
@@ -84,7 +79,7 @@ function isActive(href: string) {
               <a
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                class="flex items-center py-3 font-medium text-ink-900 no-underline"
+                class="flex items-center py-3 text-sm font-semibold uppercase tracking-[0.08em] text-ink-900 no-underline"
               >
                 {item.label}
               </a>
@@ -92,7 +87,10 @@ function isActive(href: string) {
           ))
         }
         <li>
-          <a href="/contacto" class="flex items-center py-3 font-semibold text-sello-700 no-underline">
+          <a
+            href="/contacto"
+            class="flex items-center py-3 text-sm font-semibold uppercase tracking-[0.08em] text-sello-700 no-underline"
+          >
             Agenda tu consulta
           </a>
         </li>

@@ -3,7 +3,7 @@
 // Nothing here is invented: no case counts, no review scores, no press.
 
 export const SITE = {
-  name: "Daniela Jaramillo Herrera",
+  name: "Dra. Daniela Jaramillo",
   role: "Abogada penalista",
   tagline: "Defensa penal, víctimas y criminalidad organizada en Medellín",
   domain: "danielajaramilloabogada.com",
@@ -91,19 +91,17 @@ export const TIMELINE: TimelineEntry[] = [
 ];
 
 export type Credential = {
-  tag: string;
   title: string;
   org: string;
   year: string;
 };
 
 export const CREDENTIALS: Credential[] = [
-  { tag: "Anexo 01", title: "Magíster en Derecho Procesal Penal y Teoría del Delito", org: "UNAULA", year: "2026" },
-  { tag: "Anexo 02", title: "Especialista en Derecho Procesal Penal", org: "UNAULA", year: "2024" },
-  { tag: "Anexo 03", title: "Abogada", org: "Universidad EAFIT", year: "2023" },
-  { tag: "Anexo 04", title: "Diplomado en Contratación Estatal", org: "Universidad EAFIT", year: "2018" },
+  { title: "Magíster en Derecho Procesal Penal y Teoría del Delito", org: "UNAULA", year: "2026" },
+  { title: "Especialista en Derecho Procesal Penal", org: "UNAULA", year: "2024" },
+  { title: "Abogada", org: "Universidad EAFIT", year: "2023" },
+  { title: "Diplomado en Contratación Estatal", org: "Universidad EAFIT", year: "2018" },
   {
-    tag: "Anexo 05",
     title: "Diplomado en Policía Judicial y Criminalística",
     org: "Escuela Nacional de Criminalística y Ciencias Forenses",
     year: "2016",
@@ -145,7 +143,6 @@ export const PROCESS_STAGES: ProcessStage[] = [
 
 export type Area = {
   slug: string;
-  number: string;
   title: string;
   short: string;
   description: string;
@@ -155,7 +152,6 @@ export type Area = {
 export const AREAS: Area[] = [
   {
     slug: "defensa-penal",
-    number: "01",
     title: "Defensa penal",
     short: "Defensa técnica en todas las etapas del proceso penal.",
     description:
@@ -169,7 +165,6 @@ export const AREAS: Area[] = [
   },
   {
     slug: "representacion-de-victimas",
-    number: "02",
     title: "Representación de víctimas",
     short: "Representación judicial de víctimas y sus familias.",
     description:
@@ -183,7 +178,6 @@ export const AREAS: Area[] = [
   },
   {
     slug: "criminalidad-organizada",
-    number: "03",
     title: "Criminalidad organizada y delitos complejos",
     short: "Concierto para delinquir, lavado de activos y estructuras criminales.",
     description:

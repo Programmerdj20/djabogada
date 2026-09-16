@@ -9,19 +9,19 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
 <Layout
   title="Perfil profesional"
-  description="Trayectoria de Daniela Jaramillo Herrera: ocho años en la Fiscalía General de la Nación, Magíster y Especialista en Derecho Procesal Penal, abogada titulada de la Universidad EAFIT."
+  description="Trayectoria de Dra. Daniela Jaramillo: ocho años en la Fiscalía General de la Nación, Magíster y Especialista en Derecho Procesal Penal, abogada titulada de la Universidad EAFIT."
   path="/perfil"
 >
   <PageHero
-    title="Ocho años del otro lado del expediente"
+    title="Ocho años construyendo casos en la Fiscalía"
     lead="Antes de ejercer la defensa privada, Daniela pasó casi una década construyendo casos penales dentro de la Fiscalía General de la Nación. Esa experiencia es la base de cómo hoy defiende."
   />
 
   <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
-      <div class="prose-expediente">
+      <div class="prose-editorial" data-reveal>
         <p>
-          Daniela Jaramillo Herrera es abogada, magíster en Derecho Procesal Penal y Teoría del
+          Dra. Daniela Jaramillo es abogada, magíster en Derecho Procesal Penal y Teoría del
           Delito, y especialista en Derecho Procesal Penal. Su formación y su trayectoria están
           orientadas en una sola dirección: entender el proceso penal desde adentro para
           defenderlo con precisión desde afuera.
@@ -44,14 +44,14 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
       </div>
 
       <div class="mt-12 grid gap-8 sm:grid-cols-2">
-        <div class="rounded-sm border border-manila-300 bg-manila-100 p-6">
+        <div class="border border-manila-300 bg-manila-100 p-6">
           <p class="block-label text-sello-600">Tarjeta profesional</p>
           <p class="mt-2 font-display text-lg font-semibold text-ink-900">
             N.° {SITE.tarjetaProfesional}
           </p>
           <p class="mt-1 text-sm text-manila-700">{SITE.tarjetaProfesionalConsejo}</p>
         </div>
-        <div class="rounded-sm border border-manila-300 bg-manila-100 p-6">
+        <div class="border border-manila-300 bg-manila-100 p-6">
           <p class="block-label text-sello-600">Idiomas</p>
           <p class="mt-2 text-sm text-manila-700">
             <span class="font-medium text-ink-900">Español</span> — nativo
@@ -64,12 +64,12 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
     </div>
   </section>
 
-  <section class="bg-ink-950 py-16 sm:py-24">
+  <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-4xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
         Trayectoria
       </h2>
-      <div class="mt-10 rounded-sm border border-ink-800 bg-ink-900 p-6 sm:p-10">
+      <div class="mt-10 border border-manila-300 bg-manila-50 p-6 sm:p-10" data-reveal style="--reveal-delay: 100ms">
         <Timeline />
       </div>
     </div>
@@ -86,11 +86,12 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
     </div>
   </section>
 
-  <section class="bg-sello-700 py-14 sm:py-16">
+  <section class="bg-manila-100 py-14 sm:py-16">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+      data-reveal
     >
-      <h2 class="font-display text-2xl font-semibold text-manila-50 sm:text-3xl">
+      <h2 class="font-display text-2xl font-semibold text-ink-900 sm:text-3xl">
         ¿Quieres contarle tu caso?
       </h2>
       <div class="flex flex-col gap-3 sm:flex-row">
@@ -99,14 +100,11 @@ import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
           target="_blank"
           rel="noopener noreferrer"
           data-whatsapp-primary
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-ink-950 px-6 py-3.5 font-semibold text-manila-50 no-underline hover:bg-ink-900"
+          class="btn-gold whitespace-nowrap"
         >
           WhatsApp directo
         </a>
-        <a
-          href="/contacto"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm border border-manila-50/40 px-6 py-3.5 font-semibold text-manila-50 no-underline hover:bg-sello-600"
-        >
+        <a href="/contacto" class="btn-outline-gold whitespace-nowrap">
           Ir al formulario
         </a>
       </div>

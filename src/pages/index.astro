@@ -41,41 +41,37 @@ const faqs = [
 
 <Layout
   title="Abogada Penalista en Medellín — Defensa, Víctimas y Criminalidad Organizada"
-  description="Daniela Jaramillo Herrera, abogada penalista en Medellín. Ocho años en la Fiscalía General de la Nación, unidad contra el crimen organizado. Defensa penal, representación de víctimas y delitos complejos."
+  description="Dra. Daniela Jaramillo, abogada penalista en Medellín. Ocho años en la Fiscalía General de la Nación, unidad contra el crimen organizado. Defensa penal, representación de víctimas y delitos complejos."
   path="/"
 >
-  <!-- HERO — el expediente se abre -->
-  <section class="relative overflow-hidden border-b border-ink-800 bg-ink-950">
+  <!-- HERO -->
+  <section class="relative overflow-hidden border-b border-manila-300 bg-manila-50">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sello-400 to-transparent" aria-hidden="true"></div>
     <div
-      class="pointer-events-none absolute inset-y-0 left-6 hidden w-px bg-ink-800 sm:left-10 sm:block lg:left-16"
-      aria-hidden="true"
-    >
-    </div>
-    <div
-      class="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pt-24"
+      class="mx-auto grid max-w-6xl gap-14 px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-20"
     >
       <div>
+        <span class="rule-gold hero-rise block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
+
         <h1
-          class="font-display text-[2.6rem] font-semibold leading-[1.05] text-manila-50 sm:text-6xl lg:text-[4.2rem]"
+          class="hero-rise mt-7 font-display text-[2.75rem] font-semibold leading-[1.04] text-ink-900 sm:text-6xl lg:text-[4.4rem]"
+          style="--rise-delay: 60ms"
         >
-          Daniela Jaramillo<br />Herrera
+          {SITE.name}
         </h1>
 
-        <p class="mt-4 text-lg font-medium text-manila-200 sm:text-xl">
-          Abogada penalista en Medellín · Magíster y Especialista en Derecho Procesal Penal
+        <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 140ms">
+          Abogada penalista en Medellín
         </p>
 
-        <p class="mt-6 max-w-xl text-base leading-relaxed text-ink-300 sm:text-lg">
+        <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 220ms">
           Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
-          contra el crimen organizado de Medellín. Hoy pone ese mismo conocimiento al servicio de
-          tu defensa.
+          contra el crimen organizado de Medellín. Hoy pone ese mismo criterio, al más alto nivel,
+          al servicio de tu defensa.
         </p>
 
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href="/contacto"
-            class="inline-flex items-center justify-center gap-2 rounded-sm bg-sello-600 px-6 py-3.5 text-base font-semibold text-manila-50 no-underline shadow-panel transition-colors hover:bg-sello-500"
-          >
+        <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 300ms">
+          <a href="/contacto" class="btn-gold">
             Agenda tu consulta
           </a>
           <a
@@ -83,86 +79,82 @@ const faqs = [
             target="_blank"
             rel="noopener noreferrer"
             data-whatsapp-primary
-            class="inline-flex items-center justify-center gap-2 rounded-sm border border-ink-600 px-6 py-3.5 text-base font-medium text-manila-100 no-underline transition-colors hover:border-manila-300 hover:bg-ink-900"
+            class="btn-outline-gold"
           >
             Escribir por WhatsApp
           </a>
         </div>
 
-        <p class="folio-kicker mt-8 text-ink-500">
+        <p class="hero-rise folio-kicker mt-9 text-manila-700" style="--rise-delay: 360ms">
           T.P. {SITE.tarjetaProfesional} · {SITE.tarjetaProfesionalConsejo}
         </p>
       </div>
 
-      <div class="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
-        <div class="absolute -inset-3 -z-10 rounded-sm border border-ink-800 sm:-inset-4" aria-hidden="true"></div>
-        <div class="relative rounded-sm border border-manila-300 bg-manila-100 p-3 shadow-panel sm:p-4">
-          <div
-            class="pointer-events-none absolute -top-3 left-6 h-6 w-10 -rotate-3 border border-ink-300/40 bg-manila-50/90 shadow-sm"
-            aria-hidden="true"
-          >
+      <div class="hero-rise relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none" style="--rise-delay: 180ms">
+        <div class="relative border border-sello-400 bg-manila-100 p-3 shadow-gold sm:p-4">
+          <div class="border border-sello-300 p-1">
+            <Image
+              src={daniela}
+              alt={`Retrato de ${SITE.name}, abogada penalista en Medellín`}
+              width={520}
+              height={693}
+              class="w-full object-cover"
+              loading="eager"
+              fetchpriority="high"
+            />
           </div>
-          <Image
-            src={daniela}
-            alt="Retrato de Daniela Jaramillo Herrera, abogada penalista en Medellín"
-            width={520}
-            height={693}
-            class="w-full rounded-[2px] object-cover grayscale-[8%]"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <div class="absolute -bottom-7 -right-5 h-28 w-28 sm:-bottom-8 sm:-right-7 sm:h-36 sm:w-36">
-            <SealBadge class="h-full w-full drop-shadow-[0_6px_14px_rgba(20,18,13,0.55)]" />
+          <div class="absolute -bottom-7 -right-7 h-24 w-24 sm:-bottom-8 sm:-right-8 sm:h-28 sm:w-28">
+            <SealBadge class="h-full w-full drop-shadow-[0_10px_22px_rgba(15,15,16,0.18)]" />
           </div>
         </div>
-        <p class="folio-kicker mt-8 text-center text-ink-500 sm:mt-9">
-          Registro fotográfico · anexo al expediente
-        </p>
       </div>
     </div>
   </section>
 
-  <!-- EL OTRO LADO DEL EXPEDIENTE -->
-  <section class="bg-manila-50 py-16 sm:py-24">
+  <!-- LA ASIMETRÍA: CONSTRUYÓ ACUSACIONES, HOY LAS ENFRENTA -->
+  <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div>
+        <div data-reveal>
           <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-            El otro lado del expediente
+            Antes de defender, acusó
           </h2>
         </div>
-        <div class="prose-expediente">
+        <div class="prose-editorial" data-reveal style="--reveal-delay: 80ms">
           <p>
-            Antes de defender un caso, Daniela ayudó a construirlos. Durante ocho años trabajó
-            como asistente de fiscal en la <strong>Dirección Especializada Contra las
-            Organizaciones Criminales (DECOC)</strong> de la Fiscalía General de la Nación en
-            Medellín: proyectó escritos de acusación, evaluó preacuerdos, acompañó audiencias e
-            interrogatorios, y gestionó el sistema misional que hoy sigue usando la Fiscalía en
-            cada investigación.
+            Durante ocho años trabajó como asistente de fiscal en la <strong>Dirección
+            Especializada Contra las Organizaciones Criminales (DECOC)</strong> de la Fiscalía
+            General de la Nación en Medellín: proyectó escritos de acusación, evaluó preacuerdos,
+            acompañó audiencias e interrogatorios, y gestionó el sistema misional que hoy sigue
+            usando la Fiscalía en cada investigación.
           </p>
           <p>
             Eso significa algo muy concreto para quien hoy enfrenta un proceso penal: conoce el
             criterio real con el que se evalúa la evidencia, se negocia un preacuerdo o se decide
             imputar. No es una lectura de manual — es la experiencia de haber estado, literalmente,
-            del otro lado del expediente.
+            del otro lado del proceso.
           </p>
         </div>
       </div>
 
-      <dl class="mt-14 grid gap-px overflow-hidden rounded-sm border border-manila-300 bg-manila-300 sm:grid-cols-3">
-        <div class="bg-manila-100 p-6">
+      <dl
+        class="mt-16 grid gap-10 border-t border-sello-400 pt-10 sm:grid-cols-3 sm:gap-8 sm:divide-x sm:divide-manila-300"
+        data-reveal
+        style="--reveal-delay: 140ms"
+      >
+        <div class="sm:pr-8">
           <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
           <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
             Ocho años en la Fiscalía General de la Nación
           </dd>
         </div>
-        <div class="bg-manila-100 p-6">
+        <div class="sm:px-8">
           <dt class="folio-kicker text-sello-600">DECOC</dt>
           <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
             Unidad especializada contra organizaciones criminales
           </dd>
         </div>
-        <div class="bg-manila-100 p-6">
+        <div class="sm:pl-8">
           <dt class="folio-kicker text-sello-600">UNAULA</dt>
           <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
             Magíster y Especialista en Derecho Procesal Penal
@@ -173,45 +165,49 @@ const faqs = [
   </section>
 
   <!-- ÁREAS DE PRÁCTICA -->
-  <section class="bg-ink-950 py-16 sm:py-24">
+  <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
         <div>
-          <h2 class="font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+          <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
             Áreas de práctica
           </h2>
         </div>
-        <a href="/areas" class="text-sm font-semibold text-sello-500 no-underline hover:text-sello-400">
+        <a href="/areas" class="text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600">
           Ver todas las áreas →
         </a>
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {AREAS.map((area) => <AreaCard area={area} compact />)}
+        {AREAS.map((area, i) => (
+          <div data-reveal style={`--reveal-delay: ${i * 90}ms`}>
+            <AreaCard area={area} compact />
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- PROCESO PENAL -->
-  <section class="bg-manila-50 py-16 sm:py-24">
+  <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <div class="max-w-2xl">
+      <div class="max-w-2xl" data-reveal>
         <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
           ¿Cómo funciona un proceso penal en Colombia?
         </h2>
-        <p class="prose-expediente mt-4">
+        <p class="prose-editorial mt-4">
           Si te citaron, te capturaron o estás acompañando a alguien que lo vive, lo primero es
           entender en qué punto del proceso te encuentras.
         </p>
       </div>
 
-      <div class="mt-10">
+      <div class="mt-10" data-reveal style="--reveal-delay: 100ms">
         <ProcessDiagram />
       </div>
 
       <a
         href="/proceso-penal"
-        class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-sello-700 no-underline hover:text-sello-600"
+        class="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
       >
         Ver la guía completa del proceso penal →
       </a>
@@ -221,19 +217,19 @@ const faqs = [
   <!-- ARTÍCULOS -->
   {
     articles.length > 0 && (
-      <section class="bg-ink-950 py-16 sm:py-24">
+      <section class="bg-manila-50 py-16 sm:py-24">
         <div class="mx-auto max-w-6xl px-5 sm:px-8">
-          <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
             <div>
-              <h2 class="font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+              <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
                 Últimos artículos
               </h2>
             </div>
-            <a href="/articulos" class="text-sm font-semibold text-sello-500 no-underline hover:text-sello-400">
+            <a href="/articulos" class="text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600">
               Ver todos →
             </a>
           </div>
-          <div class="mt-8 max-w-3xl">
+          <div class="mt-8 max-w-3xl" data-reveal style="--reveal-delay: 100ms">
             {articles.map((entry) => <ArticleCard entry={entry} />)}
           </div>
         </div>
@@ -242,27 +238,28 @@ const faqs = [
   }
 
   <!-- FAQ -->
-  <section class="bg-ink-900 py-16 sm:py-24">
+  <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-manila-50 sm:text-4xl">
+      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
         Antes de escribir
       </h2>
-      <div class="mt-8">
+      <div class="mt-8" data-reveal style="--reveal-delay: 100ms">
         <FAQ items={faqs} />
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
-  <section class="bg-sello-700 py-16 sm:py-20">
+  <section class="bg-manila-50 py-16 sm:py-20">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+      data-reveal
     >
       <div>
-        <h2 class="font-display text-2xl font-semibold text-manila-50 sm:text-3xl">
+        <h2 class="font-display text-2xl font-semibold text-ink-900 sm:text-3xl">
           ¿Necesitas orientación ahora mismo?
         </h2>
-        <p class="mt-2 max-w-lg text-sello-100">
+        <p class="mt-2 max-w-lg text-manila-700">
           Cuanto antes hables con tu defensa, más opciones reales tienes. Escribe y cuéntale a
           Daniela tu situación.
         </p>
@@ -273,14 +270,11 @@ const faqs = [
           target="_blank"
           rel="noopener noreferrer"
           data-whatsapp-primary
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-ink-950 px-6 py-3.5 font-semibold text-manila-50 no-underline transition-colors hover:bg-ink-900"
+          class="btn-gold whitespace-nowrap"
         >
           WhatsApp directo
         </a>
-        <a
-          href="/contacto"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm border border-manila-50/40 px-6 py-3.5 font-semibold text-manila-50 no-underline transition-colors hover:bg-sello-600"
-        >
+        <a href="/contacto" class="btn-outline-gold whitespace-nowrap">
           Formulario de contacto
         </a>
       </div>

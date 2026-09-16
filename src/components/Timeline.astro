@@ -2,20 +2,20 @@
 import { TIMELINE } from "@/lib/site";
 ---
 
-<ol class="relative border-l border-ink-700 pl-8 sm:pl-10">
+<ol class="relative border-l border-sello-300 pl-8 sm:pl-10">
   {
     TIMELINE.map((entry, i) => (
       <li class="relative pb-10 last:pb-0">
         <span
-          class="absolute -left-[calc(2rem+5px)] top-1 h-2.5 w-2.5 rounded-full border-2 border-sello-500 bg-ink-900 sm:-left-[calc(2.5rem+5px)]"
+          class="absolute -left-[calc(2rem+5px)] top-1 h-2.5 w-2.5 rounded-full border-2 border-sello-500 bg-manila-50 sm:-left-[calc(2.5rem+5px)]"
           aria-hidden="true"
         />
-        <p class="folio-kicker text-sello-500">{entry.range}</p>
-        <h3 class="mt-1 font-display text-lg font-semibold text-manila-50 sm:text-xl">
+        <p class="folio-kicker text-sello-600">{entry.range}</p>
+        <h3 class="mt-1 font-display text-lg font-semibold text-ink-900 sm:text-xl">
           {entry.title}
         </h3>
-        <p class="mt-0.5 text-sm font-medium text-manila-300">{entry.org}</p>
-        <p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-300">{entry.detail}</p>
+        <p class="mt-0.5 text-sm font-medium text-manila-700">{entry.org}</p>
+        <p class="mt-2 max-w-2xl text-sm leading-relaxed text-manila-700">{entry.detail}</p>
       </li>
     ))
   }
