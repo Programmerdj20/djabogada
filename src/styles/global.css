@@ -111,11 +111,27 @@
 }
 
 @layer components {
+  /* Reserved for genuine folio/case-file data: dates, the T.P. number,
+     exhibit and stage numbering where the sequence itself is information
+     (chronology, process order). Never for a standalone section label —
+     that is a kicker/eyebrow, and the craft floor bans the pattern
+     outright regardless of how the label is styled. */
   .folio-kicker {
     font-family: var(--font-mono);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-size: 0.6875rem;
+  }
+
+  /* A standalone small-caps title for a block that has no separate heading
+     beneath it (a footer column, a sidebar box). Sans, not mono — mono is
+     reserved for data, not for organizing labels. */
+  .block-label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
   }
 
   .prose-expediente {

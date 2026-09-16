@@ -29,15 +29,14 @@ export const WHATSAPP_DEFAULT_MESSAGE =
 export type NavItem = {
   label: string;
   href: string;
-  folio: string;
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Perfil", href: "/perfil", folio: "01" },
-  { label: "Áreas", href: "/areas", folio: "02" },
-  { label: "Proceso penal", href: "/proceso-penal", folio: "03" },
-  { label: "Artículos", href: "/articulos", folio: "04" },
-  { label: "Contacto", href: "/contacto", folio: "05" },
+  { label: "Perfil", href: "/perfil" },
+  { label: "Áreas", href: "/areas" },
+  { label: "Proceso penal", href: "/proceso-penal" },
+  { label: "Artículos", href: "/articulos" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export type TimelineEntry = {

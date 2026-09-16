@@ -46,16 +46,24 @@ Autohospedadas vía `@fontsource(-variable)`, sin Google Fonts en runtime.
 
 ## Componentes y lenguaje de forma
 
-- **Navegación como pestañas de carpeta** (`Header.astro`): cada ítem del menú se dibuja como una
-  pestaña físicamente "levantada" cuando está activa, sobre una barra de fondo ink-950.
-- **Kicker de folio** (`.folio-kicker`, mono, versalitas, tracking amplio): antecede casi todo
-  título de sección — "EXPEDIENTE N.° 00X" — dispositivo recurrente que numera el sitio como si
-  fueran folios de un mismo expediente.
+- **Navegación como pestañas de carpeta real** (`Header.astro`): cada ítem se recorta con
+  `clip-path` trapezoidal (hombros angulados, como una pestaña de carpeta colgante). La pestaña
+  activa se aclara a manila, se levanta y solapa el borde inferior de la barra; las inactivas
+  quedan más oscuras y bajas. No es una pastilla de nav genérica con una etiqueta encima: la forma
+  misma es la pestaña.
+- **`.folio-kicker` reservado a datos reales** (mono, versalitas): fechas, el número de T.P.,
+  numeración de anexos/etapas donde el orden importa. Nunca como eyebrow decorativo sobre un
+  título — ese patrón está prohibido por el piso de calidad del skill sin excepción, y una
+  revisión de cierre lo encontró usado de forma sistemática en la primera pasada; se retiró de
+  cada título de sección, quedando los encabezados solos. `.block-label` (sans, no mono) cubre en
+  su lugar los títulos de bloque independiente que no tienen un heading propio debajo (columnas
+  del footer, cajas laterales).
 - **Panel manila**: tarjetas, formularios y secciones de lectura larga usan `manila-100` sobre
   borde `manila-300` — la superficie de "papel" del sistema.
-- **Sello de verificación** (`SealBadge.astro`): sello SVG circular con texto curvo (registro
-  nacional de abogados, número de T.P., seccional) — todo dato real y verificable, nunca
-  decorativo. Aparece junto a la foto de perfil.
+- **Sello de verificación** (`SealBadge.astro`): sello SVG circular con disco de respaldo opaco
+  (manila) y texto curvo en sello-700/800 — legible a simple vista contra cualquier fondo, no solo
+  al hacer zoom. Registro nacional de abogados, número de T.P., seccional — todo dato real y
+  verificable, nunca decorativo. Aparece junto a la foto de perfil.
 - **Nota de margen** (`.prose-expediente blockquote`): caja con etiqueta mono "NOTA", bordeada en
   los cuatro lados — deliberadamente NO una barra de acento de color a un lado (antipatrón de IA
   detectado y corregido durante esta build).
