@@ -3,10 +3,11 @@ import { whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
 <a
+  id="whatsapp-float-cta"
   href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
   target="_blank"
   rel="noopener noreferrer"
-  class="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-sm border border-brass-600/50 bg-ink-900/95 px-3 py-2.5 text-manila-100 no-underline shadow-panel backdrop-blur transition-transform hover:-translate-y-0.5 hover:bg-ink-800 sm:bottom-6 sm:right-6"
+  class="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-sm border border-brass-600/50 bg-ink-900/95 px-3 py-2.5 text-manila-100 no-underline shadow-panel backdrop-blur transition hover:-translate-y-0.5 hover:bg-ink-800 sm:bottom-6 sm:right-6"
   aria-label="Escribir por WhatsApp a Daniela Jaramillo Herrera"
 >
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="text-sello-500">
@@ -16,3 +17,26 @@ import { whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
   </svg>
   <span class="folio-kicker hidden sm:inline">Consulta directa</span>
 </a>
+
+<script>
+  const floatCta = document.getElementById("whatsapp-float-cta");
+  const primaryLinks = document.querySelectorAll<HTMLElement>("[data-whatsapp-primary]");
+
+  if (floatCta && primaryLinks.length) {
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          visible.add(entry.target);
+        } else {
+          visible.delete(entry.target);
+        }
+      }
+      const shouldHide = visible.size > 0;
+      floatCta.classList.toggle("opacity-0", shouldHide);
+      floatCta.classList.toggle("pointer-events-none", shouldHide);
+      floatCta.toggleAttribute("inert", shouldHide);
+    });
+    primaryLinks.forEach((el) => observer.observe(el));
+  }
+</script>
