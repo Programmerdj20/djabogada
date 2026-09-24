@@ -15,7 +15,6 @@
 
 - Perfil profesional y trayectoria verificable: /perfil
 - Guía del proceso penal en Colombia (indagación, imputación, acusación, juicio): /proceso-penal
-- Artículos jurídicos: /articulos
 - Contacto y agendamiento de consulta: /contacto
 
 ## Contacto

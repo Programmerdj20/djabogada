@@ -28,10 +28,10 @@ FTP upload needs `HOSTINGER_FTP_HOST`, `HOSTINGER_FTP_USER`, `HOSTINGER_FTP_PASS
 ## Architecture
 
 - `src/pages/` — file-based routes. Astro build config emits clean-url `.html` files (`format: 'file'` in `astro.config.mjs`), paired with Apache rewrite rules in `public/.htaccess` for Hostinger.
-- `src/content/articulos/` + `src/content.config.ts` — the legal-blog content collection (Markdown). Schema requires `title`, `description`, `date`, `area` (one of the four practice areas), `readingMinutes`, `draft`.
 - `src/lib/site.ts` — single source of truth for all site facts: contact info, practice areas (`AREAS`), career timeline (`TIMELINE`), credentials (`CREDENTIALS`), criminal-process stages (`PROCESS_STAGES`), nav items. Any page or component displaying these facts should read from here, not hardcode them.
 - `src/components/` — reusable pieces (Header, AreaCard, Timeline, ContactForm, SealBadge, ProcessDiagram, FAQ, etc.) consumed by pages and layouts.
-- `src/layouts/Layout.astro` (root) and `ArticleLayout.astro` (blog posts).
+- `src/layouts/Layout.astro` (root).
+- There is no blog/articles content collection — Daniela has no published articles yet, so the site intentionally has no `/articulos` route. Don't reintroduce one without being asked.
 - `src/styles/global.css` — design tokens under Tailwind v4's CSS-first `@theme` block. All colors must be defined as tokens here; no loose hex values elsewhere.
 - `public/contacto.php` — contact form endpoint using a vendored PHPMailer (`public/php/PHPMailer/`, no Composer) over SMTP. Requires `public/config.php` (copy from `public/config.example.php`, gitignored, never committed) with real SMTP credentials. `public/.htaccess` blocks direct access to `config.php`.
 - Astro integrations: `@astrojs/sitemap` (sitemap generation), `@tailwindcss/vite`, sharp for image processing (explicitly configured as the image service).

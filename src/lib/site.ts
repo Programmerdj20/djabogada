@@ -33,7 +33,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Perfil", href: "/perfil" },
   { label: "Áreas", href: "/areas" },
   { label: "Proceso penal", href: "/proceso-penal" },
-  { label: "Artículos", href: "/articulos" },
   { label: "Contacto", href: "/contacto" },
 ];
 

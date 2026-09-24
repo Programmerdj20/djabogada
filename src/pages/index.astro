@@ -1,20 +1,14 @@
 ---
 import { Picture } from "astro:assets";
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import AreaCard from "@/components/AreaCard.astro";
 import ProcessDiagram from "@/components/ProcessDiagram.astro";
 import FAQ from "@/components/FAQ.astro";
-import ArticleCard from "@/components/ArticleCard.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import heroPortrait from "@/assets/images/daniela-hero.webp";
 import heroPlate from "@/assets/images/daniela-hero-plate.webp";
 import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
-
-const articles = (await getCollection("articulos", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
 
 // Copy de tesis del hero: la asimetría (construyó acusaciones, hoy defiende)
 // convertida en beneficio directo, sin sonar como adversaria de la Fiscalía
@@ -86,7 +80,7 @@ const faqs = [
         />
       </div>
       <div
-        class="pointer-events-none absolute inset-x-0 bottom-0 h-[78%] bg-gradient-to-t from-manila-50 via-manila-50/80 to-transparent"
+        class="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-manila-50 via-manila-50/80 to-transparent md:h-[78%]"
         aria-hidden="true"
       ></div>
       <div
@@ -118,22 +112,25 @@ const faqs = [
             {heroHeadline}
           </p>
 
-          <p class="hero-rise mt-3 max-w-md text-[0.9rem] leading-relaxed text-manila-700 sm:text-base" style="--rise-delay: 230ms">
+          <p
+            class="hero-rise mt-3 hidden max-w-md text-[0.9rem] leading-relaxed text-manila-700 sm:text-base md:block"
+            style="--rise-delay: 230ms"
+          >
             {heroLead}
           </p>
 
-          <div class="hero-rise mt-6 flex flex-col gap-3" style="--rise-delay: 300ms">
-            <a href="/contacto" class="btn-gold whitespace-nowrap">
-              Agenda tu consulta confidencial
+          <div class="hero-rise mt-6 flex gap-3" style="--rise-delay: 300ms">
+            <a href="/contacto" class="btn-gold flex-1 !px-4 whitespace-nowrap">
+              Agenda tu consulta
             </a>
             <a
               href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
               target="_blank"
               rel="noopener noreferrer"
               data-whatsapp-primary
-              class="btn-outline-gold whitespace-nowrap"
+              class="btn-outline-gold !px-4 whitespace-nowrap"
             >
-              Escribir por WhatsApp
+              WhatsApp
             </a>
           </div>
         </div>
@@ -171,9 +168,9 @@ const faqs = [
               {heroLead}
             </p>
 
-            <div class="hero-rise mt-9 flex flex-wrap items-center gap-4" style="--rise-delay: 300ms">
+            <div class="hero-rise mt-9 flex items-center gap-4" style="--rise-delay: 300ms">
               <a href="/contacto" class="btn-gold whitespace-nowrap">
-                Agenda tu consulta confidencial
+                Agenda tu consulta
               </a>
               <a
                 href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
@@ -336,31 +333,8 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ARTÍCULOS -->
-  {
-    articles.length > 0 && (
-      <section class="bg-manila-50 py-16 sm:py-24">
-        <div class="mx-auto max-w-6xl px-5 sm:px-8">
-          <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
-            <div>
-              <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-                Últimos artículos
-              </h2>
-            </div>
-            <a href="/articulos" class="text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600">
-              Ver todos →
-            </a>
-          </div>
-          <div class="mt-8 max-w-3xl" data-reveal data-stagger style="--reveal-delay: 100ms">
-            {articles.map((entry) => <ArticleCard entry={entry} />)}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
   <!-- FAQ -->
-  <section class="bg-manila-100 py-16 sm:py-24">
+  <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
         Antes de escribir
@@ -372,7 +346,7 @@ const faqs = [
   </section>
 
   <!-- CTA FINAL -->
-  <section class="bg-manila-50 py-16 sm:py-20">
+  <section class="bg-manila-100 py-16 sm:py-20">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
       data-reveal

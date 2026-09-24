@@ -21,9 +21,7 @@ npm run preview    # sirve ./dist localmente para verificar la build final
 ```
 src/
   components/     Piezas reutilizables (Header, AreaCard, Timeline, ContactForm, ...)
-  content/        Artículos del blog jurídico (Markdown)
-  content.config.ts   Esquema de la colección "articulos"
-  layouts/        Layout.astro (raíz) y ArticleLayout.astro
+  layouts/        Layout.astro (raíz)
   lib/site.ts     Datos centrales del sitio (contacto, áreas, cronología, credenciales)
   pages/          Rutas del sitio
   styles/         Tokens de diseño y estilos base (Tailwind v4, @theme)
