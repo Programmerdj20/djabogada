@@ -3,7 +3,7 @@
 // Nothing here is invented: no case counts, no review scores, no press.
 
 export const SITE = {
-  name: "Dra. Daniela Jaramillo",
+  name: "Daniela Jaramillo",
   role: "Abogada penalista",
   tagline: "Defensa penal, víctimas y criminalidad organizada en Medellín",
   domain: "danielajaramilloabogada.com",
