@@ -89,18 +89,30 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   esquineras de empaque de lujo, no una card genérica de ícono+título+texto.
 - **Placas fotográficas** (`PageHero.astro` con `image`): en páginas internas la fotografía entra
   enmarcada — borde `sello-400` sobre panel marfil, filete interior `sello-300` y `shadow-gold`.
-  El hero de home (`index.astro`) es la única excepción de composición: un **retrato a sangre**.
-  Por debajo de `lg` la foto llena la pantalla completa (alto real de viewport menos el header) y
-  el titular con los botones se leen abajo, sobre un velo marfil que sube desde el borde inferior.
-  Desde `lg` el retrato pasa a un bloque de sangre completa que ocupa el 54% derecho (de borde a
-  borde, alto de pantalla), y el texto vive en la columna izquierda sobre marfil, fundido con la
-  foto por una franja de degradado angosta en la costura — nunca una línea dura. El titular es
-  "Daniela Jaramillo" en Playfair Display mayúsculas, con un filete de oro vertical que resuelve
-  la barra "|" pedida por la clienta, y "Abogada penalista" en Montserrat trackeado; sin lead ni
-  franja de credenciales — esas viven en la sección "Antes de defender, acusó". Nunca un overlay
-  negro ni texto sobre la imagen desnuda. Los encuadres (`object-position` y `aspect-ratio`) de
-  las placas internas se eligen para excluir rótulos ajenos: el nombre de caso impreso en
-  `daniela-expediente` y el escudo del Congreso en `daniela-juicio` quedan fuera de cuadro.
+  El hero de home (`index.astro`) usa dos composiciones distintas por viewport, no una sola
+  reescalada:
+  - **Por debajo de `lg`:** la foto (`daniela-hero.webp`) llena la pantalla completa (alto real de
+    viewport menos el header); el titular, el titular persuasivo, el párrafo y los botones se leen
+    abajo, sobre un velo marfil que sube desde el borde inferior.
+  - **Desde `lg`:** **placa de retrato** — la foto completa en vertical (`daniela-hero-plate.webp`,
+    una versión con corrección de color cálida: la pared gris de oficina se lee marfil, no gris),
+    de canto nítido, sin degradado, dentro de un panel con un filete de oro desplazado detrás a
+    modo de passe-partout. El texto vive en una columna a la izquierda; su titular persuasivo
+    invade apenas el borde de la placa con un margen negativo.
+  - **Decisión registrada:** la primera idea para `lg` fue un recorte de la fotógrafa sin el fondo
+    de oficina, hecho en local con `rembg` (`birefnet-portrait`). El resultado dejaba un resto
+    gris del brazo de la silla pegado a la manga, sin un umbral de color limpio que lo separara del
+    blazer en sombra — no pasó el control de calidad y se descartó en vez de publicarse a medias;
+    la placa de retrato fue el reemplazo, no una alternativa débil aceptada por defecto.
+  - En ambos casos: el titular es "Daniela Jaramillo" en Playfair Display mayúsculas más "Abogada
+    penalista en Medellín" en Montserrat trackeado (el H1 completo, para SEO), con un filete de oro
+    vertical que resuelve la barra "|" pedida por la clienta. Debajo, el titular persuasivo de
+    tesis (grande, Playfair) y el párrafo de credenciales van como texto, no como H1 — nunca un
+    overlay negro ni texto sobre la imagen desnuda, nunca la promesa de un resultado ("ganamos tu
+    caso"), que las normas de publicidad para abogados en Colombia restringen.
+  Los encuadres (`object-position` y `aspect-ratio`) de las placas internas se eligen para excluir
+  rótulos ajenos: el nombre de caso impreso en `daniela-expediente` y el escudo del Congreso en
+  `daniela-juicio` quedan fuera de cuadro.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
