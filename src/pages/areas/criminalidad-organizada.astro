@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import AreaDetail from "@/components/AreaDetail.astro";
-import juntas from "@/assets/images/daniela-juntas.webp";
+import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS } from "@/lib/site";
 
 const area = AREAS.find((a) => a.slug === "criminalidad-organizada")!;
@@ -14,9 +14,10 @@ const area = AREAS.find((a) => a.slug === "criminalidad-organizada")!;
 >
   <AreaDetail
     area={area}
-    image={juntas}
-    imageAlt="Daniela Jaramillo dirigiendo una reunión de trabajo sobre una investigación compleja"
+    image={expediente}
+    imageAlt="Daniela Jaramillo analizando un expediente de una investigación compleja"
     imageAspect="4 / 5"
+    imagePosition="100% center"
     lead="Los casos de criminalidad organizada son técnicamente más exigentes y su exposición reputacional, más alta. Requieren una defensa que entienda cómo se investigan realmente estas estructuras."
     narrative={[
       "El concierto para delinquir, el lavado de activos, la extorsión y los delitos asociados a estructuras criminales se investigan con herramientas y criterios distintos a los de un delito individual: interceptaciones, seguimientos, análisis financiero y coordinación entre varias unidades de la Fiscalía y la policía judicial.",

@@ -142,6 +142,14 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     la derecha, para no repetir la composición del hero. Formato `4/5`, sin passe-partout
     desplazado (ese motivo es exclusivo del hero); mismo marco `sello-400` + filete interior
     `sello-300` + `shadow-gold` que el resto de placas internas.
+  - **Perfil (`perfil.astro`):** hero propio, no `PageHero` — comparte la gramática de placa
+    (`sello-400` + filete interior `sello-300` + `shadow-gold`, `hero-rise`/`hero-settle`) pero sin
+    el passe-partout desplazado del home. La foto (`daniela-perfil.webp`, retrato de oficina con
+    la misma corrección cálida de pared) va en formato `2/3` — su relación de aspecto nativa, sin
+    recorte — a la derecha en `lg` y arriba del texto en móvil (`order-1`/`order-2` invertido entre
+    breakpoints, no una sola composición reescalada). El H1 sigue el mismo patrón que el home:
+    "Daniela Jaramillo" en Playfair Display más "Abogada penalista en Medellín" en Montserrat
+    trackeado tras el filete vertical.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
