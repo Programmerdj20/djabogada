@@ -42,7 +42,7 @@ These are hard constraints from `PRODUCT.md`, not stylistic suggestions:
 
 - Never invent data, figures, or testimonials — no fabricated "cases won," reviews, or success statistics. The site currently has none of these and is designed to absorb them later without redesign, not to simulate them now.
 - Never reference specific cases from Daniela's time at the Fiscalía General de la Nación (reserva sumarial / investigation secrecy applies).
-- Never publish sensitive personal data: cédula number, birth date, residential address, or images of the professional card or cédula. The T.P. (tarjeta profesional) number `[reservado]` is public/verifiable and fine to show.
+- Never publish sensitive personal data: cédula number, birth date, residential address, or images of the professional card or cédula. The T.P. (tarjeta profesional) number is treated as private, same as the cédula — never show it anywhere in the site, in any field, or in any file. It's fine to state that she holds a T.P. issued by the relevant Consejo, just never the number itself.
 - The site's core positioning thesis is the asymmetry of having built prosecutions (8 years at Fiscalía/DECOC) and now defending against them — not years litigating or case wins, which don't exist yet. Copy should lean on this, not on generic authority claims.
 
 ## Design system — "El expediente"
