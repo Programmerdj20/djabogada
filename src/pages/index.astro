@@ -7,7 +7,7 @@ import ProcessDiagram from "@/components/ProcessDiagram.astro";
 import FAQ from "@/components/FAQ.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import JsonLd from "@/components/JsonLd.astro";
-import escritorio from "@/assets/images/daniela-escritorio.webp";
+import heroPortrait from "@/assets/images/daniela-hero.webp";
 import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
@@ -45,31 +45,40 @@ const faqs = [
   path="/"
 >
   <!-- HERO -->
+  {/* Retrato a sangre. Móvil: la foto llena la pantalla y el texto se lee
+      abajo, sobre un velo marfil que sube desde el borde inferior. Desde lg:
+      el retrato pasa a ocupar el 54% derecho a sangre completa (de borde a
+      borde, alto de pantalla) y el texto vive a la izquierda sobre marfil,
+      fundido con la foto por una franja de degradado en la costura. El H1
+      es el nombre corto pedido por la clienta, "Daniela Jaramillo" (no el
+      wordmark completo "Dra. Daniela Jaramillo" de SITE.name, que sigue
+      usándose en el alt) — la barra "|" del texto se resuelve como un
+      filete de oro vertical entre el nombre y el rol, no como el carácter
+      tipográfico, para que ambas líneas respiren en la columna angosta.
+      Hero limpio: sin lead ni franja de credenciales — esas viven en la
+      sección "Antes de defender, acusó" más abajo. */}
   <section class="relative isolate overflow-hidden border-b border-manila-300 bg-manila-50">
-    <div class="relative">
-      {/* La fotografía entra completa, a su proporción natural: el alto del
-          contenedor es el alto real de la imagen, así que nunca se recorta.
-          `hero-drift` da una deriva apenas perceptible; `hero-settle` la
-          asienta al cargar. Ambas se desactivan con prefers-reduced-motion. */}
-      <div class="hero-drift lg:min-h-[34rem]">
+    <div class="relative h-[calc(100svh-4rem)] min-h-[34rem] lg:h-[calc(100svh-4.5rem)] lg:max-h-[54rem]">
+      <div class="hero-drift absolute inset-0 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[54%]">
         <Picture
-          src={escritorio}
-          alt={`${SITE.name}, abogada penalista en Medellín, en su escritorio con libros jurídicos`}
+          src={heroPortrait}
+          alt={`${SITE.name}, abogada penalista en Medellín, en su oficina`}
           formats={["avif", "webp"]}
           fallbackFormat="webp"
-          widths={[640, 960, 1280, 1600, 1920]}
-          sizes="100vw"
-          class="hero-settle block h-auto w-full"
+          widths={[480, 640, 900, 1080]}
+          sizes="(min-width: 1024px) 54vw, 100vw"
+          class="hero-settle h-full w-full object-cover object-[center_18%] lg:object-[42%_14%]"
           loading="eager"
           fetchpriority="high"
           decoding="async"
         />
       </div>
 
-      {/* Velo marfil solo donde va el texto (escritorio). En móvil el texto
-          vive debajo de la imagen, sobre el marfil del sitio. */}
+      {/* Velo: en móvil sube desde el borde inferior para alojar el texto;
+          desde lg se convierte en la franja que funde la costura izquierda
+          de la foto con el marfil de la columna de texto. */}
       <div
-        class="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-manila-50 via-manila-50/92 to-manila-50/0 lg:block"
+        class="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-manila-50 via-manila-50/75 to-transparent lg:inset-y-0 lg:left-[46%] lg:right-auto lg:h-auto lg:w-[10%] lg:bg-gradient-to-r lg:from-manila-50 lg:via-manila-50/60 lg:to-transparent"
         aria-hidden="true"
       ></div>
       <div
@@ -77,31 +86,30 @@ const faqs = [
         aria-hidden="true"
       ></div>
 
-      {/* Texto: bajo la imagen hasta lg; superpuesto y centrado desde lg. */}
-      <div class="relative lg:absolute lg:inset-0 lg:flex lg:items-center">
-        <div class="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-14 lg:py-0">
-          <div class="max-w-xl">
+      <div class="relative flex h-full items-end pb-12 sm:pb-14 lg:items-center lg:pb-0">
+        <div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+          <div class="max-w-xl lg:max-w-md">
             <span class="rule-gold rule-draw block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
 
-            <h1
-              class="hero-rise mt-7 font-display text-[2.75rem] font-semibold leading-[1.04] text-ink-900 sm:text-6xl lg:text-6xl xl:text-[4.25rem]"
-              style="--rise-delay: 90ms"
-            >
-              {SITE.name}
+            <h1 class="hero-rise mt-6 font-display font-semibold text-ink-900" style="--rise-delay: 90ms">
+              <span class="block text-[2.5rem] uppercase leading-[1.05] tracking-[0.01em] sm:text-5xl lg:text-[3.25rem]">
+                Daniela Jaramillo
+              </span>
+              <span class="sr-only">, </span>
+              <span class="mt-3 flex items-center gap-3">
+                <span class="h-4 w-px shrink-0 bg-sello-400" aria-hidden="true"></span>
+                <span class="font-sans text-sm font-semibold uppercase tracking-[0.32em] text-sello-700 sm:text-base">
+                  Abogada penalista
+                </span>
+              </span>
             </h1>
 
-            <p class="hero-rise mt-4 text-lg font-medium tracking-wide text-sello-700 sm:text-xl" style="--rise-delay: 170ms">
-              Abogada penalista en Medellín
-            </p>
-
-            <p class="hero-rise mt-6 max-w-xl text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 250ms">
-              Durante ocho años construyó el caso de la Fiscalía General de la Nación en la unidad
-              contra el crimen organizado de Medellín. Hoy pone ese mismo criterio, al más alto
-              nivel, al servicio de tu defensa.
-            </p>
-
-            <div class="hero-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style="--rise-delay: 330ms">
-              <a href="/contacto" class="btn-gold">
+            {/* Fila en sm/md (columna aún ancha); vuelve a apilarse en lg
+                porque desde ahí la columna se angosta a max-w-md para
+                dejarle sitio al retrato, y dos botones en fila envolvían
+                el texto dentro de sí mismos. */}
+            <div class="hero-rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-start" style="--rise-delay: 250ms">
+              <a href="/contacto" class="btn-gold whitespace-nowrap">
                 Agenda tu consulta
               </a>
               <a
@@ -109,12 +117,11 @@ const faqs = [
                 target="_blank"
                 rel="noopener noreferrer"
                 data-whatsapp-primary
-                class="btn-outline-gold"
+                class="btn-outline-gold whitespace-nowrap"
               >
                 Escribir por WhatsApp
               </a>
             </div>
-
           </div>
         </div>
       </div>

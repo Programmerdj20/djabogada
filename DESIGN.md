@@ -87,15 +87,19 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 - **Tarjetas de área** (`AreaCard.astro`): panel `manila-100` con esquinas de marca (corner
   brackets en oro que aparecen al hover) sobre secciones `manila-50` — una referencia a las
   esquineras de empaque de lujo, no una card genérica de ícono+título+texto.
-- **Placas fotográficas** (`PageHero.astro` con `image`, hero de `index.astro`): en páginas
-  internas la fotografía entra enmarcada — borde `sello-400` sobre panel marfil, filete interior
-  `sello-300` y `shadow-gold`, el mismo marco del hero original. El hero de home es la única
-  excepción de composición: la fotografía se muestra **completa, a su proporción natural** (sin
-  `object-cover`, sin recorte), y el alto del hero es el alto real de la imagen. Desde `lg` el
-  texto se superpone sobre un velo marfil que se aclara hacia la derecha; por debajo de `lg` el
-  texto cae debajo de la imagen, sobre el marfil del sitio. Nunca un overlay negro ni texto sobre
-  la imagen desnuda. Los encuadres (`object-position` y
-  `aspect-ratio`) de las placas internas se eligen para excluir rótulos ajenos: el nombre de caso impreso en
+- **Placas fotográficas** (`PageHero.astro` con `image`): en páginas internas la fotografía entra
+  enmarcada — borde `sello-400` sobre panel marfil, filete interior `sello-300` y `shadow-gold`.
+  El hero de home (`index.astro`) es la única excepción de composición: un **retrato a sangre**.
+  Por debajo de `lg` la foto llena la pantalla completa (alto real de viewport menos el header) y
+  el titular con los botones se leen abajo, sobre un velo marfil que sube desde el borde inferior.
+  Desde `lg` el retrato pasa a un bloque de sangre completa que ocupa el 54% derecho (de borde a
+  borde, alto de pantalla), y el texto vive en la columna izquierda sobre marfil, fundido con la
+  foto por una franja de degradado angosta en la costura — nunca una línea dura. El titular es
+  "Daniela Jaramillo" en Playfair Display mayúsculas, con un filete de oro vertical que resuelve
+  la barra "|" pedida por la clienta, y "Abogada penalista" en Montserrat trackeado; sin lead ni
+  franja de credenciales — esas viven en la sección "Antes de defender, acusó". Nunca un overlay
+  negro ni texto sobre la imagen desnuda. Los encuadres (`object-position` y `aspect-ratio`) de
+  las placas internas se eligen para excluir rótulos ajenos: el nombre de caso impreso en
   `daniela-expediente` y el escudo del Congreso en `daniela-juicio` quedan fuera de cuadro.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
