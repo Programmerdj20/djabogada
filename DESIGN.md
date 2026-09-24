@@ -136,6 +136,12 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   Los encuadres (`object-position` y `aspect-ratio`) de las placas internas se eligen para excluir
   rótulos ajenos: el nombre de caso impreso en `daniela-expediente` y el escudo del Congreso en
   `daniela-juicio` quedan fuera de cuadro.
+  - **Sección de asimetría del home** ("Antes de defender…"): segunda placa de retrato, en espejo
+    del hero — aquí la foto (`daniela-defensa.webp`, misma corrección cálida de pared que
+    `daniela-hero-plate`) va a la **izquierda** en `lg` y queda `sticky` mientras se lee el texto a
+    la derecha, para no repetir la composición del hero. Formato `4/5`, sin passe-partout
+    desplazado (ese motivo es exclusivo del hero); mismo marco `sello-400` + filete interior
+    `sello-300` + `shadow-gold` que el resto de placas internas.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.

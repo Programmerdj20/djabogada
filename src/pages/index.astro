@@ -7,7 +7,7 @@ import FAQ from "@/components/FAQ.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import heroPortrait from "@/assets/images/daniela-hero.webp";
 import heroPlate from "@/assets/images/daniela-hero-plate.webp";
-import expediente from "@/assets/images/daniela-expediente.webp";
+import defensa from "@/assets/images/daniela-defensa.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
 // Copy de tesis del hero: la asimetría (construyó acusaciones, hoy defiende)
@@ -212,74 +212,90 @@ const faqs = [
   <!-- LA ASIMETRÍA: CONSTRUYÓ ACUSACIONES, HOY LAS ENFRENTA -->
   <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div data-reveal>
+      <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
+        <div
+          class="relative lg:sticky lg:top-28 lg:col-start-1 lg:row-span-2"
+          data-reveal
+        >
+          <div class="border border-sello-400 bg-manila-50 p-3 shadow-gold">
+            <div class="aspect-[4/5] overflow-hidden border border-sello-300">
+              <Picture
+                src={defensa}
+                alt={`${SITE.name}, abogada penalista en Medellín, en su escritorio`}
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+                widths={[480, 640, 760, 960]}
+                sizes="(min-width: 1024px) 42vw, 92vw"
+                class="h-full w-full object-cover object-[center_22%]"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-start-2 lg:row-start-1" data-reveal style="--reveal-delay: 60ms">
           <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-            Antes de defender, acusó
+            Antes de defender, construyó acusaciones en la Fiscalía
           </h2>
         </div>
-        <div class="prose-editorial" data-reveal style="--reveal-delay: 80ms">
-          <p>
-            Durante ocho años trabajó como asistente de fiscal en la <strong>Dirección
-            Especializada Contra las Organizaciones Criminales (DECOC)</strong> de la Fiscalía
-            General de la Nación en Medellín: proyectó escritos de acusación, evaluó preacuerdos,
-            acompañó audiencias e interrogatorios, y gestionó el sistema misional que hoy sigue
-            usando la Fiscalía en cada investigación.
-          </p>
-          <p>
-            Eso significa algo muy concreto para quien hoy enfrenta un proceso penal: conoce el
-            criterio real con el que se evalúa la evidencia, se negocia un preacuerdo o se decide
-            imputar. No es una lectura de manual — es la experiencia de haber estado, literalmente,
-            del otro lado del proceso.
-          </p>
+
+        <div
+          class="mt-8 lg:col-start-2 lg:row-start-2 lg:mt-0"
+          data-reveal
+          style="--reveal-delay: 100ms"
+        >
+          <div class="prose-editorial">
+            <p>
+              Daniela Jaramillo trabajó ocho años, entre 2018 y 2026, en la Fiscalía General de la
+              Nación como asistente de fiscal de la <strong>Dirección Especializada contra las
+              Organizaciones Criminales (DECOC)</strong> en Medellín. Allí proyectó escritos de
+              acusación, evaluó preacuerdos y aceptaciones de cargos, acompañó audiencias,
+              interrogatorios y actos urgentes, emitió órdenes a policía judicial y gestionó el
+              SPOA, el sistema misional con el que la Fiscalía tramita cada investigación.
+            </p>
+            <p>
+              Esa trayectoria es hoy el núcleo de su <strong>defensa penal</strong>. Sabe qué
+              evidencia sostiene una imputación y cuál no resiste un juicio, cuándo un preacuerdo
+              conviene de verdad y qué argumentos pesan ante un juez de control de garantías. Por
+              eso actúa con precisión desde la primera diligencia: detecta los puntos débiles de
+              la acusación antes de que el proceso avance.
+            </p>
+            <p>
+              No es teoría de manual. Es el criterio de quien estuvo del otro lado del proceso
+              penal y hoy lo pone al servicio de su defensa.
+            </p>
+          </div>
+
+          <dl class="mt-10 divide-y divide-sello-400 border-t border-sello-400">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
+              <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
+              <dd class="font-display text-lg font-semibold text-ink-900">
+                Ocho años en la Fiscalía General de la Nación
+              </dd>
+            </div>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
+              <dt class="folio-kicker text-sello-600">DECOC</dt>
+              <dd class="font-display text-lg font-semibold text-ink-900">
+                Unidad especializada contra organizaciones criminales
+              </dd>
+            </div>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
+              <dt class="folio-kicker text-sello-600">UNAULA</dt>
+              <dd class="font-display text-lg font-semibold text-ink-900">
+                Magíster y Especialista en Derecho Procesal Penal
+              </dd>
+            </div>
+          </dl>
+
+          <a
+            href="/perfil"
+            class="mt-8 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
+          >
+            Conocer su trayectoria →
+          </a>
         </div>
       </div>
-
-      <div
-        class="mt-14 border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4"
-        data-reveal
-        style="--reveal-delay: 120ms"
-      >
-        <div class="border border-sello-300 p-1">
-          <Picture
-            src={expediente}
-            alt="Daniela Jaramillo estudiando un expediente penal en su escritorio"
-            formats={["avif", "webp"]}
-            fallbackFormat="webp"
-            widths={[640, 960, 1280, 1600]}
-            sizes="(min-width: 1152px) 1088px, 92vw"
-            class="w-full object-cover object-[center_42%]"
-            style="aspect-ratio: 2.4 / 1;"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-
-      <dl
-        class="mt-16 grid gap-10 border-t border-sello-400 pt-10 sm:grid-cols-3 sm:gap-8 sm:divide-x sm:divide-manila-300"
-        data-reveal
-        style="--reveal-delay: 140ms"
-      >
-        <div class="sm:pr-8">
-          <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
-          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
-            Ocho años en la Fiscalía General de la Nación
-          </dd>
-        </div>
-        <div class="sm:px-8">
-          <dt class="folio-kicker text-sello-600">DECOC</dt>
-          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
-            Unidad especializada contra organizaciones criminales
-          </dd>
-        </div>
-        <div class="sm:pl-8">
-          <dt class="folio-kicker text-sello-600">UNAULA</dt>
-          <dd class="mt-2 font-display text-lg font-semibold text-ink-900">
-            Magíster y Especialista en Derecho Procesal Penal
-          </dd>
-        </div>
-      </dl>
     </div>
   </section>
 
