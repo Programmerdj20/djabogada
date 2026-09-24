@@ -16,8 +16,6 @@ export const SITE = {
   phoneE164: "+573226555811",
   whatsappNumber: "573226555811",
   email: "contacto@danielajaramilloabogada.com",
-  tarjetaProfesional: "[reservado]",
-  tarjetaProfesionalConsejo: "Consejo Seccional de la Judicatura de Antioquia",
 } as const;
 
 export const whatsappLink = (message: string) =>
@@ -73,7 +71,7 @@ export const TIMELINE: TimelineEntry[] = [
     range: "2024",
     title: "Tarjeta profesional de abogada",
     org: "Consejo Superior de la Judicatura, Seccional Antioquia",
-    detail: `T.P. N.° ${SITE.tarjetaProfesional}, expedida en mayo de 2024.`,
+    detail: "Habilitada para el ejercicio de la profesión desde mayo de 2024.",
   },
   {
     range: "2023",

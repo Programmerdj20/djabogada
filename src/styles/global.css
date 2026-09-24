@@ -216,24 +216,6 @@
     animation-delay: var(--rise-delay, 0ms);
   }
 
-  /* El medallón de verificación entra como un sello que se prensa: llega
-     apenas ampliado y se asienta en su tamaño exacto. Una sola vez, nunca
-     un loop. */
-  @keyframes seal-press {
-    from {
-      opacity: 0;
-      transform: scale(1.08);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  .seal-press {
-    animation: seal-press 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: var(--rise-delay, 0ms);
-  }
-
   /* Aparición de un estado de formulario (éxito o error): nace al quitarse
      `hidden`, así que la animación corre en ese cambio de display. */
   @keyframes state-enter {
@@ -337,14 +319,12 @@
     .hero-drift,
     .hero-settle,
     .rule-draw,
-    .seal-press,
     .state-enter {
       animation: none !important;
     }
     .hero-drift,
     .hero-settle,
-    .rule-draw,
-    .seal-press {
+    .rule-draw {
       transform: none !important;
     }
     .mobile-nav,

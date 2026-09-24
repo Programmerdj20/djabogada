@@ -7,7 +7,6 @@ import ProcessDiagram from "@/components/ProcessDiagram.astro";
 import FAQ from "@/components/FAQ.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import JsonLd from "@/components/JsonLd.astro";
-import SealBadge from "@/components/SealBadge.astro";
 import escritorio from "@/assets/images/daniela-escritorio.webp";
 import expediente from "@/assets/images/daniela-expediente.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
@@ -116,14 +115,6 @@ const faqs = [
               </a>
             </div>
 
-            <div class="seal-press mt-9 flex items-center gap-4" style="--rise-delay: 430ms">
-              <div class="h-14 w-14 shrink-0">
-                <SealBadge class="h-full w-full" />
-              </div>
-              <p class="folio-kicker text-manila-700">
-                T.P. {SITE.tarjetaProfesional} · {SITE.tarjetaProfesionalConsejo}
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -356,15 +347,6 @@ const faqs = [
           "@type": "EducationalOccupationalCredential",
           credentialCategory: "postgraduate degree",
           name: "Magíster en Derecho Procesal Penal y Teoría del Delito — UNAULA",
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          credentialCategory: "license",
-          name: `Tarjeta Profesional de Abogada N.° ${SITE.tarjetaProfesional}`,
-          recognizedBy: {
-            "@type": "Organization",
-            name: SITE.tarjetaProfesionalConsejo,
-          },
         },
       ],
     }}
