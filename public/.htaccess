@@ -13,9 +13,12 @@
   RewriteCond %{HTTP_HOST} ^www\.danielajaramilloabogada\.com$ [NC]
   RewriteRule ^(.*)$ https://danielajaramilloabogada.com/$1 [L,R=301]
 
-  # Servir index.html de cada carpeta de forma limpia (salida estática de Astro)
+  # Servir <ruta>.html de forma limpia (salida estática de Astro, format: 'file').
+  # OJO: no excluimos directorios (!-d) a propósito. Páginas con subpáginas
+  # (p.ej. /areas.html + /areas/defensa-penal.html) generan una carpeta "areas"
+  # junto al archivo "areas.html"; si excluyéramos directorios, Apache
+  # redirigiría /areas -> /areas/ y devolvería 403 al no haber index.html ahí.
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
 </IfModule>
