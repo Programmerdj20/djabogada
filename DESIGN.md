@@ -70,10 +70,22 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 
 ## Componentes y lenguaje de forma
 
-- **Wordmark, no monograma** (`Header.astro`): el nombre completo "Dra. Daniela Jaramillo" en
-  Playfair Display junto a un ícono de balanza en línea fina dorada (SVG propio, un solo trazo),
-  sobre header marfil. El monograma "DJ" con balanza del board fue explícitamente descartado a
-  pedido del cliente. El mismo ícono de balanza, simplificado, es el favicon (`public/favicon.svg`).
+- **Logo oficial del cliente, no wordmark propio** (`Header.astro`): el header usa el logo
+  entregado por la clienta (`img/Logo-navbar.webp` → `src/assets/brand/logo-navbar.webp`, fondo
+  recortado a transparente) en vez del wordmark tipográfico + ícono de balanza que el sitio traía
+  antes. Reemplaza la regla anterior de "wordmark, no monograma": esta decisión es explícita del
+  cliente y no se revierte sin instrucción nueva.
+- **Fondo del header — `manila-125` (`#e7dfd4`)**: token dedicado en `global.css`, es el tono de
+  papel exacto sobre el que está maquetado el logo entregado. Se usa sólido (no semitransparente)
+  en `<header>` y en el panel `#mobile-nav`, precisamente para que el logo no se vea como una
+  "pegatina" sobre un fondo distinto al suyo. No reutilizar `manila-50`/`manila-100` en el header.
+- **Favicon — monograma "DJ" vectorizado** (`public/favicon.svg` + variantes ICO/PNG/manifest):
+  el ícono de balanza fue reemplazado por el monograma dorado "DJ" que la clienta aportó
+  (`img/favi.svg`, originalmente un PNG incrustado en SVG, no vectorial). Se re-vectorizó a un
+  `<path>` real (trazado con potrace, ~5 KB) para que escale con nitidez de 16 a 512 px; la fuente
+  vectorial queda en `img/favi-vector.svg`. Fondo `#e7dfd4` en todas las variantes, igual que el
+  header. Incluye `site.webmanifest` con íconos 192/512 y una versión maskable con relleno de
+  seguridad ampliado.
 - **Filete de oro** (`.rule-gold`, `.rule-gold-solid`): el motivo de marca — una línea fina de 1px,
   nunca un bloque. Aparece sobre el hero y como separador antes del footer; en el primer viewport
   se traza con `rule-draw`. Reemplaza cualquier posible metáfora de carpeta o expediente: es

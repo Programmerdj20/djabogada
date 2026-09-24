@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { NAV_ITEMS, SITE } from "@/lib/site";
+import logoNavbar from "@/assets/brand/logo-navbar.webp";
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
@@ -9,24 +11,17 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 border-b border-manila-300 bg-manila-50/95 backdrop-blur">
+<header class="sticky top-0 z-50 border-b border-manila-200 bg-manila-125">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-    <a
-      href="/"
-      class="flex shrink-0 items-center gap-3 py-4 no-underline"
-      aria-label={`${SITE.name} — inicio`}
-    >
-      <svg width="22" height="22" viewBox="0 0 64 64" fill="none" aria-hidden="true" class="shrink-0 text-sello-600">
-        <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M32 12v38" />
-          <path d="M19 20h26" />
-          <path d="M32 12l-10 8M32 12l10 8" />
-          <path d="M12 20l-4.5 10a6 6 0 0 0 13 0L16 20" />
-          <path d="M52 20l-4.5 10a6 6 0 0 0 13 0L56 20" />
-          <path d="M24 50h16" />
-        </g>
-      </svg>
-      <span class="whitespace-nowrap font-display text-lg tracking-wide text-ink-900 sm:text-xl">{SITE.name}</span>
+    <a href="/" class="flex shrink-0 items-center py-3 sm:py-5 no-underline" aria-label={`${SITE.name} — inicio`}>
+      <Image
+        src={logoNavbar}
+        alt=""
+        widths={[358, 716]}
+        sizes="(min-width: 640px) 286px, 229px"
+        loading="eager"
+        class="h-8 w-auto sm:h-10"
+      />
     </a>
 
     <nav aria-label="Principal" class="hidden lg:block">
@@ -72,7 +67,7 @@ function isActive(href: string) {
     </button>
   </div>
 
-  <div id="mobile-nav" class="mobile-nav border-b border-manila-300 bg-manila-100 lg:hidden" inert>
+  <div id="mobile-nav" class="mobile-nav border-b border-manila-200 bg-manila-125 lg:hidden" inert>
     <nav aria-label="Principal móvil" class="mx-auto max-w-6xl px-5 py-2">
       <ul class="divide-y divide-manila-300">
         {
