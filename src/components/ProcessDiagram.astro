@@ -1,14 +1,50 @@
 ---
 import { PROCESS_STAGES } from "@/lib/site";
+
+// El fondo del nodo numerado es opaco para que el disco se vea limpio sobre
+// cualquier fondo de sección. El filete de oro nunca invade los círculos —
+// en desktop cada etapa (salvo la última) dibuja su propio tramo, que
+// arranca en el borde derecho de su nodo y llega exactamente hasta el borde
+// izquierdo del siguiente, igual que el tramo entre nodos en el riel móvil.
+interface Props {
+  surface?: "manila-50" | "manila-100";
+}
+
+const { surface = "manila-50" } = Astro.props;
+const nodeSurface = surface === "manila-100" ? "bg-manila-100" : "bg-manila-50";
+const last = PROCESS_STAGES.length - 1;
 ---
 
-<ol class="grid gap-8 sm:grid-cols-2 sm:gap-px sm:bg-manila-300 lg:grid-cols-4">
+<ol class="relative lg:grid lg:grid-cols-4 lg:gap-x-8">
   {
-    PROCESS_STAGES.map((stage) => (
-      <li class="flex flex-col gap-3 border-t border-sello-400 bg-manila-50 pt-5 sm:border-t-0 sm:bg-manila-50 sm:p-7">
-        <span class="font-display text-4xl font-medium text-sello-500">{stage.number}</span>
-        <h3 class="font-display text-xl font-semibold text-ink-900">{stage.title}</h3>
-        <p class="text-sm leading-relaxed text-manila-700">{stage.description}</p>
+    PROCESS_STAGES.map((stage, i) => (
+      <li
+        class:list={[
+          "flex gap-x-5 pb-10 last:pb-0 lg:block lg:pb-0 lg:pr-4",
+          i < last && "lg:relative lg:after:absolute lg:after:left-10 lg:after:top-5 lg:after:h-px lg:after:w-[calc(100%-0.5rem)] lg:after:bg-sello-400 lg:after:content-['']",
+        ]}
+        data-reveal
+        style={`--reveal-delay: ${Math.min(i, 3) * 90}ms`}
+      >
+        <div class="flex shrink-0 flex-col items-center lg:contents">
+          <span
+            class:list={[
+              "relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-sello-400 font-display text-sm font-medium text-sello-700 lg:static lg:mb-5",
+              nodeSurface,
+            ]}
+            aria-hidden="true"
+          >
+            {stage.number}
+          </span>
+          {i < last && <span class="mt-2 w-px flex-1 bg-sello-400 lg:hidden" aria-hidden="true" />}
+        </div>
+
+        <div class="min-w-0 pt-1.5 lg:pt-0">
+          <h3 class="font-display text-xl font-semibold text-ink-900">{stage.title}</h3>
+          <p class="mt-2 max-w-md text-sm leading-relaxed text-manila-700 lg:max-w-none">
+            {stage.description}
+          </p>
+        </div>
       </li>
     ))
   }

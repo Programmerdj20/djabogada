@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { NAV_ITEMS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
-import logoNavbar from "@/assets/brand/logo-navbar.webp";
+import logoNavbar from "@/assets/brand/logo2-navbar.webp";
 
 // build.format: 'file' emits clean-url .html files (areas.html, not areas/index.html),
 // so Astro.url.pathname during the static build ends in `.html` (or `/index.html` for
@@ -22,8 +22,8 @@ function isActive(href: string) {
       <Image
         src={logoNavbar}
         alt=""
-        widths={[358, 716]}
-        sizes="(min-width: 640px) 286px, 229px"
+        widths={[888, 1776]}
+        sizes="(min-width: 640px) 257px, 206px"
         loading="eager"
         class="h-8 w-auto sm:h-10"
       />
