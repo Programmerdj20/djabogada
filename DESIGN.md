@@ -77,8 +77,19 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   cliente y no se revierte sin instrucción nueva.
 - **Fondo del header — `manila-125` (`#e7dfd4`)**: token dedicado en `global.css`, es el tono de
   papel exacto sobre el que está maquetado el logo entregado. Se usa sólido (no semitransparente)
-  en `<header>` y en el panel `#mobile-nav`, precisamente para que el logo no se vea como una
+  en `<header>` y en el panel `#mobile-drawer`, precisamente para que el logo no se vea como una
   "pegatina" sobre un fondo distinto al suyo. No reutilizar `manila-50`/`manila-100` en el header.
+- **Menú móvil — panel lateral, no acordeón** (`Header.astro` + `global.css`): `<dialog id="mobile-drawer">`
+  nativo (top layer, foco atrapado y Esc gratis vía `showModal()`) que entra desde la derecha en
+  `manila-125`, con un filete de oro que se traza de arriba abajo en su canto izquierdo —la misma
+  gramática que `.rule-gold`, en vertical. El disparador es un ícono propio de dos filetes
+  asimétricos (no tres rayas genéricas ni el texto "Índice"): el inferior, más corto, se extiende
+  al pasar el cursor y ambos se centran y giran en X al abrir. El contenido entra en cascada
+  (cabecera → cada enlace → CTA/contacto) con la curva de entrada de la maison; el cierre es más
+  rápido y sin cascada — cada regla "cerrada" lleva su propia duración de salida y `.is-open` la
+  sobrescribe al abrir, así que remover la clase basta para el cierre. El enlace activo se marca
+  con el mismo filete de oro (24px) antes del texto, nunca con numeración de sección. Reemplaza el
+  panel-acordeón `#mobile-nav` + ícono de tres rayas que el sitio traía antes.
 - **Favicon — monograma "DJ" vectorizado** (`public/favicon.svg` + variantes ICO/PNG/manifest):
   el ícono de balanza fue reemplazado por el monograma dorado "DJ" que la clienta aportó
   (`img/favi.svg`, originalmente un PNG incrustado en SVG, no vectorial). Se re-vectorizó a un

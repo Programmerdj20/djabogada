@@ -269,44 +269,128 @@
     animation: hero-settle 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* Índice móvil: la fila colapsa y se desliza en vez de aparecer de golpe.
-     0fr→1fr anima la altura sin medir píxeles; el hijo recorta su contenido.
-     `inert` (en el markup y en el script) la retira del foco y del árbol de
-     accesibilidad mientras está cerrada. */
-  .mobile-nav {
-    display: grid;
-    grid-template-rows: 0fr;
-    visibility: hidden;
-    transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.42s;
+  /* Disparador del menú móvil: dos filetes asimétricos, no el ícono genérico
+     de tres rayas. El inferior, más corto y alineado a la derecha, se
+     extiende al pasar el cursor —un indicio de que hay más por desplegar—
+     y ambos se centran y giran en X al abrir el panel. */
+  .menu-bar {
+    position: absolute;
+    height: 1.5px;
+    background: var(--color-ink-900);
+    transition:
+      width 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+      top 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .mobile-nav.is-open {
-    grid-template-rows: 1fr;
-    visibility: visible;
-    transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  .menu-bar-top {
+    top: 15px;
+    left: 11px;
+    width: 22px;
   }
-  .mobile-nav > * {
-    min-height: 0;
-    overflow: hidden;
+  .menu-bar-bottom {
+    top: 29px;
+    right: 11px;
+    width: 13px;
+  }
+  #menu-toggle:hover .menu-bar-bottom,
+  #menu-toggle:focus-visible .menu-bar-bottom {
+    width: 22px;
+  }
+  #menu-toggle[aria-expanded="true"] .menu-bar-top {
+    top: 21.25px;
+    transform: rotate(45deg);
+  }
+  #menu-toggle[aria-expanded="true"] .menu-bar-bottom {
+    top: 21.25px;
+    right: 11px;
+    width: 22px;
+    transform: rotate(-45deg);
   }
 
-  /* El ícono del índice se convierte en una X al abrir: confirmación de
-     estado, no adorno. Cada línea gira sobre su propio centro. */
-  .hamburger line {
-    stroke: currentColor;
-    stroke-width: 1.4;
-    stroke-linecap: round;
-    transform-box: fill-box;
-    transform-origin: center;
-    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  /* Panel del menú móvil: <dialog> nativo (top layer, foco atrapado, Esc
+     gratis) deslizándose desde la derecha, marfil `manila-125` como el
+     header, con un filete de oro que se traza de arriba abajo en su canto
+     izquierdo —el mismo material que `.rule-gold`, en vertical. El cierre
+     es más rápido y sin cascada que la apertura: cada regla "cerrada" lleva
+     su propia curva/duración de salida; `.is-open` la sobrescribe con la
+     de entrada. */
+  #mobile-drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(88vw, 26rem);
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    max-height: none;
+    border: none;
+    background: var(--color-manila-125);
+    box-shadow: -16px 0 48px -20px color-mix(in srgb, var(--color-ink-950) 45%, transparent);
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 1, 1);
   }
-  [aria-expanded="true"] .hamburger line:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
+  #mobile-drawer.is-open {
+    transform: translateX(0);
+    transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  [aria-expanded="true"] .hamburger line:nth-child(2) {
+  #mobile-drawer::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-sello-400) 15%,
+      var(--color-sello-500) 50%,
+      var(--color-sello-400) 85%,
+      transparent
+    );
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 0.2s ease-in;
+  }
+  #mobile-drawer.is-open::before {
+    transform: scaleY(1);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+  }
+  #mobile-drawer::backdrop {
+    background: color-mix(in srgb, var(--color-manila-900) 55%, transparent);
+    backdrop-filter: blur(3px);
     opacity: 0;
+    transition: opacity 0.28s ease-in;
   }
-  [aria-expanded="true"] .hamburger line:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+  #mobile-drawer.is-open::backdrop {
+    opacity: 1;
+    transition: opacity 0.42s ease-out;
+  }
+
+  /* Contenido del panel: entra en cascada suave desde la derecha; al
+     cerrar, todo se retira a la vez —sin escalonado— junto con el panel. */
+  .drawer-item {
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.26s ease-in, transform 0.26s ease-in;
+  }
+  #mobile-drawer.is-open .drawer-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  #mobile-drawer.is-open .drawer-nav li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  #mobile-drawer.is-open .drawer-nav li:nth-child(2) {
+    transition-delay: 0.16s;
+  }
+  #mobile-drawer.is-open .drawer-nav li:nth-child(3) {
+    transition-delay: 0.22s;
+  }
+  #mobile-drawer.is-open .drawer-nav li:nth-child(4) {
+    transition-delay: 0.28s;
+  }
+  #mobile-drawer.is-open .drawer-footer {
+    transition-delay: 0.34s;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -328,16 +412,12 @@
     .rule-draw {
       transform: none !important;
     }
-    .mobile-nav,
-    .mobile-nav.is-open,
-    .hamburger line {
-      transition: none !important;
-    }
-    .mobile-nav {
-      visibility: hidden;
-    }
-    .mobile-nav.is-open {
-      visibility: visible;
+    .menu-bar,
+    #mobile-drawer,
+    #mobile-drawer::before,
+    #mobile-drawer::backdrop,
+    .drawer-item {
+      transition-delay: 0s !important;
     }
   }
 }
