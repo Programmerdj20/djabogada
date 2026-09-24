@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { NAV_ITEMS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 import logoNavbar from "@/assets/brand/logo2-navbar.webp";
 
-// build.format: 'file' emits clean-url .html files (areas.html, not areas/index.html),
+// build.format: 'file' emits clean-url .html files (servicios.html, not servicios/index.html),
 // so Astro.url.pathname during the static build ends in `.html` (or `/index.html` for
 // the home page) even though NAV_ITEMS/links use the clean served path. Strip that
 // suffix before comparing, or every nav item silently fails to match as active.

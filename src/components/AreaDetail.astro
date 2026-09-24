@@ -87,15 +87,15 @@ const { area, lead, narrative, faqs, image, imageAlt, imagePosition, imageAspect
       description: area.description,
       areaServed: { "@type": "City", name: SITE.city },
       provider: { "@type": "Attorney", name: SITE.name, url: SITE.url },
-      url: `${SITE.url}/areas/${area.slug}`,
+      url: `${SITE.url}/servicios/${area.slug}`,
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Inicio", item: SITE.url },
-        { "@type": "ListItem", position: 2, name: "Servicios", item: `${SITE.url}/areas` },
-        { "@type": "ListItem", position: 3, name: area.title, item: `${SITE.url}/areas/${area.slug}` },
+        { "@type": "ListItem", position: 2, name: "Servicios", item: `${SITE.url}/servicios` },
+        { "@type": "ListItem", position: 3, name: area.title, item: `${SITE.url}/servicios/${area.slug}` },
       ],
     },
     {

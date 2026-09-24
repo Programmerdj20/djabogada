@@ -31,7 +31,7 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Perfil", href: "/perfil" },
-  { label: "Servicios", href: "/areas" },
+  { label: "Servicios", href: "/servicios" },
   { label: "Proceso penal", href: "/proceso-penal" },
   { label: "Contacto", href: "/contacto" },
 ];
