@@ -1,0 +1,45 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AreaDetail from "@/components/AreaDetail.astro";
+import defensa from "@/assets/images/daniela-defensa.webp";
+import { AREAS } from "@/lib/site";
+
+const area = AREAS.find((a) => a.slug === "asesoria-penal-estrategica")!;
+---
+
+<Layout
+  title="Asesoría penal estratégica"
+  description="Acompañamiento jurídico preventivo para analizar y gestionar situaciones con posibles implicaciones penales, antes de que se conviertan en un proceso. Daniela Jaramillo, abogada penalista en Medellín."
+  path="/servicios/asesoria-penal-estrategica"
+>
+  <AreaDetail
+    area={area}
+    image={defensa}
+    imageAlt="Daniela Jaramillo trabajando en su escritorio"
+    imageAspect="3 / 2"
+    imagePosition="center 20%"
+    lead="No toda situación con riesgo penal empieza con una citación de la Fiscalía. Muchas veces empieza antes: con una decisión, un documento o una respuesta que conviene evaluar a tiempo."
+    narrative={[
+      "Hay decisiones que, tomadas sin el criterio adecuado, pueden derivar en una investigación penal evitable: cómo responder a un requerimiento, qué decir en una reunión, cómo documentar una operación o cómo actuar frente a una denuncia que aún no se ha formalizado. La asesoría penal estratégica interviene en ese momento previo, cuando todavía es posible prevenir o reducir el riesgo.",
+      "El trabajo consiste en analizar la situación concreta —los hechos, los documentos, las comunicaciones y las decisiones ya tomadas— para identificar en qué puntos existe exposición penal real y qué curso de acción protege mejor los derechos e intereses de quien consulta, sea una persona natural, un profesional o una empresa.",
+      "Haber trabajado ocho años dentro de la Fiscalía, evaluando cómo se estructura una investigación desde su origen, permite anticipar qué elementos llamarían la atención de un fiscal y cuáles no. Ese mismo criterio, aplicado de forma preventiva, es lo que orienta esta asesoría.",
+    ]}
+    faqs={[
+      {
+        question: "¿Cuándo debería buscar asesoría penal estratégica y no esperar a que exista un proceso?",
+        answer:
+          "Antes de responder un requerimiento, firmar un documento sensible, atender una visita de una autoridad o tomar cualquier decisión donde exista duda razonable sobre su implicación penal. Anticiparse suele ampliar las opciones disponibles.",
+      },
+      {
+        question: "¿Esta asesoría es solo para empresas?",
+        answer:
+          "No. Aplica tanto a personas naturales como a empresas o profesionales que enfrentan una situación concreta con posibles implicaciones penales y necesitan claridad antes de actuar.",
+      },
+      {
+        question: "¿En qué se diferencia de la defensa penal?",
+        answer:
+          "La defensa penal actúa una vez ya existe una investigación o proceso en curso. La asesoría estratégica opera antes de ese punto: busca prevenir el riesgo o, si ya se materializó, gestionarlo desde el primer momento con criterio técnico.",
+      },
+    ]}
+  />
+</Layout>

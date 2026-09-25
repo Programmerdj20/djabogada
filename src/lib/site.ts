@@ -116,25 +116,25 @@ export const PROCESS_STAGES: ProcessStage[] = [
     number: "01",
     title: "Indagación",
     description:
-      "La Fiscalía recibe la noticia criminal y adelanta labores de verificación. Puede incluir capturas en flagrancia. Es la etapa donde más urgente es contar con defensa.",
+      "La Fiscalía recibe la noticia criminal y adelanta actos de verificación para establecer si ocurrió un delito y quién podría ser responsable. Esta es una etapa clave para ejercer una defensa temprana.",
   },
   {
     number: "02",
     title: "Imputación",
     description:
-      "La Fiscalía comunica formalmente los cargos ante un juez de control de garantías. Aquí se decide también si hay medida de aseguramiento (posible privación de la libertad durante el proceso).",
+      "La Fiscalía comunica formalmente los hechos atribuidos a una persona ante un juez de control de garantías. En esta etapa también pueden solicitarse medidas de aseguramiento.",
   },
   {
     number: "03",
-    title: "Investigación y acusación",
+    title: "Acusación",
     description:
-      "La Fiscalía recopila y organiza la evidencia. Si decide seguir adelante, presenta el escrito de acusación; en muchos casos surge la posibilidad de un preacuerdo.",
+      "Si existen elementos suficientes para sustentar la responsabilidad penal, la Fiscalía presenta el escrito de acusación y el proceso avanza hacia la fase de juzgamiento.",
   },
   {
     number: "04",
     title: "Juicio oral",
     description:
-      "Se practican las pruebas ante un juez de conocimiento y se debate la responsabilidad penal. Termina con sentencia absolutoria o condenatoria.",
+      "Las partes presentan y controvierten las pruebas ante un juez de conocimiento, quien finalmente decide mediante sentencia absolutoria o condenatoria.",
   },
 ];
 
@@ -149,15 +149,39 @@ export type Area = {
 export const AREAS: Area[] = [
   {
     slug: "defensa-penal",
-    title: "Defensa penal",
+    title: "Defensa y litigio penal",
     short: "Defensa técnica en todas las etapas del proceso penal.",
     description:
-      "Representación del investigado o procesado desde la indagación hasta el juicio: control de garantías, audiencias de imputación y medida de aseguramiento, negociación de preacuerdos, y juicio oral cuando el caso lo exige.",
+      "Representación y defensa técnica en todas las etapas del proceso penal, comprendiendo actuaciones preliminares, audiencias de conocimiento, recursos y acciones constitucionales, con estrategias jurídicas diseñadas a partir del análisis integral del caso, la evidencia y los objetivos de defensa de cada cliente.",
     bullets: [
-      "Acompañamiento desde la captura o la primera citación",
-      "Audiencias de legalización, imputación y medida de aseguramiento",
-      "Análisis y negociación de preacuerdos y aceptación de cargos",
-      "Representación en juicio oral",
+      "Actuaciones preliminares y audiencias de conocimiento",
+      "Recursos y acciones constitucionales",
+      "Estrategia diseñada a partir del análisis integral del caso y la evidencia",
+      "Objetivos de defensa definidos para cada cliente",
+    ],
+  },
+  {
+    slug: "criminalidad-organizada",
+    title: "Delitos de especial complejidad",
+    short: "Investigaciones de alta complejidad frente a criminalidad organizada.",
+    description:
+      "Asesoría y representación jurídica en investigaciones y procesos penales de alta complejidad, que requieren un análisis estratégico de la evidencia, la estructura de la investigación y la construcción de una defensa técnica especializada frente a fenómenos de criminalidad organizada y otras conductas de especial relevancia jurídico-penal.",
+    bullets: [
+      "Análisis estratégico de la evidencia y de la estructura de la investigación",
+      "Defensa técnica especializada frente a criminalidad organizada",
+      "Atención a conductas de especial relevancia jurídico-penal",
+    ],
+  },
+  {
+    slug: "asesoria-penal-estrategica",
+    title: "Asesoría penal estratégica",
+    short: "Acompañamiento preventivo frente a situaciones con posibles implicaciones penales.",
+    description:
+      "Acompañamiento jurídico especializado para la prevención, análisis y gestión de situaciones con posibles implicaciones penales, orientado a la toma de decisiones informadas y a la protección de los derechos e intereses de cada cliente.",
+    bullets: [
+      "Prevención, análisis y gestión de situaciones con posibles implicaciones penales",
+      "Acompañamiento para la toma de decisiones informadas",
+      "Protección de los derechos e intereses del cliente",
     ],
   },
   {
@@ -165,25 +189,11 @@ export const AREAS: Area[] = [
     title: "Representación de víctimas",
     short: "Representación judicial de víctimas y sus familias.",
     description:
-      "Constitución como víctima dentro del proceso penal, participación en audiencias, solicitud de medidas de protección y gestión del incidente de reparación integral.",
+      "Acompañamiento y representación jurídica integral de víctimas de conductas punibles, orientado a la protección de sus derechos, su participación efectiva dentro del proceso penal y la búsqueda de verdad, justicia y reparación.",
     bullets: [
-      "Constitución como víctima y acceso al expediente",
-      "Participación en audiencias e incidentes procesales",
-      "Solicitud de medidas de protección",
-      "Incidente de reparación integral",
-    ],
-  },
-  {
-    slug: "criminalidad-organizada",
-    title: "Criminalidad organizada y delitos complejos",
-    short: "Concierto para delinquir, lavado de activos y estructuras criminales.",
-    description:
-      "Defensa y asesoría en investigaciones de mayor complejidad técnica y probatoria — concierto para delinquir, lavado de activos, extorsión y delitos asociados a estructuras criminales — con conocimiento directo de cómo la Fiscalía construye estos casos.",
-    bullets: [
-      "Concierto para delinquir y estructuras criminales",
-      "Lavado de activos y extinción de dominio",
-      "Extorsión y delitos conexos",
-      "Lectura técnica de la investigación desde la experiencia en la unidad especializada",
+      "Protección de los derechos de las víctimas",
+      "Participación efectiva dentro del proceso penal",
+      "Búsqueda de verdad, justicia y reparación",
     ],
   },
 ];

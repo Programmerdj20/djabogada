@@ -7,9 +7,10 @@
 
 ## Servicios
 
-- Defensa penal: /servicios/defensa-penal
+- Defensa y litigio penal: /servicios/defensa-penal
+- Delitos de especial complejidad (criminalidad organizada): /servicios/criminalidad-organizada
+- Asesoría penal estratégica: /servicios/asesoria-penal-estrategica
 - Representación de víctimas: /servicios/representacion-de-victimas
-- Criminalidad organizada y delitos complejos: /servicios/criminalidad-organizada
 
 ## Páginas clave
 
