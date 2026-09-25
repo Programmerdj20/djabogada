@@ -1,8 +1,8 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
 import AreaCard from "@/components/AreaCard.astro";
-import expediente from "@/assets/images/daniela-expediente.webp";
+import defensa from "@/assets/images/daniela-defensa.webp";
 import { AREAS } from "@/lib/site";
 ---
 
@@ -11,19 +11,79 @@ import { AREAS } from "@/lib/site";
   description="Defensa y litigio penal, delitos de especial complejidad, asesoría penal estratégica y representación de víctimas: los servicios que ofrece Daniela Jaramillo en Medellín."
   path="/servicios"
 >
-  <PageHero
-    title="Cuatro frentes, un mismo criterio"
-    lead="Cada área se aborda con el mismo estándar: entender a fondo cómo construye la Fiscalía sus casos, para actuar con precisión desde el primer momento."
-    image={expediente}
-    imageAlt="Daniela Jaramillo analizando un expediente penal"
-    imageAspect="2.4 / 1"
-    imagePosition="center 42%"
-  />
+  <!-- HERO: misma gramática de placa que perfil/contacto/proceso penal
+       (marco sello-400 + filete interior sello-300 + shadow-gold,
+       hero-rise/hero-settle), en espejo de proceso-penal — texto a la
+       izquierda, placa a la derecha en lg. Debajo del lead, un índice real
+       de las cuatro áreas de AREAS (ancla a su tarjeta más abajo), igual
+       patrón que el índice de etapas de proceso-penal. -->
+  <section class="border-b border-manila-300 bg-manila-100 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
+        <div class="order-2 lg:order-1">
+          <span class="rule-gold rule-draw block w-24" aria-hidden="true"></span>
+          <h1
+            class="hero-rise mt-6 max-w-xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl"
+            style="--rise-delay: 90ms"
+          >
+            Cuatro frentes, un mismo criterio
+          </h1>
+          <p class="hero-rise mt-5 max-w-xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 170ms">
+            Cada área se aborda con el mismo estándar: entender a fondo cómo construye la Fiscalía sus casos, para
+            actuar con precisión desde el primer momento.
+          </p>
+
+          <nav class="hero-rise mt-9" style="--rise-delay: 250ms" aria-label="Áreas de práctica">
+            <ol class="divide-y divide-sello-400 border-t border-sello-400">
+              {
+                AREAS.map((area, i) => (
+                  <li>
+                    <a
+                      href={`#area-${area.slug}`}
+                      class="flex items-baseline justify-between gap-x-6 gap-y-1 py-4 no-underline transition-colors hover:text-sello-700"
+                    >
+                      <span class="flex items-baseline gap-4">
+                        <span class="folio-kicker text-sello-700">{String(i + 1).padStart(2, "0")}</span>
+                        <span class="font-display text-lg font-semibold text-ink-900">{area.title}</span>
+                      </span>
+                      <span class="text-sello-700" aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ol>
+          </nav>
+        </div>
+
+        <div class="hero-rise relative order-1 mx-auto w-full max-w-xs lg:order-2 lg:mx-0 lg:max-w-none" style="--rise-delay: 130ms">
+          <div class="hero-settle relative border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4">
+            <div class="border border-sello-300 p-1">
+              <Picture
+                src={defensa}
+                alt="Daniela Jaramillo, abogada penalista en Medellín, en su escritorio"
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+                widths={[420, 560, 720, 960]}
+                sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 82vw"
+                class="w-full object-cover"
+                style="aspect-ratio: 4 / 5; object-position: center 20%;"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto grid max-w-6xl gap-6 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
       {AREAS.map((area, i) => (
-        <div data-reveal style={`--reveal-delay: ${i * 90}ms`}>
+        <div id={`area-${area.slug}`} class="scroll-mt-28" data-reveal style={`--reveal-delay: ${i * 90}ms`}>
           <AreaCard area={area} />
         </div>
       ))}

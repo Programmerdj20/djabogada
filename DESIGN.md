@@ -182,6 +182,16 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     perfil: texto a la izquierda, placa a la derecha en `lg` (arriba en móvil) — el espejo de
     proceso-penal. El H1 es el título llano de la página ("Agenda tu consulta"), no el patrón de
     identidad de home/perfil.
+  - **Servicios (`servicios/index.astro`):** hero propio, no `PageHero` (que sí sigue vigente en
+    las páginas legales) — mismo espejo que contacto: texto a la izquierda, placa `4/5` de
+    `daniela-defensa.webp` a la derecha en `lg` (arriba en móvil), sin passe-partout desplazado.
+    El H1 y el lead son el copy original de la página; debajo, un índice real de las cuatro áreas
+    de `AREAS` (`folio-kicker` numerado `01`–`04` + título) enlaza por ancla a su tarjeta
+    correspondiente en la grilla de `AreaCard` más abajo — mismo patrón que el índice de etapas de
+    proceso-penal, aplicado aquí a las áreas de práctica en vez de a las etapas del proceso.
+    Reemplaza el hero anterior (`PageHero` con `daniela-expediente.webp` en 2.4/1), que seguía
+    siendo el único hero interno sin la gramática de placa; `daniela-expediente` se conserva para
+    `servicios/criminalidad-organizada.astro`, la única página que aún la usa.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
