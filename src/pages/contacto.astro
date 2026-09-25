@@ -1,65 +1,108 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
 import ContactForm from "@/components/ContactForm.astro";
-import escritorio from "@/assets/images/daniela-escritorio.webp";
+import contacto from "@/assets/images/daniela-contacto.webp";
 import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
 <Layout
   title="Contacto"
-  description="Agenda una consulta con Daniela Jaramillo, abogada penalista en Medellín. WhatsApp, correo o formulario de contacto."
+  description="Agenda una consulta con Daniela Jaramillo, abogada penalista en Medellín, presencial o virtual en cualquier parte de Colombia. WhatsApp, correo o formulario de contacto."
   path="/contacto"
 >
-  <PageHero
-    title="Agenda tu consulta"
-    lead="Cuéntale a Daniela tu situación con la mayor claridad posible. Toda comunicación está protegida por el secreto profesional del abogado."
-    image={escritorio}
-    imageAlt="Daniela Jaramillo en su escritorio, disponible para una consulta"
-    imageAspect="3 / 2"
-    imagePosition="68% center"
-  />
+  <!-- HERO: misma gramática de placa que perfil.astro (marco sello-400 +
+       filete interior sello-300 + shadow-gold, hero-rise/hero-settle,
+       formato 2/3 nativo de la foto, sin recorte) — texto a la izquierda,
+       placa a la derecha, en espejo de proceso-penal.astro. Título llano de
+       página, no el patrón de identidad de home/perfil. -->
+  <section class="border-b border-manila-300 bg-manila-100 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
+        <div class="order-2 lg:order-1">
+          <span class="rule-gold rule-draw block w-24" aria-hidden="true"></span>
+          <h1
+            class="hero-rise mt-6 max-w-xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl"
+            style="--rise-delay: 90ms"
+          >
+            Agenda tu consulta
+          </h1>
+          <p
+            class="hero-rise mt-5 max-w-xl text-lg leading-relaxed text-manila-700"
+            style="--rise-delay: 170ms"
+          >
+            Cuéntale a Daniela tu situación con la mayor claridad posible. Toda comunicación está
+            protegida por el secreto profesional del abogado.
+          </p>
+        </div>
+
+        <div
+          class="hero-rise relative order-1 mx-auto w-full max-w-xs lg:order-2 lg:mx-0 lg:max-w-none"
+          style="--rise-delay: 130ms"
+        >
+          <div class="hero-settle relative border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4">
+            <div class="border border-sello-300 p-1">
+              <Picture
+                src={contacto}
+                alt="Daniela Jaramillo, abogada penalista en Medellín, trabajando en su computador"
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+                widths={[420, 560, 720, 960]}
+                sizes="(min-width: 1024px) 32vw, (min-width: 640px) 58vw, 82vw"
+                class="w-full object-cover"
+                style="aspect-ratio: 2 / 3; object-position: center 16%;"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
       <div data-reveal>
         <div class="border border-manila-300 bg-manila-100 p-6 sm:p-8">
-          <p class="block-label text-sello-600">Canales directos</p>
-          <ul class="mt-4 space-y-4 text-sm">
+          <p class="block-label text-sello-700">Canales directos</p>
+          <ul class="mt-5 space-y-5 text-sm">
             <li>
               <a
                 href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-whatsapp-primary
-                class="font-semibold text-ink-900 no-underline hover:text-sello-700"
+                class="font-display text-lg font-semibold text-ink-900 no-underline hover:text-sello-700"
               >
                 WhatsApp — {SITE.phoneDisplay}
               </a>
-              <p class="mt-0.5 text-manila-700">La vía más rápida para casos urgentes.</p>
+              <p class="mt-1 text-manila-700">La vía más rápida para casos urgentes.</p>
             </li>
             <li>
               <a
                 href={`mailto:${SITE.email}`}
-                class="font-semibold text-ink-900 no-underline hover:text-sello-700"
+                class="font-display text-lg font-semibold text-ink-900 no-underline hover:text-sello-700"
               >
                 {SITE.email}
               </a>
-              <p class="mt-0.5 text-manila-700">Para enviar documentos o consultas detalladas.</p>
+              <p class="mt-1 text-manila-700">Para enviar documentos o consultas detalladas.</p>
             </li>
           </ul>
 
-          <div class="mt-6 border-t border-manila-300 pt-6">
+          <div class="mt-7 border-t border-manila-300 pt-6">
             <p class="block-label text-manila-700">Ubicación</p>
-            <p class="mt-2 text-sm text-manila-700">
-              Atención en {SITE.city}, {SITE.region}. La atención se coordina por WhatsApp o
-              correo antes de cualquier reunión presencial.
+            <p class="mt-2 text-sm leading-relaxed text-manila-700">
+              Atención presencial en {SITE.city}, {SITE.region}, y {SITE.serviceArea}. La atención
+              se coordina siempre por WhatsApp o correo antes de agendar un encuentro, presencial o
+              virtual.
             </p>
           </div>
         </div>
 
         <div class="mt-6 border border-manila-300 bg-manila-100 p-6 sm:p-8">
-          <p class="block-label text-sello-600">Antes de escribir</p>
+          <p class="block-label text-sello-700">Antes de escribir</p>
           <ul class="mt-3 space-y-2 text-sm text-manila-700">
             <li>— Indica en qué etapa se encuentra tu situación, si lo sabes.</li>
             <li>— Evita enviar documentos sensibles por canales no verificados.</li>

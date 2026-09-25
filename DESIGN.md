@@ -1,12 +1,12 @@
-# Design — Dra. Daniela Jaramillo
+# Design — Daniela Jaramillo
 
 <!-- impeccable:design-schema 1 -->
 
-Sistema visual del sitio de Dra. Daniela Jaramillo. Registrado desde el mundo construido.
+Sistema visual del sitio de Daniela Jaramillo. Registrado desde el mundo construido.
 
 ## Dirección
 
-**Tesis:** contratar a Dra. Daniela Jaramillo es una decisión de alto nivel. El sitio se presenta
+**Tesis:** contratar a Daniela Jaramillo es una decisión de alto nivel. El sitio se presenta
 como una maison de servicios legales de élite para una mujer al máximo nivel de su profesión —
 marfil luminoso como fondo dominante, oro como material de marca, negro reservado a texto y
 detalle fino. No es un despacho institucional oscuro, ni un sitio "dark luxury": es claro, cálido
@@ -30,6 +30,11 @@ y de alta gama.
    claros. Esta versión corrige esa lectura invertida — literalmente, no como un ajuste de gusto —
    y hace del marfil el fondo de **toda** sección del sitio, sin excepción; el negro no vuelve a
    aparecer como color de fondo en ninguna parte.
+3. El wordmark "Dra. Daniela Jaramillo" del punto 1 fue revertido por el cliente días después
+   (commit `326d37f`, "update references to 'Dra. Daniela Jaramillo' to 'Daniela Jaramillo'"):
+   el nombre completo en todo el sitio —header, footer, JSON-LD, meta, avisos legales— vuelve a
+   ser **"Daniela Jaramillo", sin el título "Dra."**. Vinculante: no reintroducir "Dra." en
+   ningún punto del sitio (ver memoria del proyecto `no_dra_title`).
 
 Dirección pinneada por el brief del cliente (paleta exacta, tipografías, wordmark sin monograma).
 El concept-seed de la skill se ejecutó y quedó registrado (seed key `a7bf7aa9`, modo persuade),
@@ -71,10 +76,11 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 ## Componentes y lenguaje de forma
 
 - **Logo oficial del cliente, no wordmark propio** (`Header.astro`): el header usa el logo
-  entregado por la clienta (`img/Logo-navbar.webp` → `src/assets/brand/logo-navbar.webp`, fondo
-  recortado a transparente) en vez del wordmark tipográfico + ícono de balanza que el sitio traía
-  antes. Reemplaza la regla anterior de "wordmark, no monograma": esta decisión es explícita del
-  cliente y no se revierte sin instrucción nueva.
+  entregado por la clienta (`src/assets/brand/logo2-navbar.webp`, fondo recortado a transparente)
+  en vez del wordmark tipográfico + ícono de balanza que el sitio traía antes. Reemplaza la regla
+  anterior de "wordmark, no monograma": esta decisión es explícita del cliente y no se revierte
+  sin instrucción nueva. `logo-navbar.webp` (sin el "2") es una versión anterior del mismo logo,
+  superada pero conservada en `src/assets/brand/` sin usarse en ningún componente.
 - **Fondo del header — `manila-125` (`#e7dfd4`)**: token dedicado en `global.css`, es el tono de
   papel exacto sobre el que está maquetado el logo entregado. Se usa sólido (no semitransparente)
   en `<header>` y en el panel `#mobile-drawer`, precisamente para que el logo no se vea como una
@@ -103,10 +109,13 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   puramente material, como el canto dorado de una tarjeta grabada.
 - **Botón dorado** (`.btn-gold` / `.btn-outline-gold`, en `global.css`): usado en cada CTA del
   sitio (hero, CTAs finales, formulario, 404, WhatsApp flotante).
-- **Medallón de verificación** (`SealBadge.astro`): disco marfil con doble anillo en oro y texto
-  curvo en Montserrat sobre fondo claro — T.P., registro nacional de abogados, seccional: dato
-  real y verificable, nunca decorativo. Los numerales del T.P. usan Playfair Display en negro
-  sobre el disco marfil.
+- **Sin medallón de verificación.** `SealBadge.astro` existió (disco marfil con doble anillo en
+  oro y el número de T.P.) y fue eliminado por completo del repo en el commit `5f498ba` ("eliminar
+  número de tarjeta profesional de todo el sitio"): el T.P. es un dato privado, igual que la
+  cédula (ver `CLAUDE.md` → Content rules), y el sitio ya no muestra ninguna insignia de
+  verificación. Si se reintroduce en el futuro un componente de este tipo, solo puede mostrar
+  datos reales y verificables que no incluyan el número de T.P. (seccional, por ejemplo), nunca
+  una insignia de reseñas o casos ganados fabricada.
 - **Tarjetas de área** (`AreaCard.astro`): panel `manila-100` con esquinas de marca (corner
   brackets en oro que aparecen al hover) sobre secciones `manila-50` — una referencia a las
   esquineras de empaque de lujo, no una card genérica de ícono+título+texto.
@@ -119,16 +128,21 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     abajo, sobre un velo marfil que sube desde el borde inferior.
   - **Desde `lg`:** **placa de retrato** — la foto completa en vertical (`daniela-hero-plate.webp`,
     una versión con corrección de color cálida: la pared gris de oficina se lee marfil, no gris),
-    de canto nítido, sin degradado, dentro de un panel con un filete de oro desplazado detrás a
-    modo de passe-partout. El texto vive en una columna a la izquierda; su titular persuasivo
-    invade apenas el borde de la placa con un margen negativo.
+    formato `2/3`, de canto nítido, sin degradado, dentro de un panel con un filete de oro
+    desplazado detrás a modo de passe-partout (un `div` absoluto con `border-sello-400`, desfasado
+    arriba-izquierda del marco real). El marco real de esta placa usa `border-ink-900/10` +
+    `shadow-panel` — **no** el trío `sello-400`/`sello-300`/`shadow-gold` que usan las placas de
+    página interna descritas más abajo; es la única placa del sitio con este tratamiento más
+    sutil. El texto vive en una columna a la izquierda; su titular persuasivo invade apenas el
+    borde de la placa con un margen negativo.
   - **Decisión registrada:** la primera idea para `lg` fue un recorte de la fotógrafa sin el fondo
     de oficina, hecho en local con `rembg` (`birefnet-portrait`). El resultado dejaba un resto
     gris del brazo de la silla pegado a la manga, sin un umbral de color limpio que lo separara del
     blazer en sombra — no pasó el control de calidad y se descartó en vez de publicarse a medias;
     la placa de retrato fue el reemplazo, no una alternativa débil aceptada por defecto.
-  - En ambos casos: el titular es "Daniela Jaramillo" en Playfair Display mayúsculas más "Abogada
-    penalista en Medellín" en Montserrat trackeado (el H1 completo, para SEO), con un filete de oro
+  - En ambos casos: el titular es "Daniela Jaramillo" en Playfair Display mayúsculas más el rótulo
+    "Abogada penalista" en Montserrat trackeado (sin sufijo de ciudad — ver regla de memoria del
+    proyecto `no_repeated_city_suffix`; la ciudad va sólo en meta/alt/body), con un filete de oro
     vertical que resuelve la barra "|" pedida por la clienta. Debajo, el titular persuasivo de
     tesis (grande, Playfair) y el párrafo de credenciales van como texto, no como H1 — nunca un
     overlay negro ni texto sobre la imagen desnuda, nunca la promesa de un resultado ("ganamos tu
@@ -162,6 +176,12 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     cuatro etapas (`folio-kicker` con el numeral de `PROCESS_STAGES` + título) enlaza por ancla a su
     nodo correspondiente en `ProcessDiagram` más abajo en la página — nunca texto decorativo. La
     misma foto se reutiliza en `servicios/defensa-penal.astro`.
+  - **Contacto (`contacto.astro`):** hero propio, no `PageHero` — misma gramática de placa que
+    perfil (`sello-400` + filete interior `sello-300` + `shadow-gold`, `hero-rise`/`hero-settle`,
+    formato `2/3` nativo de la foto `daniela-contacto.webp`, sin recorte), en el mismo sentido que
+    perfil: texto a la izquierda, placa a la derecha en `lg` (arriba en móvil) — el espejo de
+    proceso-penal. El H1 es el título llano de la página ("Agenda tu consulta"), no el patrón de
+    identidad de home/perfil.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
@@ -201,9 +221,10 @@ hace espectáculo.
 
 **Primer viewport.** `hero-rise` es la única secuencia coreografiada: `rule-draw` traza el filete
 de oro de izquierda a derecha (`--rule-origin` lo centra donde la composición lo pida) mientras el
-nombre, el lead y los CTA suben en cascada por `--rise-delay` (0 → 90 → 170 → 250 → 330 ms), y
-`seal-press` cierra la secuencia prensando el medallón de verificación en su tamaño exacto a los
-430 ms. Es el mismo `rule-draw` en el `PageHero` de las páginas internas.
+resto de bloques sube en cascada por `--rise-delay` creciente — filete 0 ms, H1 90 ms, placa
+fotográfica 130 ms, siguiente bloque de texto 170 ms, y hasta 230/300 ms para lead y CTA cuando la
+composición los tiene (home). Es el mismo `rule-draw`/`hero-rise` en todos los heros de página
+interna (`PageHero`, perfil, proceso-penal, contacto).
 
 **Contenido bajo el pliegue.** `[data-reveal]` revela cada bloque cuando entra en pantalla
 (IntersectionObserver con margen inferior −10%), y `[data-stagger]` hace entrar en cascada los
@@ -217,9 +238,10 @@ en su tamaño exacto, sin recorte al terminar) y `hero-drift` (una deriva contin
 durante 26 s). `hero-drift` es el único loop del sitio: `is-idle` lo pausa y suelta `will-change`
 cuando el hero sale de pantalla.
 
-**Continuidad y estado.** El índice móvil colapsa y se desliza con `grid-template-rows: 0fr → 1fr`
-en vez de aparecer de golpe, y el ícono de índice se convierte en X (`[aria-expanded="true"]`);
-mientras está cerrado lleva `inert`. Las respuestas de FAQ se despliegan con `::details-content` +
+**Continuidad y estado.** El menú móvil (`#mobile-drawer`, ver Componentes) entra en cascada por
+`.drawer-item` (cabecera → cada enlace → CTA/contacto) al añadirse `.is-open`, y sale sin cascada,
+más rápido, al quitarse; el disparador cambia a X vía `[aria-expanded="true"]`. Las respuestas de
+FAQ se despliegan con `::details-content` +
 `transition-behavior: allow-discrete` (progresivo: sin soporte, el `<details>` nativo funciona sin
 animación). Los estados de éxito/error del formulario entran con `state-enter` al quitarse
 `hidden`. Hover: tarjetas de área revelan esquineras doradas y se elevan; botones dorados se
@@ -241,9 +263,11 @@ y decoración, nunca para texto — se usa `manila-700` como piso de texto secun
 **Fix verificado en la revisión de `perfil.astro`:** `text-sello-600` sobre `manila-50` medía
 4.08:1, bajo el piso 4.5:1 de AA. Se corrigió a `sello-700` en `.prose-editorial a` y
 `.prose-editorial blockquote::before` (`global.css`), y en los `block-label`/`folio-kicker` nuevos
-de esa página. El mismo patrón `text-sello-600` sigue sin corregir en `index.astro`,
-`proceso-penal.astro`, `contacto.astro`, `AreaDetail.astro` y `FAQ.astro` — deuda de contraste
-pre-existente, no tocada en esta revisión.
+de esa página. El mismo fix se aplicó en el rediseño de `contacto.astro` (`block-label` de
+"Canales directos" y "Antes de escribir" a `sello-700`). El patrón `text-sello-600` sigue sin
+corregir como texto estático en `index.astro` (`folio-kicker` de la ficha de trayectoria),
+`proceso-penal.astro` (numeral del índice de etapas), `AreaDetail.astro` (`block-label`) y
+`FAQ.astro` (numeral `P.0X`) — deuda de contraste pre-existente, no tocada en esta revisión.
 
 ## Qué preserva un futuro cambio
 
@@ -252,8 +276,9 @@ pre-existente, no tocada en esta revisión.
   pidió de forma explícita y enfática después de ver la versión oscura construida.
 - El oro es el material de marca: filete, borde y relleno de botón primario. No introducir un
   segundo color de acento que le compita.
-- No reintroducir el monograma "DJ" ni ningún ícono de iniciales — el wordmark completo "Dra.
-  Daniela Jaramillo" es la marca.
+- No reintroducir el monograma "DJ" ni ningún ícono de iniciales — el wordmark completo "Daniela
+  Jaramillo" es la marca. No reintroducir el título "Dra." en ningún punto del sitio: fue probado
+  y revertido explícitamente por el cliente (ver "Origen y revisión" arriba).
 - No reintroducir la metáfora de expediente/carpeta ni el rojo como acento.
 - **El contenido nunca depende del scroll para ser visible.** Parte visible por defecto; sólo se
   oculta cuando el JS de revelado está disponible, y un bloque sin JS, sin IntersectionObserver o
@@ -264,7 +289,9 @@ pre-existente, no tocada en esta revisión.
   fuera de pantalla.
 - Ningún dato, cifra o testimonio inventado. Ver `PRODUCT.md` → Evidence on Hand y Product
   Principles.
-- El medallón de verificación (`SealBadge.astro`) sólo muestra datos reales y verificables (T.P.,
-  consejo seccional). No se convierte en una insignia de "reseñas" o "casos ganados" fabricada.
+- No se publica el número de T.P. en ninguna parte del sitio (dato privado, como la cédula — ver
+  `CLAUDE.md` → Content rules). No hay medallón de verificación activo (`SealBadge.astro` se
+  eliminó); si se reintroduce algo similar, nunca se convierte en una insignia de "reseñas" o
+  "casos ganados" fabricada.
 - Texto secundario/silenciado nunca usa `manila-400` (no cumple 4.5:1) — usar `manila-700` como
   piso mínimo para cualquier texto legible.
