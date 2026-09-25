@@ -147,8 +147,12 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     la misma corrección cálida de pared) va en formato `2/3` — su relación de aspecto nativa, sin
     recorte — a la derecha en `lg` y arriba del texto en móvil (`order-1`/`order-2` invertido entre
     breakpoints, no una sola composición reescalada). El H1 sigue el mismo patrón que el home:
-    "Daniela Jaramillo" en Playfair Display más "Abogada penalista en Medellín" en Montserrat
-    trackeado tras el filete vertical.
+    "Daniela Jaramillo" en Playfair Display más el rótulo "Abogada penalista" (sin sufijo de
+    ciudad, la ciudad va sólo en meta/alt/body) en Montserrat trackeado tras el filete vertical.
+    Debajo del hero: la cita como divisor editorial da paso a una carta de tres párrafos en
+    primera persona (`.prose-editorial`, texto literal entregado por la clienta), seguida de la
+    ficha fusionada de formación y trayectoria en dos columnas — ambos patrones descritos abajo. El
+    H1 y el JSON-LD se mantienen en tercera persona; sólo el cuerpo de la carta es primera persona.
   - **Proceso penal (`proceso-penal.astro`):** hero propio, no `PageHero` — misma gramática de placa
     que perfil, pero en espejo: la foto (`daniela-proceso.webp`, retrato de escritorio con la misma
     corrección cálida de pared) va a la **izquierda** en `lg` y el texto a la derecha; en móvil la
@@ -164,7 +168,20 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 - **Nota de margen** (`.prose-editorial blockquote`): caja bordeada en oro en los cuatro lados,
   texto en itálica de Playfair Display, etiqueta "Nota" en Montserrat — nunca una barra de acento
   lateral.
-- **Cronología** (`Timeline.astro`): línea vertical en oro con marcadores, sobre fondo marfil.
+- **Cita como divisor editorial** (`perfil.astro`): una cita real de la abogada, centrada, en
+  `font-display italic`, enmarcada arriba y abajo por `.rule-gold` (el mismo filete que abre el
+  hero) en vez de comillas grandes o un ícono de cita. Marca la transición del hero de placa a la
+  carta en `.prose-editorial` sin usar un `.folio-kicker` ni un `.block-label` como eyebrow — el
+  filete, no un rótulo, hace de divisor. Patrón reutilizable para citar directamente a la clienta
+  en otras páginas, siempre con texto real, nunca inventado.
+- **Ficha fusionada de formación y trayectoria** (`perfil.astro`): un solo panel `manila-50`
+  bordeado en dos columnas — reemplaza los antiguos `Timeline.astro` (línea vertical dorada) y
+  `CredentialList.astro`, ambos eliminados del repo. Evita una cronología de un solo punto: la
+  columna "Formación académica" lista `CREDENTIALS` (`block-label` de título, sin numeración ni
+  línea vertical); la columna "Trayectoria" recorre `TIMELINE` (hoy una sola entrada, Fiscalía/
+  DECOC 2018–2026) con `folio-kicker` para el rango de fechas real. Patrón reutilizable para
+  cualquier página que necesite mostrar credenciales + hitos sin fabricar una cronología de varios
+  puntos que no existe.
 - **FAQ numerada** (`FAQ.astro`): `<details>/<summary>` nativo, "P.01", "P.02"… — lista real de
   preguntas, el número no es decorativo.
 
@@ -220,6 +237,13 @@ secciones mixtas, ver historial de commits), estados de éxito/error con colores
 contraste verificado texto a texto: los tonos "silenciados" (`manila-400`) se reservan para bordes
 y decoración, nunca para texto — se usa `manila-700` como piso de texto secundario porque
 `manila-400` no alcanza 4.5:1 sobre `manila-50`/`manila-100`.
+
+**Fix verificado en la revisión de `perfil.astro`:** `text-sello-600` sobre `manila-50` medía
+4.08:1, bajo el piso 4.5:1 de AA. Se corrigió a `sello-700` en `.prose-editorial a` y
+`.prose-editorial blockquote::before` (`global.css`), y en los `block-label`/`folio-kicker` nuevos
+de esa página. El mismo patrón `text-sello-600` sigue sin corregir en `index.astro`,
+`proceso-penal.astro`, `contacto.astro`, `AreaDetail.astro` y `FAQ.astro` — deuda de contraste
+pre-existente, no tocada en esta revisión.
 
 ## Qué preserva un futuro cambio
 

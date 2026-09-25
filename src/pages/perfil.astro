@@ -1,16 +1,14 @@
 ---
 import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import Timeline from "@/components/Timeline.astro";
-import CredentialList from "@/components/CredentialList.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import perfil from "@/assets/images/daniela-perfil.webp";
-import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
+import { AREAS, CREDENTIALS, SITE, TIMELINE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 ---
 
 <Layout
   title="Perfil de Daniela Jaramillo, abogada penalista en Medellín"
-  description="Daniela Jaramillo: ocho años como asistente de fiscal en la unidad contra el crimen organizado de la Fiscalía General de la Nación, magíster y especialista en Derecho Procesal Penal. Hoy ejerce la defensa penal en Medellín."
+  description="Daniela Jaramillo, abogada penalista en Medellín: más de ocho años en la Fiscalía General de la Nación, Dirección Especializada contra las Organizaciones Criminales, hoy en ejercicio independiente de defensa técnica, asesoría penal estratégica y representación de víctimas."
   path="/perfil"
 >
   <!-- PLACA DE RETRATO: mismo lenguaje de material que el hero desktop del
@@ -39,34 +37,9 @@ import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site"
             class="hero-rise mt-6 max-w-lg font-display text-2xl font-semibold leading-[1.25] text-ink-900 sm:text-3xl"
             style="--rise-delay: 170ms"
           >
-            Antes de defender, construyó acusaciones dentro de la Fiscalía. Hoy ese criterio es la base de su defensa penal.
+            Abogada, Especialista en Derecho Procesal Penal y Magíster en Derecho Procesal Penal y
+            Teoría del Delito.
           </p>
-
-          <p class="hero-rise mt-5 max-w-md text-base leading-relaxed text-manila-700 sm:text-lg" style="--rise-delay: 230ms">
-            Magíster y especialista en Derecho Procesal Penal, abogada de la Universidad EAFIT, y ocho
-            años dentro de la unidad de la Fiscalía especializada contra el crimen organizado.
-          </p>
-
-          <dl class="hero-rise mt-9 divide-y divide-sello-400 border-t border-sello-400" style="--rise-delay: 300ms">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Ocho años en la Fiscalía General de la Nación
-              </dd>
-            </div>
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">DECOC</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Unidad especializada contra organizaciones criminales
-              </dd>
-            </div>
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">UNAULA</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Magíster y Especialista en Derecho Procesal Penal
-              </dd>
-            </div>
-          </dl>
         </div>
 
         <div class="hero-rise relative order-1 mx-auto w-full max-w-xs lg:order-2 lg:mx-0 lg:max-w-none" style="--rise-delay: 130ms">
@@ -92,89 +65,97 @@ import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site"
     </div>
   </section>
 
-  <!-- BIOGRAFÍA -->
+  <!-- CARTA: la cita se destaca primero como divisor editorial —el mismo
+       gesto de filete de oro que abre el hero— y da paso a su texto de
+       perfil completo, en primera persona, tal como lo escribió. -->
   <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
+      <figure class="text-center" data-reveal>
+        <span class="rule-gold mx-auto block w-16" aria-hidden="true"></span>
+        <blockquote class="mt-7 font-display text-2xl font-medium italic leading-snug text-ink-900 sm:text-3xl">
+          “Mi ejercicio profesional se fundamenta en el estudio riguroso de cada asunto, la
+          construcción de soluciones jurídicas sólidas y el acompañamiento cercano y
+          personalizado durante cada etapa del proceso.”
+        </blockquote>
+        <span class="rule-gold mx-auto mt-7 block w-16" aria-hidden="true"></span>
+      </figure>
+
+      <h2 class="mt-16 font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
         Quién es Daniela Jaramillo
       </h2>
       <div class="prose-editorial mt-8" data-reveal style="--reveal-delay: 80ms">
         <p>
-          Daniela Jaramillo es abogada de la Universidad EAFIT, magíster en Derecho Procesal Penal
-          y Teoría del Delito y especialista en Derecho Procesal Penal, ambos títulos de la
-          Universidad Autónoma Latinoamericana (UNAULA). Su formación y su trayectoria apuntan en
-          una sola dirección: entender el proceso penal desde adentro para defenderlo con
-          precisión desde afuera.
+          Mi trayectoria profesional se ha desarrollado principalmente en el ámbito del derecho
+          penal. Durante más de ocho años hice parte de la Fiscalía General de la Nación,
+          adscrita a la Dirección Especializada contra las Organizaciones Criminales,
+          participando en investigaciones de especial complejidad y en diversas actuaciones
+          propias de la investigación y el proceso penal. Esta experiencia me permitió conocer de
+          cerca la dinámica del sistema de justicia penal y adquirir una visión integral sobre la
+          construcción, análisis y litigio de los casos penales.
         </p>
         <p>
-          Durante ocho años, entre 2018 y 2026, trabajó como asistente de fiscal en la Dirección
-          Especializada Contra las Organizaciones Criminales (DECOC) de la Fiscalía General de la
-          Nación en Medellín, la unidad que investiga estructuras de crimen organizado en la ciudad
-          y en el país. Allí proyectó escritos de acusación directos y por aceptación de cargos,
-          acompañó audiencias, entrevistas, declaraciones e interrogatorios, emitió órdenes a
-          policía judicial y gestionó el sistema misional SPOA.
+          Actualmente ejerzo de manera independiente, poniendo esa experiencia al servicio de la <a href="/servicios/defensa-penal">defensa técnica</a>, la <a href="/servicios/asesoria-penal-estrategica">asesoría penal estratégica</a> y la <a href="/servicios/representacion-de-victimas">representación de víctimas</a>, con un
+          enfoque basado en el análisis jurídico, la estrategia procesal y la protección efectiva
+          de los derechos e intereses de cada cliente.
         </p>
         <p>
-          Por reserva de la investigación, Daniela no puede ni pretende hacer referencia a casos
-          concretos de su paso por la Fiscalía. Lo que sí traslada a su ejercicio privado es el
-          criterio que deja esa experiencia: saber qué evidencia sostiene realmente una imputación,
-          qué hace sólido o débil un preacuerdo, y qué esperar en cada etapa del
-          <a href="/proceso-penal">proceso penal</a> — no desde la teoría, sino desde haber estado
-          en la sala.
-        </p>
-        <p>
-          Hoy ejerce la <a href="/servicios/defensa-penal">defensa y litigio penal</a> privada en
-          Medellín y Antioquia, atiende <a href="/servicios/criminalidad-organizada">delitos de
-          especial complejidad</a>, brinda <a href="/servicios/asesoria-penal-estrategica">asesoría
-          penal estratégica</a> y acompaña a
-          <a href="/servicios/representacion-de-victimas">víctimas</a> y sus familias dentro del
-          proceso penal.
+          Mi ejercicio profesional se fundamenta en el estudio riguroso de cada asunto, la
+          construcción de soluciones jurídicas sólidas y el acompañamiento cercano y
+          personalizado durante cada etapa del <a href="/proceso-penal">proceso penal</a>.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- TRAYECTORIA -->
+  <!-- FORMACIÓN Y TRAYECTORIA: una sola ficha —no una cronología para un
+       único punto, ni una lista de créditos separada—, en dos columnas que
+       se leen como un mismo documento. -->
   <section class="bg-manila-100 py-16 sm:py-24">
-    <div class="mx-auto max-w-4xl px-5 sm:px-8">
+    <div class="mx-auto max-w-5xl px-5 sm:px-8">
       <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
-        Trayectoria
+        Formación y trayectoria
       </h2>
-      <div class="mt-10 border border-manila-300 bg-manila-50 p-6 sm:p-10" data-reveal style="--reveal-delay: 100ms">
-        <Timeline />
-      </div>
-    </div>
-  </section>
+      <div
+        class="mt-10 grid gap-10 border border-manila-300 bg-manila-50 p-6 sm:p-10 lg:grid-cols-2 lg:gap-14"
+        data-reveal
+        style="--reveal-delay: 80ms"
+      >
+        <div>
+          <p class="block-label text-sello-700">Formación académica</p>
+          <ul class="mt-5 divide-y divide-manila-300 border-t border-manila-300">
+            {
+              CREDENTIALS.map((c) => (
+                <li class="py-4 first:pt-0">
+                  <p class="font-display text-lg text-ink-900">{c.title}</p>
+                  <p class="mt-0.5 text-sm text-manila-700">{c.org}</p>
+                  {c.detail && <p class="mt-1 text-sm text-manila-700">{c.detail}</p>}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
 
-  <!-- FORMACIÓN E IDIOMAS -->
-  <section class="bg-manila-50 py-16 sm:py-24">
-    <div class="mx-auto max-w-4xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
-        Formación académica
-      </h2>
-      <div class="mt-10 grid gap-6 lg:grid-cols-[1.4fr_0.6fr] lg:items-start" data-reveal style="--reveal-delay: 80ms">
-        <CredentialList />
-
-        <div class="border border-manila-300 bg-manila-100 p-6">
-          <p class="block-label text-sello-600">Idiomas</p>
-          <p class="mt-3 text-sm text-manila-700">
-            <span class="font-medium text-ink-900">Español</span> — nativo
-          </p>
-          <p class="mt-1 text-sm text-manila-700">
-            <span class="font-medium text-ink-900">Inglés</span> — nivel intermedio
-          </p>
-
-          <p class="mt-6 border-t border-manila-300 pt-4 text-sm leading-relaxed text-manila-700">
-            Tarjeta profesional vigente, expedida por el Consejo Superior de la Judicatura,
-            Seccional Antioquia.
-          </p>
+        <div>
+          <p class="block-label text-sello-700">Trayectoria</p>
+          <div class="mt-5 border-t border-manila-300 pt-5">
+            {
+              TIMELINE.map((entry) => (
+                <div>
+                  <p class="folio-kicker text-sello-700">{entry.range}</p>
+                  <p class="mt-1 font-display text-lg text-ink-900">{entry.title}</p>
+                  <p class="mt-0.5 text-sm font-medium text-manila-700">{entry.org}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-manila-700">{entry.detail}</p>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
-  <section class="bg-manila-100 py-16 sm:py-20">
+  <section class="bg-manila-50 py-16 sm:py-20">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
       data-reveal
@@ -216,9 +197,8 @@ import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site"
         name: SITE.name,
         jobTitle: SITE.role,
         description:
-          "Abogada penalista en Medellín. Ocho años como asistente de fiscal en la unidad de la Fiscalía General de la Nación contra el crimen organizado; hoy ejerce la defensa penal, la representación de víctimas y la asesoría en criminalidad organizada.",
+          "Abogada penalista en Medellín. Más de ocho años en la Fiscalía General de la Nación, Dirección Especializada contra las Organizaciones Criminales, participando en investigaciones y actuaciones del proceso penal; hoy ejerce de forma independiente la defensa técnica, la asesoría penal estratégica y la representación de víctimas.",
         url: `${SITE.url}/perfil`,
-        knowsLanguage: ["es", "en"],
         knowsAbout: AREAS.map((a) => a.title),
         address: {
           "@type": "PostalAddress",

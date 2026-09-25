@@ -43,65 +43,41 @@ export type TimelineEntry = {
   detail: string;
 };
 
-// Chronology as recorded on file. Dates and roles are exact; no case
-// specifics are named (reserva sumarial), and nothing is claimed beyond
-// what the CV and titles support.
+// Chronology as recorded on file, in Daniela's own words (perfil.astro). No
+// case specifics are named (reserva sumarial), and nothing is claimed beyond
+// what she wrote herself — no functions, no dates beyond the range, no
+// SPOA/policía judicial detail.
 export const TIMELINE: TimelineEntry[] = [
   {
-    range: "2026",
-    title: "Magíster en Derecho Procesal Penal y Teoría del Delito",
-    org: "Universidad Autónoma Latinoamericana — UNAULA",
-    detail: "Título de posgrado obtenido en febrero de 2026.",
-  },
-  {
     range: "2018 — 2026",
-    title: "Asistente de Fiscal I y IV",
-    org: "Fiscalía General de la Nación — Dirección Especializada Contra las Organizaciones Criminales (DECOC), Medellín",
+    title: "Fiscalía General de la Nación",
+    org: "Dirección Especializada contra las Organizaciones Criminales (DECOC)",
     detail:
-      "Ocho años en la unidad que investiga estructuras criminales: proyección de escritos de acusación y preacuerdos, acompañamiento de audiencias e interrogatorios, órdenes a policía judicial y gestión del sistema misional SPOA.",
-  },
-  {
-    range: "2024",
-    title: "Especialista en Derecho Procesal Penal",
-    org: "Universidad Autónoma Latinoamericana — UNAULA",
-    detail: "Título de posgrado obtenido en diciembre de 2024.",
-  },
-  {
-    range: "2024",
-    title: "Tarjeta profesional de abogada",
-    org: "Consejo Superior de la Judicatura, Seccional Antioquia",
-    detail: "Habilitada para el ejercicio de la profesión desde mayo de 2024.",
-  },
-  {
-    range: "2023",
-    title: "Abogada",
-    org: "Universidad EAFIT",
-    detail: "Título profesional obtenido en marzo de 2023.",
-  },
-  {
-    range: "2017 — 2018",
-    title: "Apoyo a la gestión de trámites jurídicos",
-    org: "Oficina Jurídica, Concejo Municipal de Sabaneta (Antioquia)",
-    detail:
-      "Proyección de actos administrativos, apoyo a los trámites jurídicos del Concejo y manejo de plataformas de contratación pública (SECOP, SIGEP).",
+      "Experiencia en investigaciones y actuaciones propias del proceso penal relacionadas con fenómenos de criminalidad organizada, participando en el análisis jurídico de casos complejos y en diversas actuaciones asociadas a la investigación penal.",
   },
 ];
 
 export type Credential = {
   title: string;
   org: string;
-  year: string;
+  detail?: string;
 };
 
+// As written by Daniela for perfil.astro. No years beyond what she gave
+// (only the EAFIT title date), no T.P., no idiomas, no diplomados.
 export const CREDENTIALS: Credential[] = [
-  { title: "Magíster en Derecho Procesal Penal y Teoría del Delito", org: "UNAULA", year: "2026" },
-  { title: "Especialista en Derecho Procesal Penal", org: "UNAULA", year: "2024" },
-  { title: "Abogada", org: "Universidad EAFIT", year: "2023" },
-  { title: "Diplomado en Contratación Estatal", org: "Universidad EAFIT", year: "2018" },
   {
-    title: "Diplomado en Policía Judicial y Criminalística",
-    org: "Escuela Nacional de Criminalística y Ciencias Forenses",
-    year: "2016",
+    title: "Magíster en Derecho Procesal Penal y Teoría del Delito",
+    org: "Universidad Autónoma Latinoamericana — UNAULA",
+  },
+  {
+    title: "Especialista en Derecho Procesal Penal",
+    org: "Universidad Autónoma Latinoamericana — UNAULA",
+  },
+  {
+    title: "Abogada",
+    org: "Universidad EAFIT",
+    detail: "Título profesional obtenido en marzo de 2023.",
   },
 ];
 
