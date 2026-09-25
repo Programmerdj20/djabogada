@@ -114,6 +114,19 @@ import { AREAS } from "@/lib/site";
 <script>
   const params = new URLSearchParams(location.search);
 
+  // Preselecciona el área cuando se llega desde un CTA de servicio
+  // (`/contacto?area=<slug>`, ver servicios/index.astro). Solo aplica un
+  // valor que exista realmente entre las opciones del <select>, para que un
+  // parámetro inválido o manipulado no deje el campo en un estado vacío raro.
+  const areaParam = params.get("area");
+  if (areaParam) {
+    const areaSelect = document.getElementById("area");
+    if (areaSelect instanceof HTMLSelectElement) {
+      const hasOption = Array.from(areaSelect.options).some((opt) => opt.value === areaParam);
+      if (hasOption) areaSelect.value = areaParam;
+    }
+  }
+
   if (params.get("enviado") === "1") {
     document.getElementById("form-success")?.classList.remove("hidden");
     document.getElementById("contact-form")?.classList.add("hidden");

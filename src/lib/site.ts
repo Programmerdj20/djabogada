@@ -121,6 +121,10 @@ export type Area = {
   short: string;
   description: string;
   bullets: string[];
+  // Situaciones concretas en las que acudir a esta área. Redactadas a partir
+  // de `description` (misma información, sin cifras ni casos ni promesas) —
+  // copy autorado, aprobado por Daniela.
+  whenToSeek: string[];
 };
 
 export const AREAS: Area[] = [
@@ -136,6 +140,12 @@ export const AREAS: Area[] = [
       "Estrategia diseñada a partir del análisis integral del caso y la evidencia",
       "Objetivos de defensa definidos para cada cliente",
     ],
+    whenToSeek: [
+      "Te citaron a versión libre, indagatoria o cualquier audiencia dentro de un proceso penal.",
+      "Estás siendo investigado o procesado por un presunto delito.",
+      "Necesitas presentar recursos o acciones constitucionales dentro de un proceso en curso.",
+      "Buscas una defensa presente desde las primeras actuaciones, no solo en el juicio.",
+    ],
   },
   {
     slug: "criminalidad-organizada",
@@ -147,6 +157,12 @@ export const AREAS: Area[] = [
       "Análisis estratégico de la evidencia y de la estructura de la investigación",
       "Defensa técnica especializada frente a criminalidad organizada",
       "Atención a conductas de especial relevancia jurídico-penal",
+    ],
+    whenToSeek: [
+      "Tu proceso involucra estructuras de criminalidad organizada.",
+      "La investigación requiere un análisis técnico de un volumen amplio de evidencia.",
+      "Enfrentas una investigación con alta exposición reputacional.",
+      "Necesitas una defensa que entienda cómo se construyen este tipo de casos desde adentro.",
     ],
   },
   {
@@ -160,6 +176,11 @@ export const AREAS: Area[] = [
       "Acompañamiento para la toma de decisiones informadas",
       "Protección de los derechos e intereses del cliente",
     ],
+    whenToSeek: [
+      "Quieres anticiparte a una situación con posibles implicaciones penales antes de que se convierta en un proceso.",
+      "Necesitas evaluar el riesgo penal de una decisión personal o empresarial.",
+      "Buscas acompañamiento para tomar decisiones informadas frente a una investigación en curso.",
+    ],
   },
   {
     slug: "representacion-de-victimas",
@@ -171,6 +192,11 @@ export const AREAS: Area[] = [
       "Protección de los derechos de las víctimas",
       "Participación efectiva dentro del proceso penal",
       "Búsqueda de verdad, justicia y reparación",
+    ],
+    whenToSeek: [
+      "Fuiste víctima de un delito y quieres iniciar un proceso penal.",
+      "Ya hay un proceso en curso y necesitas representación para participar en él.",
+      "Buscas orientación sobre tus derechos como víctima dentro del proceso.",
     ],
   },
 ];

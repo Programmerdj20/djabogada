@@ -81,6 +81,7 @@ $areasValidas = [
     'defensa-penal' => 'Defensa penal',
     'representacion-de-victimas' => 'Representación de víctimas',
     'criminalidad-organizada' => 'Criminalidad organizada y delitos complejos',
+    'asesoria-penal-estrategica' => 'Asesoría penal estratégica',
 ];
 $areaLabel = $areasValidas[$area] ?? 'No especificada';
 

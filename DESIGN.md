@@ -223,13 +223,41 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
   - **Servicios (`servicios/index.astro`):** hero propio, no `PageHero` (que sí sigue vigente en
     las páginas legales) — mismo espejo que contacto: texto a la izquierda, placa `4/5` de
     `daniela-defensa.webp` a la derecha en `lg` (arriba en móvil), sin passe-partout desplazado.
-    El H1 y el lead son el copy original de la página; debajo, un índice real de las cuatro áreas
-    de `AREAS` (`folio-kicker` numerado `01`–`04` + título) enlaza por ancla a su tarjeta
-    correspondiente en la grilla de `AreaCard` más abajo — mismo patrón que el índice de etapas de
-    proceso-penal, aplicado aquí a las áreas de práctica en vez de a las etapas del proceso.
-    Reemplaza el hero anterior (`PageHero` con `daniela-expediente.webp` en 2.4/1), que seguía
-    siendo el único hero interno sin la gramática de placa; `daniela-expediente` se conserva para
-    `servicios/criminalidad-organizada.astro`, la única página que aún la usa.
+    El H1 y el lead son el copy original de la página. El índice de las cuatro áreas **no vive en
+    el hero** (quedaba duplicado con el índice fijo de la sección siguiente, corregido tras
+    feedback explícito del cliente — "no ser redundante teniendo en una section una cosa y en
+    otra section lo mismo solo que de otra forma"): en su lugar, el hero lleva los dos accesos de
+    contacto (`btn-gold` WhatsApp + `btn-outline-gold` formulario), para que la página permita
+    actuar desde el primer viewport. Reemplaza el hero original (`PageHero` con
+    `daniela-expediente.webp` en 2.4/1); `daniela-expediente` ya no se usa en ninguna página del
+    sitio tras eliminarse `servicios/criminalidad-organizada.astro` y el resto de páginas
+    individuales de área (commit `56791d2`).
+  - **Índice fijo + fichas de servicio (`servicios/index.astro`, bajo el hero):** estructura
+    elegida entre tres derivadas por el concept-seed de la skill a nivel de superficie (mapa por
+    momento del proceso, índice lateral fijo, grilla 2×2), a partir de que la primera versión
+    (grilla de cuatro `AreaCard`, luego un pliego de cláusulas sin CTA) no dejaba ninguna acción
+    posible — feedback explícito: "no veo un CTA donde pueda solicitar el servicio". En `lg+`, una
+    grilla de 12 columnas: columna izquierda (`col-span-3`, `position: sticky`, `top-28` — misma
+    cota que `scroll-mt-28` ya usado en el sitio para compensar el header sticky) con los cuatro
+    servicios como enlaces `.index-link` (folio-kicker numerado + título, filete izquierdo en oro),
+    el activo marcado por un scrollspy real (`IntersectionObserver` sobre cada
+    `[data-service-section]`, script inline en la propia página — mejora progresiva: sin JS los
+    enlaces siguen funcionando como anclas simples, solo sin el marcador de "estás aquí"). Por
+    debajo de `lg`, el mismo `<nav>` se convierte en una barra horizontal `sticky` bajo el header
+    (filete inferior en vez de izquierdo, ver `.index-link` en `global.css`). A la derecha
+    (`col-span-9`), cada servicio es una ficha completa: numeral grande en Playfair Display +
+    título (`h2`, jerarquía directa bajo el H1) + la `description` **literal** de `AREAS` (intacta,
+    sin resumen ni viñetas derivadas) + un bloque `.block-label` "Cuándo acudir" con
+    `AREAS[].whenToSeek` (3–4 situaciones concretas, redactadas a partir de la propia descripción
+    de cada área — copy autorado, aprobado por Daniela) + los dos accesos de contacto: `btn-gold`
+    de WhatsApp con un mensaje pre-escrito que nombra el servicio, y un enlace de texto a
+    `/contacto?area={slug}`, que `ContactForm.astro` lee para preseleccionar el campo "Área" (nunca
+    sobrescribe con un valor que no exista entre las opciones). Cada ficha conserva su ancla
+    `id="area-{slug}"` —usada por el índice propio, por el enrutador de "¿Qué te está pasando?" del
+    home y por el acceso directo a servicios de `perfil.astro`. Cierra la página una sección "Cómo
+    empieza" (tres pasos, también copy autorado y aprobado) con el mismo CTA final de doble acceso
+    que usa el resto del sitio. `AreaCard.astro` queda sin uso en ninguna página tras este cambio;
+    se conserva en el repo sin eliminarse.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.
