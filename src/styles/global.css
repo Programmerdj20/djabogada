@@ -635,14 +635,16 @@
 }
 
 @layer components {
-  /* Apertura de las preguntas frecuentes: la respuesta se despliega en vez de
-     aparecer cortada. Es CSS progresivo — donde `::details-content` no existe
-     el <details> nativo sigue funcionando igual, sin animación. */
+  /* Apertura de las preguntas frecuentes y de las áreas de práctica del
+     home: el contenido se despliega en vez de aparecer cortado. Es CSS
+     progresivo — donde `::details-content` no existe el <details> nativo
+     sigue funcionando igual, sin animación. */
   @supports selector(::details-content) {
     :root {
       interpolate-size: allow-keywords;
     }
-    .faq-item::details-content {
+    .faq-item::details-content,
+    .area-row::details-content {
       block-size: 0;
       overflow: clip;
       opacity: 0;
@@ -650,7 +652,8 @@
         content-visibility 0.4s;
       transition-behavior: allow-discrete;
     }
-    .faq-item[open]::details-content {
+    .faq-item[open]::details-content,
+    .area-row[open]::details-content {
       block-size: auto;
       opacity: 1;
     }

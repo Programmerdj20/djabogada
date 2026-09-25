@@ -1,47 +1,52 @@
 ---
 import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import AreaCard from "@/components/AreaCard.astro";
-import ProcessDiagram from "@/components/ProcessDiagram.astro";
-import FAQ from "@/components/FAQ.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import heroPortrait from "@/assets/images/daniela-hero.webp";
 import heroPlate from "@/assets/images/daniela-hero-plate.webp";
-import defensa from "@/assets/images/daniela-defensa.webp";
 import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
-// Copy de tesis del hero: la asimetría (construyó acusaciones, hoy defiende)
-// convertida en beneficio directo, sin sonar como adversaria de la Fiscalía
-// —Daniela tiene una nominación a Fiscal pendiente— y sin usar el cargo que
-// no tuvo (fue Asistente de Fiscal I y IV, nunca fiscal). Nunca promete un
-// resultado ("ganamos tu caso"): las normas de publicidad para abogados en
-// Colombia lo restringen, y tampoco sería honesto.
-const heroHeadline = "Conozco por dentro cómo se construye una acusación. Por eso sé cómo defenderte.";
-const heroLead =
-  "Ocho años en la Fiscalía General de la Nación, en la unidad especializada contra el crimen organizado, me dieron el criterio con el que se evalúa la evidencia y se decide una imputación. Hoy pongo ese conocimiento al servicio de tu defensa.";
+// El hero no lleva titular, rótulo ni párrafo —instrucción explícita de la
+// clienta—: solo la fotografía y los dos accesos de contacto. El H1 vive
+// oculto para lectores de pantalla y buscadores; el título y la meta
+// description hacen el resto del trabajo de SEO. La composición fotográfica
+// (placa enmarcada en desktop, pantalla completa en móvil) es la misma que
+// el sitio ya tenía aprobada — solo se le quita el texto, no la foto.
 
-const faqs = [
+// Enrutador por situación: la persona que llega asustada se reconoce en
+// una de estas cuatro (ver PRODUCT.md → Users) y encuentra de inmediato
+// a qué página ir, sin que el home le repita el contenido de esa página.
+const situations = [
   {
-    question: "Me citaron a versión libre o indagatoria en la Fiscalía, ¿qué debo hacer?",
+    situation: "Te citaron a versión libre o indagatoria",
     answer:
-      "Antes de asistir a cualquier diligencia, busca asesoría. Lo que digas desde el primer momento puede definir el rumbo del proceso. Escríbeme antes de la citación, no después.",
+      "Antes de asistir a cualquier diligencia, busca asesoría: lo que digas desde el primer momento puede definir el rumbo del proceso.",
+    href: "/proceso-penal",
+    linkLabel: "Ver en qué etapa estás",
   },
   {
-    question: "¿Puedo contratar defensa si ya fui capturado?",
+    situation: "Te capturaron",
     answer:
-      "Sí. Es precisamente el momento donde la defensa técnica es más urgente: dentro de las 36 horas siguientes a la captura se define la legalización y la posible medida de aseguramiento.",
+      "Es el momento donde la defensa técnica es más urgente: dentro de las 36 horas siguientes se define la legalización y la posible medida de aseguramiento.",
+    href: "/servicios/defensa-penal",
+    linkLabel: "Defensa penal",
   },
   {
-    question: "¿Atienden casos de víctimas o solo de defensa?",
+    situation: "Eres víctima o acompañas a tu familia",
     answer:
-      "Ambos. Represento tanto a personas investigadas o procesadas como a víctimas y sus familias que buscan constituirse dentro de un proceso penal en curso.",
+      "Puedes ser representada dentro de un proceso penal ya en curso, o para iniciar uno.",
+    href: "/servicios/representacion-de-victimas",
+    linkLabel: "Representación de víctimas",
   },
   {
-    question: "¿Por qué su experiencia en la Fiscalía hace diferencia en mi defensa?",
+    situation: "Tu empresa está expuesta a criminalidad organizada",
     answer:
-      "Porque durante ocho años estuvo del otro lado: redactando escritos de acusación, evaluando preacuerdos y coordinando con policía judicial. Conoce el criterio con el que se construye un caso, no solo el que se usa para defenderlo.",
+      "Un terreno más técnico y de mayor exposición reputacional, que exige análisis estratégico desde el inicio.",
+    href: "/servicios/criminalidad-organizada",
+    linkLabel: "Delitos de especial complejidad",
   },
 ];
+
 ---
 
 <Layout
@@ -49,21 +54,19 @@ const faqs = [
   description="Daniela Jaramillo, abogada penalista en Medellín. Ocho años en la Fiscalía General de la Nación, unidad contra el crimen organizado. Defensa penal, representación de víctimas y delitos complejos."
   path="/"
 >
-  <!-- HERO -->
-  {/* Dos composiciones distintas por viewport, no una sola reescalada.
-      Móvil (< lg): la foto original a pantalla completa con el texto abajo
-      sobre un velo marfil — la versión que ya quedó aprobada, sin tocar su
-      fotografía ni su velo, solo se le añade el copy de tesis.
-      Desktop (lg+): un retrato recortado on-device falló el control de
-      calidad (quedaba un resto gris de la silla, ver nota de decisión más
-      abajo), así que se usa la "placa de retrato": la foto completa, en
-      color corregido más cálido (`daniela-hero-plate.webp`, la pared gris
-      de oficina pasa a leerse marfil), dentro de una placa de canto nítido
-      con un filete de oro desplazado detrás — un passe-partout — en vez del
-      bloque a sangre con degradado gris de la versión anterior. El titular
-      grande cruza apenas el filete desplazado. */}
+  <!-- HERO: la misma composición en dos partes que ya tenía el sitio
+       aprobada —foto a pantalla completa en móvil, placa de retrato
+       enmarcada en desktop—, sin ningún texto: ni titular, ni rótulo, ni
+       párrafo, por instrucción explícita de la clienta. El H1 vive oculto
+       para SEO/accesibilidad; los únicos elementos visibles son el filete
+       de oro y los dos accesos de contacto. -->
   <section class="relative border-b border-manila-300 bg-manila-50">
-    {/* ── Móvil / tablet: foto a pantalla completa (sin cambios) ── */}
+    <h1 class="sr-only">
+      Daniela Jaramillo, abogada penalista en Medellín. Defensa penal, representación de
+      víctimas y criminalidad organizada.
+    </h1>
+
+    {/* ── Móvil / tablet: foto a pantalla completa ── */}
     <div class="relative h-[calc(100svh-4rem)] min-h-[38rem] overflow-hidden lg:hidden">
       <div class="hero-drift absolute inset-0">
         <Picture
@@ -92,34 +95,7 @@ const faqs = [
         <div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
           <span class="rule-gold rule-draw block w-16" aria-hidden="true" style="--rise-delay: 0ms"></span>
 
-          <h1 class="hero-rise mt-5 font-display font-semibold text-ink-900" style="--rise-delay: 90ms">
-            <span class="block text-[2rem] uppercase leading-[1.05] tracking-[0.01em] sm:text-4xl">
-              Daniela Jaramillo
-            </span>
-            <span class="sr-only">, </span>
-            <span class="mt-2 flex items-center gap-2.5">
-              <span class="h-3.5 w-px shrink-0 bg-sello-400" aria-hidden="true"></span>
-              <span class="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-sello-700 sm:text-sm">
-                Abogada penalista
-              </span>
-            </span>
-          </h1>
-
-          <p
-            class="hero-rise mt-4 max-w-md font-display text-[1.5rem] font-semibold leading-[1.18] text-ink-900 sm:text-[1.75rem]"
-            style="--rise-delay: 170ms"
-          >
-            {heroHeadline}
-          </p>
-
-          <p
-            class="hero-rise mt-3 hidden max-w-md text-[0.9rem] leading-relaxed text-manila-700 sm:text-base md:block"
-            style="--rise-delay: 230ms"
-          >
-            {heroLead}
-          </p>
-
-          <div class="hero-rise mt-6 flex gap-3" style="--rise-delay: 300ms">
+          <div class="hero-rise mt-6 flex gap-3" style="--rise-delay: 200ms">
             <a href="/contacto" class="btn-gold flex-1 !px-4 whitespace-nowrap">
               Agenda tu consulta
             </a>
@@ -137,57 +113,18 @@ const faqs = [
       </div>
     </div>
 
-    {/* ── Desktop: placa de retrato ── */}
+    {/* ── Desktop: placa de retrato, desplazada del centro ──
+         Composición asimétrica: la placa gana escala y se corre hacia el
+         centro-derecha del contenedor (deja un margen izquierdo mayor que
+         el derecho), y los accesos de contacto bajan en columna junto al
+         marco —ya no una fila apretada— con el vacío entre ambos como
+         parte deliberada de la composición. */}
     <div class="hidden lg:block">
-      <div class="mx-auto max-w-6xl px-8 py-20 xl:py-24">
-        <div class="grid grid-cols-[1.15fr_0.85fr] items-center gap-10 xl:gap-14">
-          <div class="relative z-10 max-w-xl">
-            <span class="rule-gold rule-draw block w-20" aria-hidden="true" style="--rise-delay: 0ms"></span>
-
-            <h1 class="hero-rise mt-6 font-display font-semibold text-ink-900" style="--rise-delay: 90ms">
-              <span class="block text-[1.85rem] uppercase leading-[1.05] tracking-[0.01em] xl:text-[2.1rem]">
-                Daniela Jaramillo
-              </span>
-              <span class="sr-only">, </span>
-              <span class="mt-3 flex items-center gap-3">
-                <span class="h-4 w-px shrink-0 bg-sello-400" aria-hidden="true"></span>
-                <span class="font-sans text-sm font-semibold uppercase tracking-[0.28em] text-sello-700">
-                  Abogada penalista
-                </span>
-              </span>
-            </h1>
-
-            <p
-              class="hero-rise -mr-6 mt-6 font-display text-[2.35rem] font-semibold leading-[1.1] text-ink-900 xl:text-[2.75rem]"
-              style="--rise-delay: 170ms"
-            >
-              {heroHeadline}
-            </p>
-
-            <p class="hero-rise mt-6 max-w-md text-[1.0625rem] leading-relaxed text-manila-700" style="--rise-delay: 230ms">
-              {heroLead}
-            </p>
-
-            <div class="hero-rise mt-9 flex items-center gap-4" style="--rise-delay: 300ms">
-              <a href="/contacto" class="btn-gold whitespace-nowrap">
-                Agenda tu consulta
-              </a>
-              <a
-                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-whatsapp-primary
-                class="btn-outline-gold whitespace-nowrap"
-              >
-                Escribir por WhatsApp
-              </a>
-            </div>
-          </div>
-
+      <div class="mx-auto max-w-6xl px-8 py-24 xl:py-28">
+        <div class="grid grid-cols-12 items-center gap-6 xl:gap-10">
           {/* La placa: canto nítido, sin degradado. El filete desplazado
-              detrás (passe-partout) es el único motivo decorativo; el
-              titular la cruza apenas gracias al -mr-6 de arriba. */}
-          <div class="hero-rise relative" style="--rise-delay: 130ms">
+              detrás (passe-partout) es el único motivo decorativo. */}
+          <div class="hero-rise relative col-start-3 col-span-7" style="--rise-delay: 130ms">
             <div class="absolute -left-5 -top-5 h-full w-full border border-sello-400" aria-hidden="true"></div>
             <div class="hero-settle relative aspect-[2/3] overflow-hidden border border-ink-900/10 bg-manila-100 shadow-panel">
               <Picture
@@ -195,8 +132,8 @@ const faqs = [
                 alt={`${SITE.name}, abogada penalista en Medellín, en su oficina`}
                 formats={["avif", "webp"]}
                 fallbackFormat="webp"
-                widths={[480, 640, 760]}
-                sizes="(min-width: 1280px) 34vw, 38vw"
+                widths={[480, 640, 760, 900]}
+                sizes="(min-width: 1280px) 44vw, 50vw"
                 class="h-full w-full object-cover object-[42%_16%]"
                 loading="eager"
                 fetchpriority="high"
@@ -204,164 +141,131 @@ const faqs = [
               />
             </div>
           </div>
+
+          <div class="col-start-10 col-span-3 flex flex-col items-start gap-8">
+            <span class="rule-gold rule-draw block w-14" aria-hidden="true" style="--rise-delay: 0ms"></span>
+
+            <div class="hero-rise flex w-full flex-col gap-4" style="--rise-delay: 200ms">
+              <a href="/contacto" class="btn-gold w-full whitespace-nowrap text-center">
+                Agenda tu consulta
+              </a>
+              <a
+                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-whatsapp-primary
+                class="btn-outline-gold w-full whitespace-nowrap text-center"
+              >
+                Escribir por WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LA ASIMETRÍA: CONSTRUYÓ ACUSACIONES, HOY LAS ENFRENTA -->
+  <!-- ¿QUÉ TE ESTÁ PASANDO?: enrutador por situación, no por trayectoria
+       —esa historia vive en /perfil—. Índice de texto limpio, sin foto ni
+       columna sticky, mismo tratamiento que "Áreas de práctica" más abajo. -->
   <section class="bg-manila-100 py-16 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
-        <div
-          class="relative lg:sticky lg:top-28 lg:col-start-1 lg:row-span-2"
-          data-reveal
-        >
-          <div class="border border-sello-400 bg-manila-50 p-3 shadow-gold">
-            <div class="aspect-[4/5] overflow-hidden border border-sello-300">
-              <Picture
-                src={defensa}
-                alt={`${SITE.name}, abogada penalista en Medellín, en su escritorio`}
-                formats={["avif", "webp"]}
-                fallbackFormat="webp"
-                widths={[480, 640, 760, 960]}
-                sizes="(min-width: 1024px) 42vw, 92vw"
-                class="h-full w-full object-cover object-[center_22%]"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
+        ¿Qué te está pasando?
+      </h2>
+      <p class="mt-4 max-w-md text-manila-700" data-reveal style="--reveal-delay: 60ms">
+        Reconoce tu situación y escribe con claridad sobre lo que enfrentas.
+      </p>
 
-        <div class="lg:col-start-2 lg:row-start-1" data-reveal style="--reveal-delay: 60ms">
-          <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-            Antes de defender, construyó acusaciones en la Fiscalía
-          </h2>
-        </div>
-
-        <div
-          class="mt-8 lg:col-start-2 lg:row-start-2 lg:mt-0"
-          data-reveal
-          style="--reveal-delay: 100ms"
-        >
-          <div class="prose-editorial">
-            <p>
-              Daniela Jaramillo trabajó ocho años, entre 2018 y 2026, en la Fiscalía General de la
-              Nación como asistente de fiscal de la <strong>Dirección Especializada contra las
-              Organizaciones Criminales (DECOC)</strong> en Medellín. Allí proyectó escritos de
-              acusación, evaluó preacuerdos y aceptaciones de cargos, acompañó audiencias,
-              interrogatorios y actos urgentes, emitió órdenes a policía judicial y gestionó el
-              SPOA, el sistema misional con el que la Fiscalía tramita cada investigación.
-            </p>
-            <p>
-              Esa trayectoria es hoy el núcleo de su <strong>defensa penal</strong>. Sabe qué
-              evidencia sostiene una imputación y cuál no resiste un juicio, cuándo un preacuerdo
-              conviene de verdad y qué argumentos pesan ante un juez de control de garantías. Por
-              eso actúa con precisión desde la primera diligencia: detecta los puntos débiles de
-              la acusación antes de que el proceso avance.
-            </p>
-            <p>
-              No es teoría de manual. Es el criterio de quien estuvo del otro lado del proceso
-              penal y hoy lo pone al servicio de su defensa.
-            </p>
-          </div>
-
-          <dl class="mt-10 divide-y divide-sello-400 border-t border-sello-400">
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">2018 — 2026</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Ocho años en la Fiscalía General de la Nación
-              </dd>
+      <div
+        class="mt-8 divide-y divide-manila-300 border-t border-manila-300"
+        data-reveal
+        style="--reveal-delay: 100ms"
+      >
+        {
+          situations.map((item) => (
+            <div class="py-6 first:pt-0">
+              <p class="font-display text-lg font-semibold text-ink-900 sm:text-xl">
+                {item.situation}
+              </p>
+              <p class="mt-2 max-w-md text-sm leading-relaxed text-manila-700">{item.answer}</p>
+              <a
+                href={item.href}
+                class="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
+              >
+                {item.linkLabel} →
+              </a>
             </div>
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">DECOC</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Unidad especializada contra organizaciones criminales
-              </dd>
-            </div>
-            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-              <dt class="folio-kicker text-sello-600">UNAULA</dt>
-              <dd class="font-display text-lg font-semibold text-ink-900">
-                Magíster y Especialista en Derecho Procesal Penal
-              </dd>
-            </div>
-          </dl>
-
-          <a
-            href="/perfil"
-            class="mt-8 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
-          >
-            Conocer su trayectoria →
-          </a>
-        </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- ÁREAS DE PRÁCTICA: reemplaza el antiguo índice de páginas del sitio
+       —leía como un itinerario, no como el trabajo de una abogada
+       penalista—. Cada área es una fila que se expande al abrirla
+       (<details> nativo, funciona sin JS), con las mismas esquineras
+       doradas que AreaCard.astro, en formato de lista editorial en vez de
+       la grilla de tarjetas que ya usa /servicios. -->
   <section class="bg-manila-50 py-16 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
-        <div>
-          <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-            Servicios
-          </h2>
-        </div>
-        <a href="/servicios" class="text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600">
+        <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+          Áreas de práctica
+        </h2>
+        <a
+          href="/servicios"
+          class="text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
+        >
           Ver todos los servicios →
         </a>
       </div>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {AREAS.map((area, i) => (
-          <div data-reveal style={`--reveal-delay: ${i * 90}ms`}>
-            <AreaCard area={area} compact />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESO PENAL -->
-  <section class="bg-manila-100 py-16 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <div class="max-w-2xl" data-reveal>
-        <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
-          ¿Cómo funciona un proceso penal en Colombia?
-        </h2>
-        <p class="prose-editorial mt-4">
-          Si te citaron, te capturaron o estás acompañando a alguien que lo vive, lo primero es
-          entender en qué punto del proceso te encuentras.
-        </p>
-      </div>
-
-      <div class="mt-12">
-        <ProcessDiagram surface="manila-100" />
-      </div>
-
-      <a
-        href="/proceso-penal"
-        class="mt-8 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
+      <div
+        class="mt-8 divide-y divide-manila-300 border-t border-manila-300"
+        data-reveal
+        style="--reveal-delay: 80ms"
       >
-        Ver la guía completa del proceso penal&nbsp;→
-      </a>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="bg-manila-50 py-16 sm:py-24">
-    <div class="mx-auto max-w-3xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
-        Antes de escribir
-      </h2>
-      <div class="mt-8" data-reveal style="--reveal-delay: 100ms">
-        <FAQ items={faqs} />
+        {
+          AREAS.map((area) => (
+            <details class="area-row group py-6">
+              <summary class="relative -mx-4 -my-2 flex cursor-pointer list-none items-center justify-between gap-6 rounded-none px-4 py-2 marker:content-none transition-[background-color,box-shadow] duration-200 group-hover:bg-manila-100 group-hover:shadow-gold sm:-mx-6 sm:px-6">
+                <span
+                  class="pointer-events-none absolute -left-3 -top-3 h-4 w-4 border-l border-t border-sello-500 opacity-0 transition-opacity group-hover:opacity-100 group-open:opacity-100"
+                  aria-hidden="true"
+                />
+                <span
+                  class="pointer-events-none absolute -bottom-3 -right-3 h-4 w-4 border-b border-r border-sello-500 opacity-0 transition-opacity group-hover:opacity-100 group-open:opacity-100"
+                  aria-hidden="true"
+                />
+                <span class="font-display text-2xl font-semibold text-ink-900 transition-colors group-hover:text-sello-700 sm:text-3xl">
+                  {area.title}
+                </span>
+                <span
+                  class="shrink-0 text-xl font-light text-sello-600 transition-transform group-open:rotate-45"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </summary>
+              <div class="mt-4 max-w-xl">
+                <p class="text-sm leading-relaxed text-manila-700 sm:text-base">{area.short}</p>
+                <a
+                  href={`/servicios/${area.slug}`}
+                  class="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
+                >
+                  Ver el servicio completo →
+                </a>
+              </div>
+            </details>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- CIERRE DE CONTACTO -->
   <section class="bg-manila-100 py-16 sm:py-20">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
@@ -369,11 +273,10 @@ const faqs = [
     >
       <div>
         <h2 class="font-display text-2xl font-semibold text-ink-900 sm:text-3xl">
-          ¿Necesitas orientación ahora mismo?
+          Cuéntale tu situación a Daniela
         </h2>
         <p class="mt-2 max-w-lg text-manila-700">
-          Cuanto antes hables con tu defensa, más opciones reales tienes. Escribe y cuéntale a
-          Daniela tu situación.
+          Cuanto antes tengas asesoría, más opciones reales podrás evaluar.
         </p>
       </div>
       <div class="flex flex-col gap-3 sm:flex-row">

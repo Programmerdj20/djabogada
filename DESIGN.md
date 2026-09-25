@@ -122,10 +122,12 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 - **Placas fotográficas** (`PageHero.astro` con `image`): en páginas internas la fotografía entra
   enmarcada — borde `sello-400` sobre panel marfil, filete interior `sello-300` y `shadow-gold`.
   El hero de home (`index.astro`) usa dos composiciones distintas por viewport, no una sola
-  reescalada:
+  reescalada, y no lleva ningún texto —ni titular, ni rótulo, ni párrafo— por instrucción
+  explícita de la clienta: el único texto es un H1 oculto (`sr-only`) para SEO/accesibilidad.
   - **Por debajo de `lg`:** la foto (`daniela-hero.webp`) llena la pantalla completa (alto real de
-    viewport menos el header); el titular, el titular persuasivo, el párrafo y los botones se leen
-    abajo, sobre un velo marfil que sube desde el borde inferior.
+    viewport menos el header); sobre un velo marfil que sube desde el borde inferior, los únicos
+    elementos visibles son el filete de oro de apertura y los dos accesos de contacto
+    (`.btn-gold` / `.btn-outline-gold`).
   - **Desde `lg`:** **placa de retrato** — la foto completa en vertical (`daniela-hero-plate.webp`,
     una versión con corrección de color cálida: la pared gris de oficina se lee marfil, no gris),
     formato `2/3`, de canto nítido, sin degradado, dentro de un panel con un filete de oro
@@ -133,36 +135,72 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     arriba-izquierda del marco real). El marco real de esta placa usa `border-ink-900/10` +
     `shadow-panel` — **no** el trío `sello-400`/`sello-300`/`shadow-gold` que usan las placas de
     página interna descritas más abajo; es la única placa del sitio con este tratamiento más
-    sutil. El texto vive en una columna a la izquierda; su titular persuasivo invade apenas el
-    borde de la placa con un margen negativo.
+    sutil, y el único lugar del sitio donde aparece el passe-partout desplazado. La composición es
+    una grilla asimétrica de 12 columnas: la placa ocupa las columnas 3–9 (más ancha que una
+    simple mitad de página) y los dos accesos de contacto bajan en columna propia en las columnas
+    10–12, alineados al centro vertical de la placa mediante `items-center`; las columnas 1–2
+    quedan vacías a propósito, como el único margen deliberado de la composición — no vacíos
+    dispersos en varios lugares.
   - **Decisión registrada:** la primera idea para `lg` fue un recorte de la fotógrafa sin el fondo
     de oficina, hecho en local con `rembg` (`birefnet-portrait`). El resultado dejaba un resto
     gris del brazo de la silla pegado a la manga, sin un umbral de color limpio que lo separara del
     blazer en sombra — no pasó el control de calidad y se descartó en vez de publicarse a medias;
     la placa de retrato fue el reemplazo, no una alternativa débil aceptada por defecto.
-  - En ambos casos: el titular es "Daniela Jaramillo" en Playfair Display mayúsculas más el rótulo
-    "Abogada penalista" en Montserrat trackeado (sin sufijo de ciudad — ver regla de memoria del
-    proyecto `no_repeated_city_suffix`; la ciudad va sólo en meta/alt/body), con un filete de oro
-    vertical que resuelve la barra "|" pedida por la clienta. Debajo, el titular persuasivo de
-    tesis (grande, Playfair) y el párrafo de credenciales van como texto, no como H1 — nunca un
-    overlay negro ni texto sobre la imagen desnuda, nunca la promesa de un resultado ("ganamos tu
-    caso"), que las normas de publicidad para abogados en Colombia restringen.
+  - **Corrección registrada (rediseño del home sin mensaje):** una primera vuelta de este
+    rediseño, al quitar el texto del hero, aplanó también la fotografía a una sola composición a
+    pantalla completa en todo tamaño de pantalla, sin marco ni passe-partout. El usuario la
+    rechazó de forma enfática: "estás eliminando todo el glamour de la doctora, su presencia, la
+    experiencia y la confianza". La composición vigente restaura literalmente la placa enmarcada
+    que el sitio ya tenía aprobada — quitar el texto no significa rediseñar la fotografía.
+  - **Elevación registrada (más presencia, cero texto nuevo):** el usuario pidió después "mucho
+    mejor" que la placa centrada con botones en fila, aportando una referencia visual (plantilla
+    legal "Clario") explícitamente para nivel de oficio, no para replicar — sin fondo oscuro, sin
+    su titular ni badge. La mejora se resolvió enteramente en composición: la placa creció y se
+    desplazó a la grilla asimétrica de 12 columnas descrita arriba, con los accesos de contacto en
+    su propia columna. Una primera versión de esa asimetría dejaba vacíos dispersos (margen
+    izquierdo, hueco entre placa y botones, margen derecho) que se sentían incompletos, no
+    dramáticos; se corrigió para que solo quede un vacío deliberado, a la izquierda.
   Los encuadres (`object-position` y `aspect-ratio`) de las placas internas se eligen para excluir
   rótulos ajenos: el nombre de caso impreso en `daniela-expediente` queda fuera de cuadro.
-  - **Sección de asimetría del home** ("Antes de defender…"): segunda placa de retrato, en espejo
-    del hero — aquí la foto (`daniela-defensa.webp`, misma corrección cálida de pared que
-    `daniela-hero-plate`) va a la **izquierda** en `lg` y queda `sticky` mientras se lee el texto a
-    la derecha, para no repetir la composición del hero. Formato `4/5`, sin passe-partout
-    desplazado (ese motivo es exclusivo del hero); mismo marco `sello-400` + filete interior
-    `sello-300` + `shadow-gold` que el resto de placas internas.
+  - **¿Qué te está pasando? (home):** el home ya no tiene una segunda placa de retrato. La antigua
+    "sección de asimetría" ("Antes de defender…": titular, trayectoria en la Fiscalía en tres
+    párrafos y una ficha de fechas, con una foto sticky de `daniela-defensa.webp` en espejo del
+    hero) se eliminó por completo — esa historia vive solo en `/perfil`, y repetir su composición
+    de foto-sticky-con-columna en el home, aunque fuera con texto distinto, fue rechazado
+    explícitamente por el usuario ("me repetiste el bloque con otro texto pero la misma imagen").
+    En su lugar, un enrutador de cuatro situaciones reales (citación/indagatoria, captura, víctima
+    o familia, empresa expuesta a criminalidad organizada) se presenta como índice de texto
+    plano, sin foto ni columna sticky: cada situación lleva una respuesta de una línea y un
+    enlace a la página que la resuelve, en el mismo lenguaje estructural (`divide-y`/`border-t`,
+    sin tarjetas) que "Áreas de práctica" descrita abajo. Fuera de estas respuestas factuales, el
+    home no lleva ningún texto de tono editorial o persuasivo: una frase de pausa ("Conozco por
+    dentro cómo se construye…") se probó en una sección aparte y se eliminó por completo al ser
+    justamente el "mensaje" que la clienta había pedido no incluir en ninguna parte del home, no
+    solo en el hero.
+  - **Áreas de práctica (home):** reemplaza un primer cierre de página que era un índice de las
+    cuatro pestañas del sitio (Perfil/Servicios/Proceso penal/Contacto) — el usuario lo describió
+    como "un plan turístico, no una abogada penalista", con la misma referencia "Clario" citada
+    arriba (su lista de áreas de derecho con mucho peso visual, nunca replicada literalmente: sin
+    fondo oscuro, sin el grafismo decorativo de balanza). El cierre ahora presenta las cuatro
+    áreas reales de `AREAS` (`src/lib/site.ts`) como filas `<details>`/`<summary>` — no tarjetas:
+    cada fila muestra el nombre del área en Playfair Display grande y, al abrirse (clic o teclado,
+    nativo, funciona sin JS), revela `area.short` y un enlace a `/servicios/{slug}`. Reutiliza el
+    lenguaje de esquineras doradas ya establecido en `AreaCard.astro` (`opacity-0` →
+    `opacity-100`), mostrándolas tanto en hover como al abrir la fila; el `<summary>` gana además
+    un fondo `manila-100` y `shadow-gold` en hover —el mismo peso material que `AreaCard.astro` ya
+    da a este contenido en `/servicios`, para que la lista lea con autoridad antes de abrirse, no
+    solo después—. Acepta deliberadamente repetir contenido que también vive en `/servicios`: el
+    usuario priorizó la autoridad profesional del cierre del home sobre evitar esa repetición.
   - **Perfil (`perfil.astro`):** hero propio, no `PageHero` — comparte la gramática de placa
     (`sello-400` + filete interior `sello-300` + `shadow-gold`, `hero-rise`/`hero-settle`) pero sin
-    el passe-partout desplazado del home. La foto (`daniela-perfil.webp`, retrato de oficina con
-    la misma corrección cálida de pared) va en formato `2/3` — su relación de aspecto nativa, sin
-    recorte — a la derecha en `lg` y arriba del texto en móvil (`order-1`/`order-2` invertido entre
-    breakpoints, no una sola composición reescalada). El H1 sigue el mismo patrón que el home:
-    "Daniela Jaramillo" en Playfair Display más el rótulo "Abogada penalista" (sin sufijo de
-    ciudad, la ciudad va sólo en meta/alt/body) en Montserrat trackeado tras el filete vertical.
+    el passe-partout desplazado —ese motivo es exclusivo del hero de home—. La foto
+    (`daniela-perfil.webp`, retrato de oficina con la misma corrección
+    cálida de pared) va en formato `2/3` — su relación de aspecto nativa, sin recorte — a la
+    derecha en `lg` y arriba del texto en móvil (`order-1`/`order-2` invertido entre breakpoints,
+    no una sola composición reescalada). El H1 es visible (a diferencia del hero del home, oculto
+    por instrucción de la clienta): "Daniela Jaramillo" en Playfair Display más el rótulo "Abogada
+    penalista" (sin sufijo de ciudad, la ciudad va sólo en meta/alt/body) en Montserrat trackeado
+    tras el filete vertical.
     Debajo del hero: la cita como divisor editorial da paso a una carta de tres párrafos en
     primera persona (`.prose-editorial`, texto literal entregado por la clienta), seguida de la
     ficha fusionada de formación y trayectoria en dos columnas — ambos patrones descritos abajo. El
@@ -275,9 +313,12 @@ y decoración, nunca para texto — se usa `manila-700` como piso de texto secun
 `.prose-editorial blockquote::before` (`global.css`), y en los `block-label`/`folio-kicker` nuevos
 de esa página. El mismo fix se aplicó en el rediseño de `contacto.astro` (`block-label` de
 "Canales directos" y "Antes de escribir" a `sello-700`). El patrón `text-sello-600` sigue sin
-corregir como texto estático en `index.astro` (`folio-kicker` de la ficha de trayectoria),
-`proceso-penal.astro` (numeral del índice de etapas), `AreaDetail.astro` (`block-label`) y
-`FAQ.astro` (numeral `P.0X`) — deuda de contraste pre-existente, no tocada en esta revisión.
+corregir como texto estático en `proceso-penal.astro` (numeral del índice de etapas),
+`AreaDetail.astro` (`block-label`) y `FAQ.astro` (numeral `P.0X`) — deuda de contraste
+pre-existente, no tocada en esta revisión. La ficha de trayectoria de `index.astro` que tenía
+este mismo patrón se eliminó junto con el resto de la sección de asimetría del home; el "+" de
+`FAQ.astro` y del nuevo `.area-row` de "Áreas de práctica" también usan `sello-600`, pero como
+glifo decorativo (no texto), donde el piso de contraste no textual de WCAG (3:1) sí se cumple.
 
 ## Qué preserva un futuro cambio
 
