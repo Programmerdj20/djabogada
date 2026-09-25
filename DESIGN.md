@@ -134,8 +134,7 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     overlay negro ni texto sobre la imagen desnuda, nunca la promesa de un resultado ("ganamos tu
     caso"), que las normas de publicidad para abogados en Colombia restringen.
   Los encuadres (`object-position` y `aspect-ratio`) de las placas internas se eligen para excluir
-  rótulos ajenos: el nombre de caso impreso en `daniela-expediente` y el escudo del Congreso en
-  `daniela-juicio` quedan fuera de cuadro.
+  rótulos ajenos: el nombre de caso impreso en `daniela-expediente` queda fuera de cuadro.
   - **Sección de asimetría del home** ("Antes de defender…"): segunda placa de retrato, en espejo
     del hero — aquí la foto (`daniela-defensa.webp`, misma corrección cálida de pared que
     `daniela-hero-plate`) va a la **izquierda** en `lg` y queda `sticky` mientras se lee el texto a
@@ -150,6 +149,15 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     breakpoints, no una sola composición reescalada). El H1 sigue el mismo patrón que el home:
     "Daniela Jaramillo" en Playfair Display más "Abogada penalista en Medellín" en Montserrat
     trackeado tras el filete vertical.
+  - **Proceso penal (`proceso-penal.astro`):** hero propio, no `PageHero` — misma gramática de placa
+    que perfil, pero en espejo: la foto (`daniela-proceso.webp`, retrato de escritorio con la misma
+    corrección cálida de pared) va a la **izquierda** en `lg` y el texto a la derecha; en móvil la
+    placa va arriba, igual que en el resto de heros internos. Formato `4/5`, sin passe-partout
+    desplazado. El H1 es el título llano de la página ("Cómo funciona un proceso penal en
+    Colombia"), no el patrón de identidad de home/perfil. Bajo el lead, un índice real de las
+    cuatro etapas (`folio-kicker` con el numeral de `PROCESS_STAGES` + título) enlaza por ancla a su
+    nodo correspondiente en `ProcessDiagram` más abajo en la página — nunca texto decorativo. La
+    misma foto se reutiliza en `servicios/defensa-penal.astro`.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.

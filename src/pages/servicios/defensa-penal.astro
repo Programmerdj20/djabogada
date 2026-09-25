@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import AreaDetail from "@/components/AreaDetail.astro";
-import juicio from "@/assets/images/daniela-juicio.webp";
+import proceso from "@/assets/images/daniela-proceso.webp";
 import { AREAS } from "@/lib/site";
 
 const area = AREAS.find((a) => a.slug === "defensa-penal")!;
@@ -14,9 +14,10 @@ const area = AREAS.find((a) => a.slug === "defensa-penal")!;
 >
   <AreaDetail
     area={area}
-    image={juicio}
-    imageAlt="Daniela Jaramillo de pie en una sala de audiencias, durante un juicio oral"
-    imageAspect="1.44 / 1"
+    image={proceso}
+    imageAlt="Daniela Jaramillo en su escritorio de oficina"
+    imageAspect="4 / 5"
+    imagePosition="center 30%"
     lead="Desde la primera citación o captura hasta el juicio oral, la defensa técnica define qué tan reales son tus opciones. Cuanto antes empiece, más se puede hacer."
     narrative={[
       "Ser investigado o procesado penalmente es, para la mayoría de personas, la situación más incierta que van a enfrentar. Las decisiones que se toman en los primeros días — qué se dice, ante quién, y con qué estrategia — suelen pesar más que cualquier otra etapa posterior del proceso.",

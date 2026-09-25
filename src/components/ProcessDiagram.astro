@@ -19,8 +19,9 @@ const last = PROCESS_STAGES.length - 1;
   {
     PROCESS_STAGES.map((stage, i) => (
       <li
+        id={`etapa-${stage.number}`}
         class:list={[
-          "flex gap-x-5 pb-10 last:pb-0 lg:block lg:pb-0 lg:pr-4",
+          "flex scroll-mt-24 gap-x-5 pb-10 last:pb-0 lg:block lg:pb-0 lg:pr-4",
           i < last && "lg:relative lg:after:absolute lg:after:left-10 lg:after:top-5 lg:after:h-px lg:after:w-[calc(100%-0.5rem)] lg:after:bg-sello-400 lg:after:content-['']",
         ]}
         data-reveal

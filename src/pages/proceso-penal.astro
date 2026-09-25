@@ -1,11 +1,11 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/PageHero.astro";
 import ProcessDiagram from "@/components/ProcessDiagram.astro";
 import FAQ from "@/components/FAQ.astro";
 import JsonLd from "@/components/JsonLd.astro";
-import juicio from "@/assets/images/daniela-juicio.webp";
-import { SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
+import proceso from "@/assets/images/daniela-proceso.webp";
+import { PROCESS_STAGES, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site";
 
 const faqs = [
   {
@@ -46,31 +46,99 @@ const faqs = [
   description="Cómo funciona el proceso penal acusatorio en Colombia: indagación, imputación, acusación y juicio oral, explicado en lenguaje claro por una abogada penalista en Medellín."
   path="/proceso-penal"
 >
-  <PageHero
-    title="Cómo funciona un proceso penal en Colombia"
-    lead="Si te citaron, te capturaron, o estás acompañando a alguien que lo vive, esto explica en qué punto del proceso te encuentras y qué significa realmente cada etapa."
-    image={juicio}
-    imageAlt="Daniela Jaramillo de pie en una sala de audiencias, durante un juicio oral"
-    imageAspect="1.44 / 1"
-  />
-
-  <section class="bg-manila-50 py-16 sm:py-20">
+  <!-- HERO: misma gramática de placa que perfil (marco sello-400 + filete
+       interior sello-300 + shadow-gold, hero-rise/hero-settle), en espejo —
+       la placa va a la izquierda en lg, el texto a la derecha. Bajo el lead,
+       un índice real de las cuatro etapas (ancla a su nodo en ProcessDiagram
+       más abajo) para resolver "¿en qué punto estoy?" sin scroll. -->
+  <section class="border-b border-manila-300 bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-5 sm:px-8">
-      <ProcessDiagram />
-    </div>
-  </section>
+      <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
+        <div class="hero-rise relative mx-auto w-full max-w-xs lg:order-1 lg:mx-0 lg:max-w-none" style="--rise-delay: 130ms">
+          <div class="hero-settle relative border border-sello-400 bg-manila-50 p-3 shadow-gold sm:p-4">
+            <div class="border border-sello-300 p-1">
+              <Picture
+                src={proceso}
+                alt="Daniela Jaramillo en su escritorio de oficina"
+                formats={["avif", "webp"]}
+                fallbackFormat="webp"
+                widths={[420, 560, 720, 960]}
+                sizes="(min-width: 1024px) 38vw, (min-width: 640px) 58vw, 82vw"
+                class="w-full object-cover"
+                style="aspect-ratio: 4 / 5; object-position: center 22%;"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
 
-  <section class="bg-manila-100 py-16 sm:py-24">
-    <div class="mx-auto max-w-3xl px-5 sm:px-8">
-      <h2 class="font-display text-3xl font-semibold text-ink-900">
-        Dudas comunes sobre el proceso
-      </h2>
-      <div class="mt-8">
-        <FAQ items={faqs} />
+        <div class="lg:order-2">
+          <span class="rule-gold rule-draw block w-24" aria-hidden="true"></span>
+          <h1
+            class="hero-rise mt-6 max-w-xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl"
+            style="--rise-delay: 90ms"
+          >
+            Cómo funciona un proceso penal en Colombia
+          </h1>
+          <p class="hero-rise mt-5 max-w-xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 170ms">
+            Si te citaron, te capturaron, o estás acompañando a alguien que lo vive, esto explica en qué punto del
+            proceso te encuentras y qué significa realmente cada etapa.
+          </p>
+
+          <nav class="hero-rise mt-9" style="--rise-delay: 250ms" aria-label="Etapas del proceso">
+            <ol class="divide-y divide-sello-400 border-t border-sello-400">
+              {
+                PROCESS_STAGES.map((stage) => (
+                  <li>
+                    <a
+                      href={`#etapa-${stage.number}`}
+                      class="flex items-baseline justify-between gap-x-6 gap-y-1 py-4 no-underline transition-colors hover:text-sello-700"
+                    >
+                      <span class="flex items-baseline gap-4">
+                        <span class="folio-kicker text-sello-600">{stage.number}</span>
+                        <span class="font-display text-lg font-semibold text-ink-900">{stage.title}</span>
+                      </span>
+                      <span class="text-sello-600" aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ETAPAS -->
+  <section class="bg-manila-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <h2 class="font-display text-3xl font-semibold text-ink-900" data-reveal>Las etapas del proceso</h2>
+      <div class="mt-10">
+        <ProcessDiagram />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-manila-100 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="lg:grid lg:grid-cols-[1fr_1.5fr] lg:items-start lg:gap-16">
+        <h2 class="font-display text-3xl font-semibold text-ink-900 lg:sticky lg:top-28" data-reveal>
+          Dudas comunes sobre el proceso
+        </h2>
+        <div class="mt-8 lg:mt-0">
+          <FAQ items={faqs} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
   <section class="bg-manila-50 py-14 sm:py-16">
     <div
       class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
