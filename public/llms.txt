@@ -7,10 +7,10 @@
 
 ## Servicios
 
-- Defensa y litigio penal: /servicios/defensa-penal
-- Delitos de especial complejidad (criminalidad organizada): /servicios/criminalidad-organizada
-- Asesoría penal estratégica: /servicios/asesoria-penal-estrategica
-- Representación de víctimas: /servicios/representacion-de-victimas
+- Defensa y litigio penal: /servicios#area-defensa-penal
+- Delitos de especial complejidad (criminalidad organizada): /servicios#area-criminalidad-organizada
+- Asesoría penal estratégica: /servicios#area-asesoria-penal-estrategica
+- Representación de víctimas: /servicios#area-representacion-de-victimas
 
 ## Páginas clave
 

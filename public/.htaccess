@@ -16,14 +16,13 @@
   # /areas -> /servicios (ruta renombrada). Preserva lo que Google ya haya
   # indexado o cualquier enlace guardado a las URLs viejas.
   RewriteRule ^areas$ /servicios [L,R=301]
-  RewriteRule ^areas/(.*)$ /servicios/$1 [L,R=301]
+  RewriteRule ^areas/(.*)$ /servicios [L,R=301]
+
+  # Las páginas individuales de /servicios/<area> ya no existen: cualquier
+  # URL vieja o indexada redirige al índice de servicios.
+  RewriteRule ^servicios/(.+)$ /servicios [L,R=301]
 
   # Servir <ruta>.html de forma limpia (salida estática de Astro, format: 'file').
-  # OJO: no excluimos directorios (!-d) a propósito. Páginas con subpáginas
-  # (p.ej. /servicios.html + /servicios/defensa-penal.html) generan una carpeta
-  # "servicios" junto al archivo "servicios.html"; si excluyéramos directorios,
-  # Apache redirigiría /servicios -> /servicios/ y devolvería 403 al no haber
-  # index.html ahí.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]

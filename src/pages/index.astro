@@ -28,21 +28,21 @@ const situations = [
     situation: "Te capturaron",
     answer:
       "Es el momento donde la defensa técnica es más urgente: dentro de las 36 horas siguientes se define la legalización y la posible medida de aseguramiento.",
-    href: "/servicios/defensa-penal",
+    href: "/servicios#area-defensa-penal",
     linkLabel: "Defensa penal",
   },
   {
     situation: "Eres víctima o acompañas a tu familia",
     answer:
       "Puedes ser representada dentro de un proceso penal ya en curso, o para iniciar uno.",
-    href: "/servicios/representacion-de-victimas",
+    href: "/servicios#area-representacion-de-victimas",
     linkLabel: "Representación de víctimas",
   },
   {
     situation: "Tu empresa está expuesta a criminalidad organizada",
     answer:
       "Un terreno más técnico y de mayor exposición reputacional, que exige análisis estratégico desde el inicio.",
-    href: "/servicios/criminalidad-organizada",
+    href: "/servicios#area-criminalidad-organizada",
     linkLabel: "Delitos de especial complejidad",
   },
 ];
@@ -252,7 +252,7 @@ const situations = [
               <div class="mt-4 max-w-xl">
                 <p class="text-sm leading-relaxed text-manila-700 sm:text-base">{area.short}</p>
                 <a
-                  href={`/servicios/${area.slug}`}
+                  href={`/servicios#area-${area.slug}`}
                   class="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
                 >
                   Ver el servicio completo →
