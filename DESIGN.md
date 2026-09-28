@@ -234,43 +234,41 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     proceso-penal. El H1 es el título llano de la página ("Agenda tu consulta"), no el patrón de
     identidad de home/perfil.
   - **Servicios (`servicios/index.astro`):** hero propio, no `PageHero` (que sí sigue vigente en
-    las páginas legales) — mismo espejo que contacto: texto a la izquierda, placa `4/5` de
-    `daniela-defensa.webp` a la derecha en `lg` (arriba en móvil), sin passe-partout desplazado.
-    El H1 y el lead son el copy original de la página. El índice de las cuatro áreas **no vive en
-    el hero** (quedaba duplicado con el índice fijo de la sección siguiente, corregido tras
-    feedback explícito del cliente — "no ser redundante teniendo en una section una cosa y en
-    otra section lo mismo solo que de otra forma"): en su lugar, el hero lleva los dos accesos de
-    contacto (`btn-gold` WhatsApp + `btn-outline-gold` formulario), para que la página permita
-    actuar desde el primer viewport. Reemplaza el hero original (`PageHero` con
-    `daniela-expediente.webp` en 2.4/1); `daniela-expediente` ya no se usa en ninguna página del
-    sitio tras eliminarse `servicios/criminalidad-organizada.astro` y el resto de páginas
-    individuales de área (commit `56791d2`).
-  - **Índice fijo + fichas de servicio (`servicios/index.astro`, bajo el hero):** estructura
-    elegida entre tres derivadas por el concept-seed de la skill a nivel de superficie (mapa por
-    momento del proceso, índice lateral fijo, grilla 2×2), a partir de que la primera versión
-    (grilla de cuatro `AreaCard`, luego un pliego de cláusulas sin CTA) no dejaba ninguna acción
-    posible — feedback explícito: "no veo un CTA donde pueda solicitar el servicio". En `lg+`, una
-    grilla de 12 columnas: columna izquierda (`col-span-3`, `position: sticky`, `top-28` — misma
-    cota que `scroll-mt-28` ya usado en el sitio para compensar el header sticky) con los cuatro
-    servicios como enlaces `.index-link` (folio-kicker numerado + título, filete izquierdo en oro),
-    el activo marcado por un scrollspy real (`IntersectionObserver` sobre cada
+    las páginas legales) — mismo espejo que contacto: placa `4/5` de `daniela-defensa.webp` a la
+    derecha en `lg` (arriba en móvil), sin passe-partout desplazado. **Sin H1 visible, sin lead y
+    sin botones** — el hero es únicamente el índice de las cuatro áreas (movido aquí desde la
+    sección de fichas; ver más abajo). El H1 real es un `sr-only` ("Servicios de defensa penal de
+    Daniela Jaramillo"), igual patrón que el hero del home, para no dejar la página sin encabezado
+    accesible. Reemplaza una vuelta anterior en la que el índice **no vivía en el hero** (quedaba
+    duplicado con el índice fijo de la sección siguiente, corregido tras feedback explícito del
+    cliente — "no ser redundante teniendo en una section una cosa y en otra section lo mismo solo
+    que de otra forma") y el hero llevaba en su lugar título, lead y los dos accesos de contacto:
+    el cliente pidió después revertir eso también y dejar el hero como el índice puro, sin
+    duplicarlo ni añadir texto de venta. Los dos accesos de contacto siguen presentes en el cierre
+    "Cómo empieza" de la página. Reemplaza el hero original (`PageHero` con `daniela-expediente.webp`
+    en 2.4/1); `daniela-expediente` ya no se usa en ninguna página del sitio tras eliminarse
+    `servicios/criminalidad-organizada.astro` y el resto de páginas individuales de área (commit
+    `56791d2`).
+  - **Índice del hero + fichas de servicio (`servicios/index.astro`):** estructura elegida entre
+    tres derivadas por el concept-seed de la skill a nivel de superficie (mapa por momento del
+    proceso, índice lateral fijo, grilla 2×2), a partir de que la primera versión (grilla de cuatro
+    `AreaCard`, luego un pliego de cláusulas sin CTA) no dejaba ninguna acción posible — feedback
+    explícito: "no veo un CTA donde pueda solicitar el servicio". El índice de las cuatro áreas
+    vive ahora en el hero (no en la sección de fichas, ver arriba): columna vertical única en todos
+    los breakpoints —ya no una barra horizontal `sticky` en móvil— con los cuatro servicios como
+    enlaces `.index-link` (folio-kicker numerado + título en Playfair Display, filete izquierdo en
+    oro), el activo marcado por un scrollspy real (`IntersectionObserver` sobre cada
     `[data-service-section]`, script inline en la propia página — mejora progresiva: sin JS los
-    enlaces siguen funcionando como anclas simples, solo sin el marcador de "estás aquí"). Por
-    debajo de `lg`, el mismo `<nav>` se convierte en una barra horizontal `sticky` bajo el header
-    (filete inferior en vez de izquierdo, ver `.index-link` en `global.css`). A la derecha
-    (`col-span-9`), cada servicio es una ficha completa: numeral grande en Playfair Display +
-    título (`h2`, jerarquía directa bajo el H1) + la `description` **literal** de `AREAS` (intacta,
-    sin resumen ni viñetas derivadas) + un bloque `.block-label` "Cuándo acudir" con
-    `AREAS[].whenToSeek` (3–4 situaciones concretas, redactadas a partir de la propia descripción
-    de cada área — copy autorado, aprobado por Daniela) + los dos accesos de contacto: `btn-gold`
-    de WhatsApp con un mensaje pre-escrito que nombra el servicio, y un enlace de texto a
-    `/contacto?area={slug}`, que `ContactForm.astro` lee para preseleccionar el campo "Área" (nunca
-    sobrescribe con un valor que no exista entre las opciones). Cada ficha conserva su ancla
-    `id="area-{slug}"` —usada por el índice propio, por el enrutador de "¿Qué te está pasando?" del
-    home y por el acceso directo a servicios de `perfil.astro`. Cierra la página una sección "Cómo
-    empieza" (tres pasos, también copy autorado y aprobado) con el mismo CTA final de doble acceso
-    que usa el resto del sitio. `AreaCard.astro` queda sin uso en ninguna página tras este cambio;
-    se conserva en el repo sin eliminarse.
+    enlaces siguen funcionando como anclas simples, solo sin el marcador de "estás aquí"). La
+    sección de fichas, debajo del hero, ya no lleva el índice ni la grilla de 12 columnas: es una
+    sola columna (`max-w-3xl`) donde cada servicio es una ficha completa — numeral grande en
+    Playfair Display + título (`h2`) + la `description` **literal** de `AREAS` (intacta, sin
+    resumen ni viñetas derivadas). Cada ficha conserva su ancla `id="area-{slug}"` —usada por el
+    índice del hero, por el enrutador de "¿Qué te está pasando?" del home y por el acceso directo a
+    servicios de `perfil.astro`. Cierra la página una sección "Cómo empieza" (tres pasos, copy
+    autorado y aprobado) con el mismo CTA final de doble acceso que usa el resto del sitio.
+    `AreaCard.astro` queda sin uso en ninguna página tras este cambio; se conserva en el repo sin
+    eliminarse.
 - **Etapas del proceso penal** (`ProcessDiagram.astro`): numerales grandes en Playfair Display
   sobre un filete superior dorado — el número es información real (orden del proceso), nunca
   decorativo.

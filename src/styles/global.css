@@ -661,10 +661,11 @@
 }
 
 @layer components {
-  /* Índice fijo de /servicios: en lg+ una columna vertical (filete a la
-     izquierda), por debajo una barra horizontal bajo el header (filete
-     abajo). `.is-active` la añade el scrollspy (IntersectionObserver) del
-     propio `servicios/index.astro` — mejora progresiva: sin JS los
+  /* Índice de áreas del hero de /servicios: columna vertical, filete a la
+     izquierda, igual en todos los breakpoints (ya no es una barra
+     horizontal sticky bajo el header — vive en el hero, no en la sección
+     de fichas). `.is-active` la añade el scrollspy (IntersectionObserver)
+     del propio `servicios/index.astro` — mejora progresiva: sin JS los
      enlaces funcionan igual, solo sin el marcador de "estás aquí". */
   .index-link {
     position: relative;
@@ -692,15 +693,5 @@
   .index-link.is-active .index-num,
   .index-link.is-active .index-title {
     color: var(--color-sello-700);
-  }
-  @media (max-width: 63.9375rem) {
-    .index-link {
-      border-left: none;
-      border-bottom: 2px solid transparent;
-      padding: 0.5rem 0.05rem;
-    }
-    .index-link.is-active {
-      border-bottom-color: var(--color-sello-500);
-    }
   }
 }
