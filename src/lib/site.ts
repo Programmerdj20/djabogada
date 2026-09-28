@@ -64,8 +64,7 @@ export type Credential = {
   detail?: string;
 };
 
-// As written by Daniela for perfil.astro. No years beyond what she gave
-// (only the EAFIT title date), no T.P., no idiomas, no diplomados.
+// As written by Daniela for perfil.astro. No T.P., no idiomas, no diplomados.
 export const CREDENTIALS: Credential[] = [
   {
     title: "Magíster en Derecho Procesal Penal y Teoría del Delito",
@@ -78,7 +77,6 @@ export const CREDENTIALS: Credential[] = [
   {
     title: "Abogada",
     org: "Universidad EAFIT",
-    detail: "Título profesional obtenido en marzo de 2023.",
   },
 ];
 
