@@ -80,11 +80,10 @@ const faqs = [
             class="hero-rise mt-6 max-w-xl font-display text-4xl font-semibold leading-[1.08] text-ink-900 sm:text-5xl"
             style="--rise-delay: 90ms"
           >
-            Cómo funciona un proceso penal en Colombia
+            Identifica en qué etapa se encuentra tu proceso penal
           </h1>
           <p class="hero-rise mt-5 max-w-xl text-lg leading-relaxed text-manila-700" style="--rise-delay: 170ms">
-            Si te citaron, te capturaron, o estás acompañando a alguien que lo vive, esto explica en qué punto del
-            proceso te encuentras y qué significa realmente cada etapa.
+            Conoce en qué punto se encuentra tu proceso, qué significa tu situación jurídica y cuáles son las implicaciones.
           </p>
 
           <nav class="hero-rise mt-9" style="--rise-delay: 250ms" aria-label="Etapas del proceso">
@@ -146,21 +145,26 @@ const faqs = [
     >
       <div>
         <h2 class="font-display text-2xl font-semibold text-ink-900 sm:text-3xl">
-          ¿En qué etapa está tu situación?
+          Cuéntame tu caso
         </h2>
         <p class="mt-2 max-w-lg text-manila-700">
-          Cuéntale a Daniela dónde te encuentras y qué necesitas resolver.
+          Cuanto antes tenga claridad sobre tu situación, más opciones reales podremos evaluar.
         </p>
       </div>
-      <a
-        href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-whatsapp-primary
-        class="btn-gold whitespace-nowrap"
-      >
-        Escribir por WhatsApp
-      </a>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a
+          href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-whatsapp-primary
+          class="btn-gold whitespace-nowrap"
+        >
+          WhatsApp directo
+        </a>
+        <a href="/contacto" class="btn-outline-gold whitespace-nowrap">
+          Formulario de contacto
+        </a>
+      </div>
     </div>
   </section>
 
