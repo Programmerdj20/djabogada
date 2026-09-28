@@ -65,7 +65,7 @@ const situations = [
       víctimas y criminalidad organizada.
     </h1>
 
-    {/* ── Móvil / tablet: foto a pantalla completa ── */}
+    {/* ── Móvil / tablet: foto a pantalla completa, solo imagen y botones ── */}
     <div class="relative h-[calc(100svh-4rem)] min-h-[38rem] overflow-hidden lg:hidden">
       <div class="hero-drift absolute inset-0">
         <Picture
@@ -96,35 +96,69 @@ const situations = [
 
           <div class="hero-rise mt-6 flex gap-3" style="--rise-delay: 200ms">
             <a href="/contacto" class="btn-gold flex-1 !px-4 whitespace-nowrap">
-              Agenda tu consulta
+              Agenda tu cita
             </a>
             <a
               href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
               target="_blank"
               rel="noopener noreferrer"
               data-whatsapp-primary
-              class="btn-outline-gold !px-4 whitespace-nowrap"
+              class="btn-outline-gold flex-1 !px-4 whitespace-nowrap"
             >
-              WhatsApp
+              Cuéntanos
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    {/* ── Desktop: placa de retrato, desplazada del centro ──
-         Composición asimétrica: la placa gana escala y se corre hacia el
-         centro-derecha del contenedor (deja un margen izquierdo mayor que
-         el derecho), y los accesos de contacto bajan en columna junto al
-         marco —ya no una fila apretada— con el vacío entre ambos como
-         parte deliberada de la composición. */}
+    {/* ── Desktop: texto a la izquierda, placa de retrato a la derecha ──
+         Por instrucción explícita de la clienta el hero desktop pasa a
+         llevar título y descripción visibles (revierte la regla previa de
+         "cero texto en el hero"; ver DESIGN.md). El H2 visual convive con
+         el H1 sr-only de arriba (contenido SEO más completo, expuesto solo
+         en móvil por estar en el bloque `lg:hidden`), así que la jerarquía
+         de encabezados de la página sigue teniendo un único H1 expuesto en
+         cada viewport. La placa conserva su marco/passe-partout propio del
+         home, sin cambios de tratamiento fotográfico. */}
     <div class="hidden lg:block">
       <div class="mx-auto max-w-6xl px-8 py-24 xl:py-28">
-        <div class="grid grid-cols-12 items-center gap-6 xl:gap-10">
+        <div class="grid grid-cols-12 items-center gap-10 xl:gap-16">
+          <div class="col-span-6 flex flex-col items-start gap-7">
+            <span class="rule-gold rule-draw block w-14" aria-hidden="true" style="--rise-delay: 0ms"></span>
+
+            <h2
+              class="hero-rise font-display text-4xl font-semibold leading-[1.08] text-ink-900 xl:text-[3.25rem]"
+              style="--rise-delay: 90ms"
+            >
+              Defensa penal estratégica
+            </h2>
+
+            <p class="hero-rise max-w-md text-lg leading-relaxed text-manila-700" style="--rise-delay: 170ms">
+              Acompañamiento y representación jurídica en procesos penales, con un análisis
+              riguroso de cada caso.
+            </p>
+
+            <div class="hero-rise flex flex-nowrap items-center gap-3" style="--rise-delay: 230ms">
+              <a href="/contacto" class="btn-gold !px-6 whitespace-nowrap text-center">
+                Agenda tu cita
+              </a>
+              <a
+                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-whatsapp-primary
+                class="btn-outline-gold !px-6 whitespace-nowrap text-center"
+              >
+                Cuéntanos tu situación
+              </a>
+            </div>
+          </div>
+
           {/* La placa: canto nítido, sin degradado. El filete desplazado
               detrás (passe-partout) es el único motivo decorativo. */}
-          <div class="hero-rise relative col-start-3 col-span-7" style="--rise-delay: 130ms">
-            <div class="absolute -left-5 -top-5 h-full w-full border border-sello-400" aria-hidden="true"></div>
+          <div class="hero-rise relative col-start-7 col-span-6" style="--rise-delay: 130ms">
+            <div class="absolute -right-5 -top-5 h-full w-full border border-sello-400" aria-hidden="true"></div>
             <div class="hero-settle relative aspect-[2/3] overflow-hidden border border-ink-900/10 bg-manila-100 shadow-panel">
               <Picture
                 src={heroPlate}
@@ -138,25 +172,6 @@ const situations = [
                 fetchpriority="high"
                 decoding="async"
               />
-            </div>
-          </div>
-
-          <div class="col-start-10 col-span-3 flex flex-col items-start gap-8">
-            <span class="rule-gold rule-draw block w-14" aria-hidden="true" style="--rise-delay: 0ms"></span>
-
-            <div class="hero-rise flex w-full flex-col gap-4" style="--rise-delay: 200ms">
-              <a href="/contacto" class="btn-gold w-full whitespace-nowrap text-center">
-                Agenda tu consulta
-              </a>
-              <a
-                href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-whatsapp-primary
-                class="btn-outline-gold w-full whitespace-nowrap text-center"
-              >
-                Escribir por WhatsApp
-              </a>
             </div>
           </div>
         </div>

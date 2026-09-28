@@ -122,25 +122,34 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
 - **Placas fotográficas** (`PageHero.astro` con `image`): en páginas internas la fotografía entra
   enmarcada — borde `sello-400` sobre panel marfil, filete interior `sello-300` y `shadow-gold`.
   El hero de home (`index.astro`) usa dos composiciones distintas por viewport, no una sola
-  reescalada, y no lleva ningún texto —ni titular, ni rótulo, ni párrafo— por instrucción
-  explícita de la clienta: el único texto es un H1 oculto (`sr-only`) para SEO/accesibilidad.
-  - **Por debajo de `lg`:** la foto (`daniela-hero.webp`) llena la pantalla completa (alto real de
-    viewport menos el header); sobre un velo marfil que sube desde el borde inferior, los únicos
-    elementos visibles son el filete de oro de apertura y los dos accesos de contacto
-    (`.btn-gold` / `.btn-outline-gold`).
-  - **Desde `lg`:** **placa de retrato** — la foto completa en vertical (`daniela-hero-plate.webp`,
-    una versión con corrección de color cálida: la pared gris de oficina se lee marfil, no gris),
-    formato `2/3`, de canto nítido, sin degradado, dentro de un panel con un filete de oro
-    desplazado detrás a modo de passe-partout (un `div` absoluto con `border-sello-400`, desfasado
-    arriba-izquierda del marco real). El marco real de esta placa usa `border-ink-900/10` +
-    `shadow-panel` — **no** el trío `sello-400`/`sello-300`/`shadow-gold` que usan las placas de
-    página interna descritas más abajo; es la única placa del sitio con este tratamiento más
-    sutil, y el único lugar del sitio donde aparece el passe-partout desplazado. La composición es
-    una grilla asimétrica de 12 columnas: la placa ocupa las columnas 3–9 (más ancha que una
-    simple mitad de página) y los dos accesos de contacto bajan en columna propia en las columnas
-    10–12, alineados al centro vertical de la placa mediante `items-center`; las columnas 1–2
-    quedan vacías a propósito, como el único margen deliberado de la composición — no vacíos
-    dispersos en varios lugares.
+  reescalada.
+  - **Por debajo de `lg`:** sin cambios respecto a la vuelta anterior — la foto
+    (`daniela-hero.webp`) llena la pantalla completa (alto real de viewport menos el header); sobre
+    un velo marfil que sube desde el borde inferior, los únicos elementos visibles son el filete de
+    oro de apertura y los dos accesos de contacto (`.btn-gold` / `.btn-outline-gold`, con copy
+    acortado para el ancho móvil: "Agenda tu cita" / "Cuéntanos"). Sigue sin titular ni párrafo en
+    este viewport — el H1 real (rico en texto SEO) vive `sr-only` dentro de este mismo bloque, y por
+    estar en un contenedor `lg:hidden` es el único H1 expuesto a lectores de pantalla por debajo de
+    `lg`.
+  - **Desde `lg` (revierte "cero texto en el hero"):** por instrucción explícita del cliente, el
+    hero desktop pasa a llevar título y descripción visibles — la primera vez que este hero lleva
+    texto de venta desde que se eliminó por completo en una vuelta anterior (ver historial abajo).
+    Composición de dos columnas, texto a la izquierda y foto a la derecha (antes era una placa
+    centro-derecha sin bloque de texto dedicado): filete de oro, un `<h2>` visual ("Defensa penal
+    estratégica", Playfair Display, mismo tratamiento tipográfico que usa el H1 de `perfil.astro`),
+    un párrafo lead de una frase, y los dos accesos de contacto en fila (`btn-gold` "Agenda tu cita"
+    + `btn-outline-gold` "Cuéntanos tu situación", `!px-6` y `flex-nowrap` para que el par entre en
+    una sola línea en vez de apilarse). El H1 real sigue siendo el `sr-only` con el texto rico de
+    SEO/accesibilidad — vive en el bloque `lg:hidden` de móvil, así que en desktop no hay ningún H1
+    expuesto en el hero; el `<h2>` visual es la única jerarquía de encabezado visible ahí, evitando
+    dos H1 compitiendo en la misma página. La **placa de retrato** (`daniela-hero-plate.webp`, la
+    misma versión con corrección de color cálida ya usada) conserva su tratamiento exclusivo de
+    home: formato `2/3`, canto nítido, sin degradado, con el filete de oro desplazado detrás a modo
+    de passe-partout (ahora arriba-derecha, `border-sello-400`, siguiendo el lado hacia donde se
+    movió la foto) y el marco real en `border-ink-900/10` + `shadow-panel` — **no** el trío
+    `sello-400`/`sello-300`/`shadow-gold` que usan las placas de página interna descritas más abajo.
+    Sigue siendo la única placa del sitio con este tratamiento más sutil y el único lugar con
+    passe-partout desplazado.
   - **Decisión registrada:** la primera idea para `lg` fue un recorte de la fotógrafa sin el fondo
     de oficina, hecho en local con `rembg` (`birefnet-portrait`). El resultado dejaba un resto
     gris del brazo de la silla pegado a la manga, sin un umbral de color limpio que lo separara del
@@ -150,16 +159,20 @@ Autohospedadas vía `@fontsource-variable`, sin Google Fonts en runtime.
     rediseño, al quitar el texto del hero, aplanó también la fotografía a una sola composición a
     pantalla completa en todo tamaño de pantalla, sin marco ni passe-partout. El usuario la
     rechazó de forma enfática: "estás eliminando todo el glamour de la doctora, su presencia, la
-    experiencia y la confianza". La composición vigente restaura literalmente la placa enmarcada
-    que el sitio ya tenía aprobada — quitar el texto no significa rediseñar la fotografía.
+    experiencia y la confianza". La composición vigente en ese momento restauró literalmente la
+    placa enmarcada que el sitio ya tenía aprobada — quitar el texto no significaba rediseñar la
+    fotografía.
   - **Elevación registrada (más presencia, cero texto nuevo):** el usuario pidió después "mucho
     mejor" que la placa centrada con botones en fila, aportando una referencia visual (plantilla
     legal "Clario") explícitamente para nivel de oficio, no para replicar — sin fondo oscuro, sin
-    su titular ni badge. La mejora se resolvió enteramente en composición: la placa creció y se
-    desplazó a la grilla asimétrica de 12 columnas descrita arriba, con los accesos de contacto en
-    su propia columna. Una primera versión de esa asimetría dejaba vacíos dispersos (margen
-    izquierdo, hueco entre placa y botones, margen derecho) que se sentían incompletos, no
-    dramáticos; se corrigió para que solo quede un vacío deliberado, a la izquierda.
+    su titular ni badge. Esa mejora se resolvió enteramente en composición, sin texto: la placa
+    creció a una grilla asimétrica de 12 columnas (columnas 3–9) con los accesos de contacto en su
+    propia columna (10–12) y un margen izquierdo deliberado (columnas 1–2) como único vacío.
+  - **Reversión registrada (texto en el hero, esta vuelta):** el cliente pidió explícitamente
+    revertir la regla de "cero texto en el hero" solo para el viewport desktop —confirmado tras
+    preguntarlo de forma directa, dado lo vinculante y repetido que era el registro anterior—: título
+    y descripción visibles, foto a la derecha en vez de centro-derecha. El móvil no se tocó más allá
+    de acortar el copy de los botones para que el par siga en una fila.
   Los encuadres (`object-position` y `aspect-ratio`) de las placas internas se eligen para excluir
   rótulos ajenos: el nombre de caso impreso en `daniela-expediente` queda fuera de cuadro.
   - **¿Qué te está pasando? (home):** el home ya no tiene una segunda placa de retrato. La antigua

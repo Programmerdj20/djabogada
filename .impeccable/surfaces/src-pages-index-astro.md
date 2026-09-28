@@ -1,5 +1,5 @@
 ---
-version: 1
+version: 2
 slug: "src-pages-index-astro"
 primary_target: "src/pages/index.astro"
 related_targets: []
@@ -7,26 +7,26 @@ related_targets: []
 
 ## Scope
 
-Home (`/`), Persuade. Tercera vuelta: eleva la presencia del hero (sin agregar texto) y reemplaza el cierre «Recorre el sitio» —que el usuario describió como "un plan turístico, no una abogada penalista"— por una presentación de las áreas de práctica reales.
+Home (`/`), Persuade. Cuarta vuelta: revierte "cero texto en el hero" solo en desktop —instrucción explícita del cliente, confirmada tras preguntarlo directamente por lo vinculante que era el registro anterior—. El hero desktop pasa a llevar título y descripción visibles, con la placa de retrato movida a la derecha. Móvil no se toca más allá de acortar el copy de los botones.
 
 ## Audience, job, action, proof, constraints
 
-Persona en Medellín/Antioquia enfrentando una situación penal, en alto estrés, decidiendo rápido a quién escribir. El usuario aportó dos referencias visuales (plantilla "Clario", legal) explícitamente como referencia de nivel de oficio, no para replicar: sin fondo navy/oscuro (viola la regla vinculante de marfil-como-fondo-de-toda-sección), sin el badge/titular de la referencia, sin su grafismo decorativo de balanza. El hero sigue sin ningún texto —instrucción reiterada dos veces por la clienta—; la mejora es enteramente de composición.
+Persona en Medellín/Antioquia enfrentando una situación penal, en alto estrés, decidiendo rápido a quién escribir. El texto nuevo es deliberadamente corto (un título de posicionamiento + una frase de descripción) para no volver a caer en el tono de venta agresivo que el sistema visual rechaza; los dos accesos de contacto siguen siendo la acción principal.
 
 ## Direction contract
 
-**THESIS:** la autoridad se construye con composición y contenido real, no con texto de venta. El hero gana presencia por escala y asimetría deliberada, nunca por una palabra nueva; el cierre de página deja de ser un índice de páginas del sitio y pasa a ser una presentación seria de las áreas de práctica de Daniela.
+**THESIS:** el hero desktop ahora nombra explícitamente lo que ofrece ("Defensa penal estratégica") en vez de dejar que la sola composición cargue con ese trabajo. El resto del sistema —marfil dominante, oro como material, negro solo en texto, Playfair Display + Montserrat— no cambia.
 
-**OWN-WORLD:** el sistema de DESIGN.md sin cambios — marfil dominante, oro como material, negro solo en texto, Playfair Display + Montserrat. El hero conserva la placa enmarcada con passe-partout ya aprobada, pero con una composición asimétrica de 12 columnas: la placa ocupa columnas 3–9 (más grande que antes), los dos accesos de contacto bajan en columna en las columnas 10–12, con un margen izquierdo deliberado (columnas 1–2) como el único vacío de la composición — no vacíos dispersos en varios lugares. El cierre reutiliza el lenguaje de esquineras doradas ya establecido en `AreaCard.astro` (opacity-0 → opacity-100 del corner bracket), aplicado a filas `<details>/<summary>` en vez de tarjetas en grilla — mismo vocabulario, nueva composición de lista editorial.
+**OWN-WORLD:** el sistema de DESIGN.md sin cambios de paleta/tipografía. El hero desktop pasa de "placa centro-derecha + columna de botones" a dos columnas clásicas: texto a la izquierda (filete de oro, `<h2>` visual "Defensa penal estratégica", párrafo lead, dos botones en fila), placa enmarcada a la derecha — la placa conserva su tratamiento exclusivo de home (passe-partout desplazado, ahora hacia arriba-derecha en vez de arriba-izquierda, siguiendo el lado hacia donde se movió la foto). El H1 real sigue `sr-only`, alojado en el bloque `lg:hidden` de móvil, así que sigue habiendo un único H1 expuesto por viewport.
 
-**STORY:** el visitante ve la placa enmarcada, más grande y desplazada, con los accesos de contacto como un bloque propio junto al marco; baja por «¿Qué te está pasando?» (sin cambios); llega a «Áreas de práctica», un índice de cuatro filas con el nombre de cada área en Playfair grande — al abrir una fila (clic o teclado, `<details>` nativo, funciona sin JS) se revela una descripción corta y el enlace al servicio completo, con las esquineras doradas de marca apareciendo como confirmación; cierra con contacto.
+**STORY:** el visitante ve, en desktop, un título y una frase de posicionamiento a la izquierda con los dos accesos de contacto en fila justo debajo, y la placa de retrato a la derecha; en móvil sigue viendo solo la foto a pantalla completa con los mismos dos accesos abajo (copy acortado: "Agenda tu cita" / "Cuéntanos"). El resto de la página (¿Qué te está pasando? y Áreas de práctica) no cambia.
 
-**FIRST VIEWPORT:** en desktop, grid de 12 columnas: placa enmarcada (`daniela-hero-plate.webp`, `aspect-[2/3]`) en columnas 3–9, filete de oro + dos botones en columna en las columnas 10–12, alineados verticalmente al centro de la placa. Sin texto nuevo. Móvil sin cambios respecto a la vuelta anterior (foto a pantalla completa + velo + botones).
+**FIRST VIEWPORT:** en desktop, grid de 12 columnas: columna de texto (col-span-6) con filete + `<h2>` + párrafo + dos botones en fila (`!px-6`, `flex-nowrap`, para que no se apilen); placa enmarcada (`daniela-hero-plate.webp`, `aspect-[2/3]`) en col-start-7 col-span-6. Móvil sin cambios de composición respecto a la vuelta anterior, solo copy de botones acortado.
 
-**FORM:** "Placa asimétrica + índice expandible" — elegida en una ronda de composición de superficie (seed key `90cd6fd3`, tirada `assigned`, índices dealt 4,2,1). Ajustada tras una primera implementación que dejaba demasiado vacío sin resolver a la derecha: se movió la placa y los botones hacia la derecha del contenedor (columnas 3–12 llenas, solo el margen izquierdo vacío) para que la asimetría se sienta deliberada, no incompleta.
+**FORM:** "Texto izquierda + placa derecha" — reutiliza el vocabulario de placa ya aprobado (mismo marco, mismo passe-partout, solo el lado cambia) en vez de introducir un tratamiento fotográfico nuevo.
 
 **FINISH:** unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 
 ## Unresolved decisions
 
-Ninguna. El usuario confirmó ambas decisiones (cero texto en el hero, cierre reemplazado por áreas de práctica aunque repita contenido de /servicios) y eligió la composición en la página de decisión. Build code-led (sin generación de imágenes disponible en la sesión).
+Ninguna. El usuario confirmó explícitamente revertir "cero texto en el hero" solo para desktop, dio el título/descripción/copy de botones literal, y pidió los dos botones en una fila (no en bloque apilado) tras ver la primera versión.
