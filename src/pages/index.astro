@@ -18,32 +18,31 @@ import { AREAS, SITE, whatsappLink, WHATSAPP_DEFAULT_MESSAGE } from "@/lib/site"
 // a qué página ir, sin que el home le repita el contenido de esa página.
 const situations = [
   {
-    situation: "Te citaron a versión libre o indagatoria",
+    situation: "Te llegó una citación",
     answer:
       "Antes de asistir a cualquier diligencia, busca asesoría: lo que digas desde el primer momento puede definir el rumbo del proceso.",
-    href: "/proceso-penal",
-    linkLabel: "Ver en qué etapa estás",
+    whatsappMessage:
+      "Hola Daniela, me citaron a la Fiscalía y necesito asesoría antes de asistir.",
   },
   {
-    situation: "Te capturaron",
+    situation: "Capturaron a un familiar",
     answer:
       "Es el momento donde la defensa técnica es más urgente: dentro de las 36 horas siguientes se define la legalización y la posible medida de aseguramiento.",
-    href: "/servicios#area-defensa-penal",
-    linkLabel: "Defensa penal",
+    whatsappMessage: "Hola Daniela, capturaron a un familiar y necesito asesoría urgente.",
   },
   {
-    situation: "Eres víctima o acompañas a tu familia",
+    situation: "Enfrentas una investigación o un proceso penal en curso",
+    answer:
+      "Si tú o un familiar se encuentran vinculados en una investigación o proceso penal, cuéntame tu situación. Analizaremos las particularidades del caso y las alternativas jurídicas para construir una estrategia de defensa.",
+    whatsappMessage:
+      "Hola Daniela, tengo una investigación o proceso penal en curso y necesito asesoría.",
+  },
+  {
+    situation: "Eres víctima o acompañas a un familiar",
     answer:
       "Puedes ser representada dentro de un proceso penal ya en curso, o para iniciar uno.",
-    href: "/servicios#area-representacion-de-victimas",
-    linkLabel: "Representación de víctimas",
-  },
-  {
-    situation: "Tu empresa está expuesta a criminalidad organizada",
-    answer:
-      "Un terreno más técnico y de mayor exposición reputacional, que exige análisis estratégico desde el inicio.",
-    href: "/servicios#area-criminalidad-organizada",
-    linkLabel: "Delitos de especial complejidad",
+    whatsappMessage:
+      "Hola Daniela, soy víctima (o acompaño a un familiar) en un proceso penal y necesito asesoría.",
   },
 ];
 
@@ -190,10 +189,12 @@ const situations = [
               </p>
               <p class="mt-2 max-w-md text-sm leading-relaxed text-manila-700">{item.answer}</p>
               <a
-                href={item.href}
+                href={whatsappLink(item.whatsappMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
               >
-                {item.linkLabel} →
+                Escríbeme →
               </a>
             </div>
           ))
@@ -263,37 +264,6 @@ const situations = [
             </details>
           ))
         }
-      </div>
-    </div>
-  </section>
-
-  <!-- CIERRE DE CONTACTO -->
-  <section class="bg-manila-100 py-16 sm:py-20">
-    <div
-      class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-8"
-      data-reveal
-    >
-      <div>
-        <h2 class="font-display text-2xl font-semibold text-ink-900 sm:text-3xl">
-          Cuéntale tu situación a Daniela
-        </h2>
-        <p class="mt-2 max-w-lg text-manila-700">
-          Cuanto antes tengas asesoría, más opciones reales podrás evaluar.
-        </p>
-      </div>
-      <div class="flex flex-col gap-3 sm:flex-row">
-        <a
-          href={whatsappLink(WHATSAPP_DEFAULT_MESSAGE)}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-whatsapp-primary
-          class="btn-gold whitespace-nowrap"
-        >
-          WhatsApp directo
-        </a>
-        <a href="/contacto" class="btn-outline-gold whitespace-nowrap">
-          Formulario de contacto
-        </a>
       </div>
     </div>
   </section>

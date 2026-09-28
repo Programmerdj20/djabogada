@@ -156,39 +156,6 @@ const steps = [
                     <p class="mt-4 max-w-[62ch] text-base leading-relaxed text-manila-700 sm:text-lg">
                       {area.description}
                     </p>
-
-                    <div class="mt-7 max-w-[62ch] border-t border-manila-300 pt-6">
-                      <p class="block-label text-sello-700">Cuándo acudir</p>
-                      <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-manila-700 sm:text-base">
-                        {area.whenToSeek.map((item) => (
-                          <li class="flex gap-2.5">
-                            <span class="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-sello-500" aria-hidden="true" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                      <a
-                        href={whatsappLink(
-                          `Hola Daniela, quiero información sobre ${area.title.toLowerCase()}. Me gustaría agendar una consulta.`,
-                        )}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-whatsapp-primary
-                        class="btn-gold whitespace-nowrap !px-6 !py-3 !text-[0.7rem]"
-                      >
-                        Solicitar por WhatsApp
-                      </a>
-                      <a
-                        href={`/contacto?area=${area.slug}`}
-                        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-sello-700 no-underline hover:text-sello-600"
-                      >
-                        Ir al formulario
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </article>
