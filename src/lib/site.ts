@@ -16,6 +16,7 @@ export const SITE = {
   phoneE164: "+573226555811",
   whatsappNumber: "573226555811",
   email: "contacto@danielajaramilloabogada.com",
+  instagram: "https://www.instagram.com/danielajaramilloabogada?stkn=dWd6Yngxb3E3NWVk&utm_source=qr",
   serviceArea: "virtual en cualquier parte del país",
 } as const;
 

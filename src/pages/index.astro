@@ -58,12 +58,29 @@ const situations = [
        enmarcada en desktop—, sin ningún texto: ni titular, ni rótulo, ni
        párrafo, por instrucción explícita de la clienta. El H1 vive oculto
        para SEO/accesibilidad; los únicos elementos visibles son el filete
-       de oro y los dos accesos de contacto. -->
-  <section class="relative border-b border-manila-300 bg-manila-50">
+       de oro y los dos accesos de contacto. Fondo sólido `manila-100`
+       —mismo tono que el resto de heros de página interna (perfil,
+       servicios, proceso-penal, contacto)—, con el degradado inferior de
+       la foto móvil recoloreado a juego. Como única marca distintiva del
+       hero del home (el resto usan la placa vertical `sello-400`/
+       `sello-300`+`shadow-gold`), el filete de entrada se saca del bloque
+       móvil y pasa a vivir a nivel de `<section>`: cruza todo el ancho en
+       ambos viewports, marcando el umbral del sitio — ningún otro hero
+       lo lleva. Las dos secciones siguientes intercambian su fondo para
+       conservar la alternancia manila-100/50 del ritmo de página (ver
+       DESIGN.md → Ritmo de página) ahora que el hero pasa a manila-100. -->
+  <section class="relative border-b border-manila-300 bg-manila-100">
     <h1 class="sr-only">
       Daniela Jaramillo, abogada penalista en Medellín. Defensa penal, representación de
       víctimas y criminalidad organizada.
     </h1>
+
+    {/* Filete de entrada: marca el umbral del sitio en ambos viewports —
+        único hero del sitio que lleva esta línea, exclusiva del home. */}
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sello-400 to-transparent"
+      aria-hidden="true"
+    ></div>
 
     {/* ── Móvil / tablet: foto a pantalla completa, solo imagen y botones ── */}
     <div class="relative h-[calc(100svh-4rem)] min-h-[38rem] overflow-hidden lg:hidden">
@@ -82,11 +99,7 @@ const situations = [
         />
       </div>
       <div
-        class="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-manila-50 via-manila-50/80 to-transparent md:h-[78%]"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sello-400 to-transparent"
+        class="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-manila-100 via-manila-100/80 to-transparent md:h-[78%]"
         aria-hidden="true"
       ></div>
 
@@ -182,13 +195,13 @@ const situations = [
   <!-- ¿QUÉ TE ESTÁ PASANDO?: enrutador por situación, no por trayectoria
        —esa historia vive en /perfil—. Índice de texto limpio, sin foto ni
        columna sticky, mismo tratamiento que "Áreas de práctica" más abajo. -->
-  <section class="bg-manila-100 py-16 sm:py-24">
+  <section class="bg-manila-50 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl" data-reveal>
         ¿Qué te está pasando?
       </h2>
       <p class="mt-4 max-w-md text-manila-700" data-reveal style="--reveal-delay: 60ms">
-        Reconoce tu situación y escribe con claridad sobre lo que enfrentas.
+        Reconoce tu situación y describe con claridad lo que estás enfrentando.
       </p>
 
       <div
@@ -198,7 +211,7 @@ const situations = [
       >
         {
           situations.map((item) => (
-            <div class="py-6 first:pt-0">
+            <div class="py-6">
               <p class="font-display text-lg font-semibold text-ink-900 sm:text-xl">
                 {item.situation}
               </p>
@@ -226,7 +239,7 @@ const situations = [
        rediseño de /servicios con índice fijo + fichas), en formato de
        lista editorial resumido — la ficha completa de cada área vive en
        /servicios. -->
-  <section class="bg-manila-50 py-16 sm:py-24">
+  <section class="bg-manila-100 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
         <h2 class="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
